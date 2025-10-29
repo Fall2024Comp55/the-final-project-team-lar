@@ -1,6 +1,7 @@
 
 public enum DistractionType {
-FLY, FAKE_MONSTER, MOVING_SHADOW, WHISPER, CREAK_SOUND;
+	FLY, FAKE_MONSTER, MOVING_SHADOW, WHISPER, CREAK_SOUND;
+	
 	public String toString() {
 		switch(this) {
 			case FLY: return "fly";
@@ -10,6 +11,6 @@ FLY, FAKE_MONSTER, MOVING_SHADOW, WHISPER, CREAK_SOUND;
 			case CREAK_SOUND: return "creak_sound";
 			
 		}
-	return "n/a";
-}
+		return "n/a";
+	}
 }

@@ -1,9 +1,11 @@
 import java.awt.event.MouseEvent;
 
-public class Door extends GameObject
+public class Door extends GameObject {
+	
+	private String roomID;
+
+public String getID() 
 {
-private String roomID;
-public String getID() {
 	return roomID;
 }
 public Door(String roomID)
@@ -12,6 +14,6 @@ public Door(String roomID)
 }
 
 public void onMouseAction(MouseEvent e) {
-	
+	getID();
 }
 }

@@ -45,6 +45,11 @@ public abstract class GameObject {
     public String getImagePath() {
         return imagePath;
     }
+    
+    public void setImagePath(String imagePath)
+    {
+    	this.imagePath = imagePath;
+    }
 
     public String getSoundName() {
         return soundName;

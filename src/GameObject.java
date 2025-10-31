@@ -1,5 +1,4 @@
 import acm.graphics.*;
-import acm.util.*;
 import java.awt.event.MouseEvent;
 
 public abstract class GameObject {

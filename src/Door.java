@@ -14,6 +14,6 @@ public Door(String roomID)
 }
 
 public void onMouseAction(MouseEvent e) {
-	
+	getID();
 }
 }

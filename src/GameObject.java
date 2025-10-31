@@ -1,4 +1,5 @@
 import acm.graphics.*;
+import acm.util.*;
 import java.awt.event.MouseEvent;
 
 public abstract class GameObject {
@@ -43,6 +44,11 @@ public abstract class GameObject {
     
     public String getImagePath() {
         return imagePath;
+    }
+    
+    public void setImagePath(String imagePath)
+    {
+    	this.imagePath = imagePath;
     }
 
     public String getSoundName() {

@@ -57,7 +57,6 @@ private void animation() {
 //different animations
 	String DType = type.toString();
 	if(DType == "fly") {
-	
 		
 	}
 	if(DType == "fake_monster"){

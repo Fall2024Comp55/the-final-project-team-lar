@@ -14,7 +14,7 @@ public class SoundManager {
     private boolean isMuted;
     
     // Default value for volume (range 0.0 - 1.0)
-    private static final double DEFAULT_VOLUME = 0.5;
+    private static final double DEFAULT_VOLUME = 0.25;
 	
     // Constructor
 	public SoundManager() {
@@ -124,7 +124,9 @@ public class SoundManager {
 		SoundManager test = new SoundManager();
 		
 		test.loadSound("main", "Media/test ambients.wav");
+		test.loadSound("test", "Media/test.au");
 		test.play("main");
+		test.play("test");
 		
 		try { // The bad noise/sound cutting out is caused by the 8-bit encoding
             Thread.sleep(3000);
@@ -135,6 +137,7 @@ public class SoundManager {
             System.out.println("Unmuting...");
             test.unmute();
             test.play("main");
+            test.play("test");
             
             Thread.sleep(2000);
             System.out.println("Stopping all sound...");
@@ -147,6 +150,11 @@ public class SoundManager {
             Thread.sleep(4000);
             System.out.println("Stopping...");
             test.stop("main");
+            
+            test.play("test");
+            
+            Thread.sleep(10000);
+            test.stopAll();
              
         } catch (InterruptedException e) {
             e.printStackTrace();

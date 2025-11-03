@@ -5,7 +5,7 @@ public class Distraction extends GameObject {
 DistractionType type;
 boolean triggered = false;
 //AudioClip effectSound;
-Timer distractionTimer;
+Timer distractionTimer = new Timer(12,);
 //level levelDelegate
 
 
@@ -51,7 +51,7 @@ public void actionPerformed(ActionEvent e){
 	
 }
 public void onMouseAction(MouseEvent e) {
-
+	triggerEffect();
 }
 private void animation() {
 //different animations

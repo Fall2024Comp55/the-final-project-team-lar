@@ -2,6 +2,7 @@ import acm.graphics.*;
 import acm.program.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.Color;
 import java.awt.Color.*; 
 
 //MORE EDITS NEEDED
@@ -39,9 +40,17 @@ public class Flashlight implements ActionListener {
 	
 	public void shine() { //how will we implement shine?
 		//Color shinee = new Color(74, 118, 249, 100);
-		//cursorLight.setFillColor(shinee); 
-		cursorLight.setFilled(true); 
-		//what the frick	
+		//cursorLight.setFillColor(shinee);
+		
+		//could do something like cursorLight.setColor(Color.BLUE);
+		
+		cursorLight.setFilled(true);
+		//what the frick
+		
+		//im guessing that you could do if instanceOf Distraction __ shine() in MouseClicked and put
+		//battery = battery - shineRate
+		//if isEmpty() change gameState to lose
+		//if instanceof Monster then in level change gameState to win, but don't worry too much about that for now.
 	}
 	
 	public boolean isEmpty() {

@@ -1,11 +1,12 @@
 import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.*;
 
-public class Distraction extends GameObject {
+public class Distraction extends GameObject implements ActionListener{
 DistractionType type;
 boolean triggered = false;
 //AudioClip effectSound;
-Timer distractionTimer = new Timer(12,);
+Timer distractionTimer = new Timer(12,this);
 //level levelDelegate
 
 

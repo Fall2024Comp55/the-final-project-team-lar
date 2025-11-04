@@ -54,19 +54,21 @@ public void actionPerformed(ActionEvent e){
 public void onMouseAction(MouseEvent e) {
 	triggerEffect();
 }
+
 private void animation() {
 //different animations
-	String DType = type.toString();
-	if(DType == "fly") {
+	
+	if(type == DistractionType.FLY) {
 		
 	}
-	if(DType == "fake_monster"){
-		
-		
-	}
-	if(DType == "moving_shadow") {
+	if(type == DistractionType.FAKE_MONSTER){
 		
 		
 	}
+	if(type == DistractionType.MOVING_SHADOW){ 
+		
+		
 	}
+}
+
 }

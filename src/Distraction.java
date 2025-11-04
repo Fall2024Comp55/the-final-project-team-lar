@@ -54,18 +54,20 @@ public void actionPerformed(ActionEvent e){
 public void onMouseAction(MouseEvent e) {
 	triggerEffect();
 }
+
 private void animation() {
 //different animations
-	String DType = type.toString();
-	if(DType == "fly") {
-		this.setX();
-		//idk some circular shape
-	}
-	if(DType == "fake_monster"){
-		//
+//idk some circular shape
+	
+	if(type == DistractionType.FLY) {
 		
 	}
-	if(DType == "moving_shadow") {
+	if(type == DistractionType.FAKE_MONSTER){
+		
+
+		
+	}
+	if(type == DistractionType.MOVING_SHADOW){ 
 		
 		
 	}
@@ -75,4 +77,6 @@ public void moveToPoint(double newX, double newY){
 	double x = this.getX();
 	double y = this.getY();
 }
+
 }
+

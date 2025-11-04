@@ -12,20 +12,20 @@ Timer distractionTimer = new Timer(12,this);
 
 
 public Distraction(DistractionType type) {
-	super(0,0,"missingNo.png","");
+	super(0,0,"media/missingNo.png","");
 	String DType = type.toString();
 	if(DType == "fly")
 	{
-		setImagePath("fly.png");
+		setImagePath("media/fly.png");
 		//setSound??
 	}
 	if(DType == "fake_monster")
 	{
-		setImagePath("fake_monster.png");
+		setImagePath("media/fake_monster.png");
 	}
 	if(DType == "moving_shadow")
 	{
-		setImagePath("moving_shadow.png");
+		setImagePath("media/moving_shadow.png");
 	}
 	/*if(DType == "whisper")
 	{
@@ -58,10 +58,11 @@ private void animation() {
 //different animations
 	String DType = type.toString();
 	if(DType == "fly") {
-		
+		this.setX();
+		//idk some circular shape
 	}
 	if(DType == "fake_monster"){
-		
+		//
 		
 	}
 	if(DType == "moving_shadow") {
@@ -69,4 +70,9 @@ private void animation() {
 		
 	}
 	}
+
+public void moveToPoint(double newX, double newY){
+	double x = this.getX();
+	double y = this.getY();
+}
 }

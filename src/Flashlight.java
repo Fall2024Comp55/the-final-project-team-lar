@@ -2,16 +2,16 @@ import acm.graphics.*;
 import acm.program.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.awt.Color;
-import java.awt.Color.*; 
+import java.awt.Color.*;
+import java.awt.geom.*; //use this to add 2D ellipse 
 
 //MORE EDITS NEEDED
 
 public class Flashlight implements ActionListener {
 
 	private double battery;
-	private double drainRate;
-	private double shineRate;
+	private double drainRate; //amount drained throughout level
+	private double shineRate; //amount drained when light is shone
 	private double lightDiameter;
 	private boolean isOn;
 	private double rechargeAmount;
@@ -34,18 +34,20 @@ public class Flashlight implements ActionListener {
 	
 	public void drain() {
 		if(isOn) {
-			battery = battery - (drainRate * 2); //drainRate not defined
+			battery = battery - shineRate; //drainRate not defined
 		}
 	}
 	
-	public void shine() { //how will we implement shine?
+	public void shine() { 
+		isOn = true;
+		this.drain();
+		
+		
 		//Color shinee = new Color(74, 118, 249, 100);
 		//cursorLight.setFillColor(shinee);
 		
 		//could do something like cursorLight.setColor(Color.BLUE);
 		
-		cursorLight.setFilled(true);
-		//what the frick
 		
 		//im guessing that you could do if instanceOf Distraction __ shine() in MouseClicked and put
 		//battery = battery - shineRate

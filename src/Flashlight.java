@@ -1,26 +1,29 @@
-import acm.graphics.*;
-import acm.program.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.awt.Color.*;
-import java.awt.geom.*; //use this to add 2D ellipse 
+import java.awt.*;
 
-//MORE EDITS NEEDED
 
-public class Flashlight implements ActionListener {
+public class Flashlight extends JPanel implements ActionListener{
 
 	private double battery;
 	private double drainRate; //amount drained throughout level
 	private double shineRate; //amount drained when light is shone
-	private double lightDiameter;
+	private int lightDiameter;
 	private boolean isOn;
 	private double rechargeAmount;
-	private Timer t = new Timer(1000, this);  
+	private Timer t = new Timer(1000, this); 
+	private Color shinee = new Color(74, 118, 249, 0.08f); //flashlight shine color 
+	private Color defaultBlue = new Color(74, 118, 249, 0.2f); //default shine color
+	private Graphics2D cursorLight;
 	
-	//add both to the screen later
-	GOval cursorLight = new GOval(0, 0, lightDiameter, lightDiameter); //0,0 is just an initialization for x and y
-	
-	private GRect batteryMeter = new GRect(100, 500, 250, 150); //make changes here once we can print to screen
+	@Override 
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		cursorLight = (Graphics2D) g;
+		cursorLight.setColor(defaultBlue); //initialize flashlight color
+		cursorLight.fillOval(100, 100, lightDiameter, lightDiameter); //x, y, width, height
+		
+	}
 	
 	
 	public Flashlight(double b, double d) {
@@ -32,28 +35,26 @@ public class Flashlight implements ActionListener {
 		return battery;
 	}
 	
+	public void toggle(boolean on) {
+		if(on) {
+			isOn = true;
+			this.shine(); 
+			isOn = false; 
+			}
+	}
+	
+	public void shine() { 
+		cursorLight.setColor(shinee);
+		isOn = true;
+		this.drain();
+	}
+	
 	public void drain() {
 		if(isOn) {
 			battery = battery - shineRate; //drainRate not defined
 		}
 	}
 	
-	public void shine() { 
-		isOn = true;
-		this.drain();
-		
-		
-		//Color shinee = new Color(74, 118, 249, 100);
-		//cursorLight.setFillColor(shinee);
-		
-		//could do something like cursorLight.setColor(Color.BLUE);
-		
-		
-		//im guessing that you could do if instanceOf Distraction __ shine() in MouseClicked and put
-		//battery = battery - shineRate
-		//if isEmpty() change gameState to lose
-		//if instanceof Monster then in level change gameState to win, but don't worry too much about that for now.
-	}
 	
 	public boolean isEmpty() {
 		if(battery == 0.0) {
@@ -68,21 +69,14 @@ public class Flashlight implements ActionListener {
 		battery = battery + rechargeAmount; //rechargeAmount not defined
 	}
 	
-	public void toggle(boolean on) {
-		if(on) {
-			this.shine(); 
-			isOn = true;
-			this.drain();
-			}
-	}
 	
-	public void MouseClicked(MouseEvent e) {
+	public void MouseClicked(MouseEvent e) { //this should be handled by Screen delegate
 		this.shine();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		battery = battery - drainRate;
-		if(battery == 0) {
+		if(battery == 0.0) {
 			t.stop();
 		}
 	}

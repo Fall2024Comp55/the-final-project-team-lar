@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
-
+//NOTE: flashlight is now a Jpanel and needs to be added to the screen as a frame
 public class Flashlight extends JPanel implements ActionListener{
 
 	private double battery;
@@ -22,9 +22,7 @@ public class Flashlight extends JPanel implements ActionListener{
 		cursorLight = (Graphics2D) g;
 		cursorLight.setColor(defaultBlue); //initialize flashlight color
 		cursorLight.fillOval(100, 100, lightDiameter, lightDiameter); //x, y, width, height
-		
 	}
-	
 	
 	public Flashlight(double b, double d) {
 		battery = b;
@@ -40,7 +38,7 @@ public class Flashlight extends JPanel implements ActionListener{
 			isOn = true;
 			this.shine(); 
 			isOn = false; 
-			}
+		}
 	}
 	
 	public void shine() { 
@@ -55,12 +53,10 @@ public class Flashlight extends JPanel implements ActionListener{
 		}
 	}
 	
-	
 	public boolean isEmpty() {
 		if(battery == 0.0) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -69,11 +65,11 @@ public class Flashlight extends JPanel implements ActionListener{
 		battery = battery + rechargeAmount; //rechargeAmount not defined
 	}
 	
-	
 	public void MouseClicked(MouseEvent e) { //this should be handled by Screen delegate
 		this.shine();
 	}
 	
+	//drains battery health slowly
 	public void actionPerformed(ActionEvent e) {
 		battery = battery - drainRate;
 		if(battery == 0.0) {

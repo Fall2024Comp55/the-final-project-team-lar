@@ -1,9 +1,11 @@
 import javax.swing.*;
+import acm.graphics.*;
 import java.awt.event.*;
 import java.awt.*;
+import java.awt.Color;
 
-//NOTE: flashlight is now a Jpanel and needs to be added to the screen as a frame
-public class Flashlight extends JPanel implements ActionListener{
+
+public class Flashlight implements ActionListener{
 
 	private double battery;
 	private double drainRate; //amount drained throughout level
@@ -13,20 +15,16 @@ public class Flashlight extends JPanel implements ActionListener{
 	private double rechargeAmount;
 	private Timer t = new Timer(1000, this); 
 	private Color shinee = new Color(74, 118, 249, 0.08f); //flashlight shine color 
-	private Color defaultBlue = new Color(74, 118, 249, 0.2f); //default shine color
-	private Graphics2D cursorLight;
-	
-	@Override 
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		cursorLight = (Graphics2D) g;
-		cursorLight.setColor(defaultBlue); //initialize flashlight color
-		cursorLight.fillOval(100, 100, lightDiameter, lightDiameter); //x, y, width, height
-	}
+	private Color defaultBlue = new Color(74, 118, 249, 0.2f); //default color
+	private GOval cursorLight = new GOval(0, 0, lightDiameter, lightDiameter);
+	private GRect batteryMeter = new GRect(0,0, 200, 150); //add this to the screen later with screenDelegate
 	
 	public Flashlight(double b, double d) {
 		battery = b;
 		drainRate = d;
+		
+		cursorLight.setFillColor(defaultBlue); 
+		cursorLight.setFilled(true);
 	}
 	
 	public double getBattery() {
@@ -43,6 +41,7 @@ public class Flashlight extends JPanel implements ActionListener{
 	
 	public void shine() { 
 		cursorLight.setColor(shinee);
+		cursorLight.setSize(200,200); 
 		isOn = true;
 		this.drain();
 	}
@@ -67,6 +66,10 @@ public class Flashlight extends JPanel implements ActionListener{
 	
 	public void MouseClicked(MouseEvent e) { //this should be handled by Screen delegate
 		this.shine();
+	}
+	
+	public void MouseMoved(MouseEvent e) {
+		cursorLight.setLocation(e.getX(), e.getY());
 	}
 	
 	//drains battery health slowly

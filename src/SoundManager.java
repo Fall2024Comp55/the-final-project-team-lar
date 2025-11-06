@@ -55,8 +55,32 @@ public class SoundManager {
 	
 	// Can set individual volume of clips as long as it doesn't exceed globalVolume
 	public void setVolume(String name, float volume) {
-		
+		Clip clip = sounds.get(name);
+		try {
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            float min = gainControl.getMinimum();
+            float max = gainControl.getMaximum();
+            // Convert linear volume [0.0 - 1.0] to decibels
+            float dB = (float) (Math.log10(Math.max(volume, 0.0001)) * 20.0);
+            gainControl.setValue(Math.max(min, Math.min(max, dB)));
+        } catch (Exception e) {
+            System.err.println("Volume control not supported for this clip.");
+        }
 	}
+	
+	// Overloaded to allow for easier internal use
+		public void setVolume(Clip clip, float volume) {
+			try {
+	            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+	            float min = gainControl.getMinimum();
+	            float max = gainControl.getMaximum();
+	            // Convert linear volume [0.0 - 1.0] to decibels
+	            float dB = (float) (Math.log10(Math.max(volume, 0.0001)) * 20.0);
+	            gainControl.setValue(Math.max(min, Math.min(max, dB)));
+	        } catch (Exception e) {
+	            System.err.println("Volume control not supported for this clip.");
+	        }
+		}
 	
 	// Plays a sound once
 	public void play(String name) {
@@ -71,7 +95,13 @@ public class SoundManager {
 	
 	// Loops the sound (useful for music/ambient sound
 	public void loop(String name) {
-		 
+		 if (isMuted) return;
+	        Clip clip = sounds.get(name);
+	        if (clip != null) {
+	            clip.stop();
+	            clip.setFramePosition(0);
+	            clip.loop(Clip.LOOP_CONTINUOUSLY);
+	        }
     }
 	
 	// Halts playing of sound
@@ -93,7 +123,10 @@ public class SoundManager {
 	
 	// Sets global volume within range 0.0 - 1.0
 	public void setGlobalVolume(float volume) {
-		
+		globalVolume = Math.max(0f, Math.min(1f, volume)); // out in range between 0 and 1
+        for (Clip clip : sounds.values()) {
+            setVolume(clip, globalVolume);
+        }
 	}
 
     // Mutes all sounds.
@@ -144,15 +177,24 @@ public class SoundManager {
             
             Thread.sleep(2000);
             System.out.println("Looping sound...");
-            //test.loop("main");
+            test.loop("main");
             
             Thread.sleep(4000);
             System.out.println("Stopping...");
             test.stop("main");
             
+            System.out.println("Playing...");
             test.play("test");
             
-            Thread.sleep(10000);
+            Thread.sleep(4000);
+            System.out.println("Setting volume lower...");
+            test.setGlobalVolume(0.2f);
+            
+            Thread.sleep(4000);
+            System.out.println("Setting volume higher...");
+            test.setGlobalVolume(1f);
+            
+            Thread.sleep(20000);
             test.stopAll();
              
         } catch (InterruptedException e) {

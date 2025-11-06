@@ -61,10 +61,10 @@ private void animation() {
 	
 	if(type == DistractionType.FLY) {
 		
+		
 	}
 	if(type == DistractionType.FAKE_MONSTER){
 		
-
 		
 	}
 	if(type == DistractionType.MOVING_SHADOW){ 
@@ -73,9 +73,15 @@ private void animation() {
 	}
 	}
 
-public void moveToPoint(double newX, double newY){
-	double x = this.getX();
-	double y = this.getY();
+public void moveToPoint(double newX, double newY, int frames){
+	
+	if(this.image.getX()!=newX || this.image.getY()!=newY)
+	{
+	double subtractX = (newX - image.getX())/frames;
+	double subtractY = (newY - image.getY())/frames;
+	
+	this.image.move(subtractX,subtractY);
+	}
 }
 
 }

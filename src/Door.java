@@ -12,6 +12,7 @@ public class Door extends GameObject {
 	public Door(String roomID)
 	{
 		super(0,0,"arrow.png","");
+		this.roomID = roomID;
 	}
 
 	public void onMouseAction(MouseEvent e) {

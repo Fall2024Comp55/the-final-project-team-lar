@@ -5,6 +5,7 @@ import javax.swing.*;
 public class Distraction extends GameObject implements ActionListener{
 DistractionType type;
 boolean triggered = false;
+String SoundName;
 //AudioClip effectSound;
 Timer distractionTimer = new Timer(12,this);
 //level levelDelegate
@@ -27,29 +28,30 @@ public Distraction(DistractionType type) {
 	{
 		setImagePath("media/moving_shadow.png");
 	}
-	/*if(DType == "whisper")
+	if(DType == "whisper")
 	{
-		setImagePath("whisper.png");
+		setSoundName("whisper");
 	}
 	if(DType == "creak_sound")
 	{
-		setImagePath("creak_sound.png");
-	}*/
+		setSoundName("creak_sound");
+	}
 }
 
 public void triggerEffect()
 {
-	if(this.triggered = true)
-	{
-		animation();
-	}
+	triggered = true;
 	
+}
+
+public void setSoundName(String name) {
+	soundName = name;
 }
 public void reset() {
 	this.triggered = false;
 }
 public void actionPerformed(ActionEvent e){
-	
+	animation();
 }
 public void onMouseAction(MouseEvent e) {
 	triggerEffect();
@@ -58,20 +60,21 @@ public void onMouseAction(MouseEvent e) {
 private void animation() {
 //different animations
 //idk some circular shape
-	
-	if(type == DistractionType.FLY) {
+	if(triggered == true) {
+		if(type == DistractionType.FLY) {
+		//set points
+		
+		}
+		if(type == DistractionType.FAKE_MONSTER){
 		
 		
+		}
+		if(type == DistractionType.MOVING_SHADOW){ 
+		
+		
+		}
 	}
-	if(type == DistractionType.FAKE_MONSTER){
-		
-		
-	}
-	if(type == DistractionType.MOVING_SHADOW){ 
-		
-		
-	}
-	}
+}
 
 public void moveToPoint(double newX, double newY, int frames){
 	

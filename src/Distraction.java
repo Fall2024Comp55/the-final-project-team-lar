@@ -9,11 +9,14 @@ String SoundName;
 //AudioClip effectSound;
 Timer distractionTimer = new Timer(12,this);
 //level levelDelegate
-
+double initialX;
+double initialY;
 
 
 public Distraction(DistractionType type) {
 	super(0,0,"media/missingNo.png","");
+	initialX = 0;
+	initialY = 0;
 	String DType = type.toString();
 	if(DType == "fly")
 	{
@@ -38,6 +41,36 @@ public Distraction(DistractionType type) {
 	}
 }
 
+
+public Distraction(double x, double y, DistractionType type) {
+	super(x,y,"media/missingNo.png","");
+	initialX = x;
+	initialY = y;
+	String DType = type.toString();
+	if(DType == "fly")
+	{
+		setImagePath("media/fly.png");
+		//setSound??
+	}
+	if(DType == "fake_monster")
+	{
+		setImagePath("media/fake_monster.png");
+	}
+	if(DType == "moving_shadow")
+	{
+		setImagePath("media/moving_shadow.png");
+	}
+	if(DType == "whisper")
+	{
+		setSoundName("whisper");
+	}
+	if(DType == "creak_sound")
+	{
+		setSoundName("creak_sound");
+	}
+}
+
+
 public void triggerEffect()
 {
 	triggered = true;
@@ -49,6 +82,8 @@ public void setSoundName(String name) {
 }
 public void reset() {
 	this.triggered = false;
+	this.setPosition(initialX, initialY);
+	
 }
 public void actionPerformed(ActionEvent e){
 	animation();

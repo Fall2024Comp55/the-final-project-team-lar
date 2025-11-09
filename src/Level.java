@@ -29,6 +29,11 @@ public class Level {
 	
 	public boolean checkMonsterFound(double x, double y)
 	{
+		if(getElementAt(x,y)==Monster)
+		{
+			
+		}
+		//must use delegate
 		return true;
 		//will finish later
 	}

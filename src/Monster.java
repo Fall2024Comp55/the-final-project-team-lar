@@ -11,7 +11,7 @@ public class Monster extends GameObject{
 
 	public Monster(double x, double y,double scareIntensity, int monsterRoom)
 	{
-		super(x,y,"monster.png","insertSoundName");
+		super(x,y,"monster.jpeg","insertSoundName");
 		isRevealed = false;
 		this.scareIntensity = scareIntensity;
 		initialMonsterRoom = monsterRoom;
@@ -20,7 +20,8 @@ public class Monster extends GameObject{
 	
 	public void reveal() {
 		isRevealed = true;
-		setImagePath("media/revealedMonster.png");//need to add monster pngs
+		setImagePath("media/revealedMonster.jpeg");//need to add monster pngs
+		playSound();
 	}
 	
 	public void playSound() {
@@ -34,10 +35,13 @@ public class Monster extends GameObject{
 	}
 	
 	public void isCaught(double x, double y) {
-		
+		if(this.getX()==x && this.getY() == y)
+		{
+			reveal();
+		}
 	}
 	
 	public void onMouseAction(MouseEvent e) {
-		
+		isCaught(e.getX(),e.getY());
 	}
 }

@@ -21,8 +21,27 @@ public class Room {
 		distractions.add(y);
 	}
 	
-	void addDoor() {
-		//Door(id); //bruh
+	void addDoor(String n, double x, double y) {
+		Door thedoor = new Door(x, y, n); 		
+	}
+	
+	void drawRoom() {
+		
+	}
+	
+	void revealObjects() {
+		
+	}
+	
+	void showContent() {
+		
+	}
+	
+	void hideContent() {
+		
+	}
+	
+	void clickedOn(double x, double y) {
 		
 	}
 	

@@ -5,3 +5,5 @@ public interface ScreenDelegate {
     void onDistractionTriggered(String type);
     void onLevelComplete();
 }
+
+// add to the classes by adding "private ScreenDelegate delegate" as a data member

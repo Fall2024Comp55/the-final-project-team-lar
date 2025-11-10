@@ -1,5 +1,6 @@
 import java.util.*;
 import acm.graphics.*;
+import java.awt.event.*;
 
 public class Room {
 
@@ -7,23 +8,58 @@ public class Room {
 	private ArrayList<Distraction> distractions;
 	private boolean isVisited;
 	private String imagePath; 
+	private Monster monster;
 	private GImage BackgroundImage;
-	//screenDelegate
+	//private GraphicsGame delegate; 
 	
-	void room(String num) {
+	public void room(String num) {
 		id = num; 
 		imagePath = "room" + id + ".png"; //change this if diff file format is used 
 		BackgroundImage = new GImage(imagePath); 
 	}
 	
-	void addDistraction(DistractionType t) {
+	public void addDistraction(DistractionType t) {
 		Distraction y = new Distraction(t); 
 		distractions.add(y);
 	}
 	
-	void addDoor() {
-		//Door(id); //bruh
+	public void addDoor(String n, double x, double y) {
+		Door thedoor = new Door(x, y, n); 		
+	}
+	
+	public void drawRoom() {
+		//delegate.add(BackgroundImage); 
+		for(Distraction m: distractions) {
+			//delegate.add(m);
+		}
+	}
+	
+	public void revealObjects() {
 		
+		
+	}
+	
+	public void showContent() {
+		
+	}
+	
+	public void hideContent() {
+		//delegate.remove(BackgroundImage);
+		for(Distraction m: distractions) {
+			//delegate.remove(m);
+		}
+	}
+	
+	public void mouseClicked(MouseEvent e) {
+		double x = e.getX();
+		double y = e.getY();
+		
+		for(Distraction m: distractions) {
+			if(m.getX() == x && m.getY() == y) {
+				m.onMouseAction(e);
+			}
+		}
+		monster.onMouseAction(e);
 	}
 	
 	

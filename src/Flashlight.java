@@ -18,7 +18,6 @@ public class Flashlight implements ActionListener{
 	private Color shinee = new Color(74, 118, 249, 0.08f); //flashlight shine color 
 	private Color defaultBlue = new Color(74, 118, 249, 0.2f); //default color
 	private GOval cursorLight = new GOval(0, 0, lightDiameter, lightDiameter);
-	//screenDelegate.add(cursorLight);
 	private GRect batteryMeter = new GRect(0,0, 200, 150);
 	//screenDelegate.add(batteryMeter);
 	

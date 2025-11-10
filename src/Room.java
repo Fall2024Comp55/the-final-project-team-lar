@@ -9,6 +9,7 @@ public class Room {
 	private boolean isVisited;
 	private String imagePath; 
 	private Monster monster;
+	private Flashlight light;
 	private GImage BackgroundImage;
 	//private GraphicsGame delegate; 
 	
@@ -28,10 +29,8 @@ public class Room {
 	}
 	
 	public void drawRoom() {
-		//delegate.add(BackgroundImage); 
-		for(Distraction m: distractions) {
-			//delegate.add(m);
-		}
+		hideContent();
+		showContent();
 	}
 	
 	public void revealObjects() {
@@ -40,11 +39,19 @@ public class Room {
 	}
 	
 	public void showContent() {
+		//delegate.add(BackgroundImage);
+		//delegate.add(monster);
+		//delegate.add(light);
+		for(Distraction m: distractions) {
+			//delegate.add(m);
+		}
 		
 	}
 	
 	public void hideContent() {
 		//delegate.remove(BackgroundImage);
+		//delegate.remove(monster);
+		//delegate.remove(light);
 		for(Distraction m: distractions) {
 			//delegate.remove(m);
 		}

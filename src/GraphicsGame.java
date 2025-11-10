@@ -6,7 +6,7 @@ import java.util.*;
 import acm.util.*;
 
 /*
- * The main game controller class forthe game.
+ * The main game controller class for the game.
  */
 public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	 public static final int WINDOW_WIDTH = 800;
@@ -17,10 +17,15 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	 SoundManager soundManager = SoundManager.getInstance();
 	 
 	 private GLabel batteryLabel;
-	 private GLabel stateLabel;
-	 private GImage background;
+	 //private GImage background;
 	 
 	 private Flashlight flashlight;
+	 
+	 @Override
+	    public void init() {
+	        setSize(800, 600);
+	        addMouseListeners();
+	 }
 	 
 	 @Override
 	 public void run() {

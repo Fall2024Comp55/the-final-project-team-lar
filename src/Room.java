@@ -11,7 +11,8 @@ public class Room {
 	private Monster monster;
 	private Flashlight light;
 	private GImage BackgroundImage;
-	//private GraphicsGame delegate; 
+	private ScreenDelegate delegate;
+	private GraphicsGame screen;
 	
 	public void room(String num) {
 		id = num; 
@@ -39,17 +40,17 @@ public class Room {
 	}
 	
 	public void showContent() {
-		//delegate.add(BackgroundImage);
-		//delegate.add(monster);
-		//delegate.add(light);
+		screen.add(BackgroundImage);
+		//screen.add(monster); 
+		//screen.add(light);
 		for(Distraction m: distractions) {
-			//delegate.add(m);
+			//screen.add(m);
 		}
 		
 	}
 	
 	public void hideContent() {
-		//delegate.remove(BackgroundImage);
+		screen.remove(BackgroundImage);
 		//delegate.remove(monster);
 		//delegate.remove(light);
 		for(Distraction m: distractions) {

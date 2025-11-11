@@ -13,13 +13,13 @@ public class Flashlight implements ActionListener{
 	private int lightDiameter;
 	private boolean isOn;
 	private double rechargeAmount;
-	//private GraphicsGame screenDelegate;
+	private ScreenDelegate delegate; 
 	private Timer t = new Timer(1000, this); 
 	private Color shinee = new Color(74, 118, 249, 0.08f); //flashlight shine color 
 	private Color defaultBlue = new Color(74, 118, 249, 0.2f); //default color
 	private GOval cursorLight = new GOval(0, 0, lightDiameter, lightDiameter);
 	private GRect batteryMeter = new GRect(0,0, 200, 150);
-	//screenDelegate.add(batteryMeter);
+	//screen.add(batteryMeter);
 	
 	public Flashlight(double b, double d) {
 		battery = b;

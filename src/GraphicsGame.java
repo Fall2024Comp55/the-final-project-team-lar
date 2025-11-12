@@ -30,30 +30,33 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	        
 	        
 	        //addMouseMotionListeners();
-	        //setupUI();
+	        setupUI();
 
 	        gameState = GameState.MENU;
 	        
-	        /*
-	        batteryLabel = new GLabel("100%");
-	        
-	        batteryLevel = new GRect(150, 25);
-	        batteryLevel.setFilled(true);
-	        batteryLevel.setFillColor(Color.red);
-	        
-	        batteryBackground = new GRect(150, 25);
-	        batteryBackground.setFilled(true);
-	        batteryBackground.setFillColor(Color.gray);
-	        
-	        add(batteryBackground, 10, 525);
-	        add(batteryLevel, 10, 525);
-	        add(batteryLabel, 65, 545);
-	        */
 	 }
 	 
 	 @Override
 	 public void run() {
 		 //startGame();
+	 }
+	 
+	 public void setupUI() {
+		 /*
+		 batteryLabel = new GLabel("100%");
+	        
+		 batteryLevel = new GRect(150, 25);
+	     batteryLevel.setFilled(true);
+	     batteryLevel.setFillColor(Color.red);
+	        
+	     batteryBackground = new GRect(150, 25);
+	     batteryBackground.setFilled(true);
+	     batteryBackground.setFillColor(Color.gray);
+	        
+	     add(batteryBackground, 10, 525);
+	     add(batteryLevel, 10, 525);
+	     add(batteryLabel, 65, 545);
+	     */
 	 }
 	 
 	 //-----Mouse Handlers-----//

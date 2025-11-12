@@ -56,6 +56,15 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 		 //startGame();
 	 }
 	 
+	 //-----Mouse Handlers-----//
+	 @Override
+	    public void mouseMoved(MouseEvent e) {
+	        if (gameState != GameState.PLAYING) return;
+	        flashlight.MouseMoved(e);
+	    }
+	 
+	 
+	 //-----Delegate callbacks-----//
 	 @Override
 	 public void onMonsterRevealed() {
 		 
@@ -81,6 +90,8 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 		 
 	 }
 	 
+	 
+	 // Main Function
 	 public static void main(String[] args) {
 			new GraphicsGame().start();
 	 }

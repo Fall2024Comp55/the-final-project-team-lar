@@ -113,12 +113,12 @@ private void animation() {
 
 public void moveToPoint(double newX, double newY, int frames){
 	
-	if(this.image.getX()!=newX || this.image.getY()!=newY)
+	if(this.getX()!=newX || this.getY()!=newY)
 	{
-	double subtractX = (newX - image.getX())/frames;
-	double subtractY = (newY - image.getY())/frames;
+	double subtractX = (newX - this.getX())/frames;
+	double subtractY = (newY - this.getY())/frames;
 	
-	this.image.move(subtractX,subtractY);
+	this.setPosition(subtractX,subtractY);
 	}
 }
 

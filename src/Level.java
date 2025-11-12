@@ -9,7 +9,7 @@ public class Level {
 	Boolean isCompleted;
 	int levelNumber;
 	String password;
-	//delegate GraphicsGame
+	GraphicsGame delegate;
 	
 	
 	public Level(int levelNumber, String password) {
@@ -39,14 +39,14 @@ public class Level {
 	}
 	
 	
-	/*public void resetLevel() {
+	public void resetLevel() {
 		
 	}
 	
 	public void drawAllRooms(){
 		
 	}
-	*/
+	
 	public void switchRoomto(int a) {
 		currentRoom = getRoom(a);
 	}

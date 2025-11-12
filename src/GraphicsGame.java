@@ -5,6 +5,7 @@ import java.awt.*;
 import java.util.*;
 import acm.util.*;
 import javax.swing.*;
+import java.awt.Color;
 
 /*
  * The main controller class for the game.
@@ -46,7 +47,7 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	 }
 	 
 	 public void setupUI() {
-		 /*
+		// /*
 		 batteryLabel = new GLabel("100%");
 	        
 		 batteryLevel = new GRect(150, 25);
@@ -60,7 +61,7 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	     add(batteryBackground, 10, 525);
 	     add(batteryLevel, 10, 525);
 	     add(batteryLabel, 65, 545);
-	     */
+	    // */
 	 }
 	 
 	 private void startGame() {
@@ -73,7 +74,7 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 
         soundManager.loop("ambient");
 
-        // Periodic updates (e.g., battery drain, monster movement)
+        // Periodic updates (battery drain, monster movement)
         gameTimer = new javax.swing.Timer(100, e -> update());
         gameTimer.start();
     }
@@ -81,14 +82,25 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
     private void update() {
         if (gameState != GameState.PLAYING) return;
 
-        //updateBattery();
+        updateBattery();
 
         if (flashlight.isEmpty()) {
             onPlayerLose();
         }
 
-        // Future: monster movement logic
+        // TODO: Future monster movement logic
     }
+    
+    private void updateBattery() {
+        double percent = flashlight.getBattery() / 200.0;
+        batteryLevel.setSize(150 * percent, 20);
+        batteryLabel.setLabel("Battery: " + (int) (percent * 100) + "%");
+
+        if (percent < 0.3) batteryLevel.setFillColor(Color.RED);
+        else if (percent < 0.6) batteryLevel.setFillColor(Color.ORANGE);
+        else batteryLevel.setFillColor(Color.GREEN);
+    }
+    
 	 
 	 //-----Mouse Handlers-----//
 	 @Override

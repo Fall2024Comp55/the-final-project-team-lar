@@ -6,7 +6,7 @@ import java.util.*;
 import acm.util.*;
 
 /*
- * The main game controller class for the game.
+ * The main controller class for the game.
  */
 public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	 public static final int WINDOW_WIDTH = 800;
@@ -17,19 +17,43 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	 SoundManager soundManager = SoundManager.getInstance();
 	 
 	 private GLabel batteryLabel;
+	 private GRect batteryLevel;
+	 private GRect batteryBackground;
 	 //private GImage background;
 	 
 	 private Flashlight flashlight;
 	 
 	 @Override
 	    public void init() {
-	        setSize(800, 600);
+	        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	        addMouseListeners();
+	        
+	        
+	        //addMouseMotionListeners();
+	        //setupUI();
+
+	        gameState = GameState.MENU;
+	        
+	        /*
+	        batteryLabel = new GLabel("100%");
+	        
+	        batteryLevel = new GRect(150, 25);
+	        batteryLevel.setFilled(true);
+	        batteryLevel.setFillColor(Color.red);
+	        
+	        batteryBackground = new GRect(150, 25);
+	        batteryBackground.setFilled(true);
+	        batteryBackground.setFillColor(Color.gray);
+	        
+	        add(batteryBackground, 10, 525);
+	        add(batteryLevel, 10, 525);
+	        add(batteryLabel, 65, 545);
+	        */
 	 }
 	 
 	 @Override
 	 public void run() {
-		 
+		 //startGame();
 	 }
 	 
 	 @Override
@@ -57,4 +81,7 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 		 
 	 }
 	 
+	 public static void main(String[] args) {
+			new GraphicsGame().start();
+	 }
 }

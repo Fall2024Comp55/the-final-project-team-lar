@@ -5,6 +5,8 @@ public class Monster extends GameObject{
 	private boolean isRevealed;
 	private double scareIntensity;
 	private int initialMonsterRoom;
+	private double initialX;
+	private double initialY;
 	private int monsterRoom;
 	//level levelDelegate
 	//GraphicsGame screenDelegate
@@ -14,7 +16,10 @@ public class Monster extends GameObject{
 		super(x,y,"monster.jpeg","insertSoundName");
 		isRevealed = false;
 		this.scareIntensity = scareIntensity;
+		setPosition(x,y);
 		initialMonsterRoom = monsterRoom;
+		initialX = x;
+		initialY = y;
 		this.monsterRoom = monsterRoom;
 	}
 	
@@ -30,8 +35,9 @@ public class Monster extends GameObject{
 	
 	public void reset() {
 		isRevealed = false;
+		setImagePath("monster.jpeg");
 		monsterRoom = initialMonsterRoom;
-		
+		setPosition(initialX,initialY);
 	}
 	
 	public void isCaught(double x, double y) {

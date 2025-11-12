@@ -50,4 +50,20 @@ public class Monster extends GameObject{
 	public void onMouseAction(MouseEvent e) {
 		isCaught(e.getX(),e.getY());
 	}
+	
+	public void monsterMovement(int numRooms,int playerRoomID,double screenWidth,double screenHeight){
+		//randomizes room
+		//randomizes x and y
+		int randRoom = (int)(Math.random()* numRooms + 1);
+		double randX = (double)(Math.random()* screenWidth+1);
+		double randY = (double)(Math.random()* screenHeight+ 1);
+		
+		monsterRoom = randRoom;
+		setPosition(randX,randY);
+		if(monsterRoom == playerRoomID)
+		{
+			playSound();
+		}
+		
+	}
 }

@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
 import acm.util.*;
+import javax.swing.*;
 
 /*
  * The main controller class for the game.
@@ -20,6 +21,9 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	 private GRect batteryLevel;
 	 private GRect batteryBackground;
 	 //private GImage background;
+	 
+	 // Game timer used for updating screen
+	 private javax.swing.Timer gameTimer;
 	 
 	 private Flashlight flashlight;
 	 
@@ -38,7 +42,7 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	 
 	 @Override
 	 public void run() {
-		 //startGame();
+		 startGame();
 	 }
 	 
 	 public void setupUI() {
@@ -59,12 +63,39 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	     */
 	 }
 	 
+	 private void startGame() {
+        currentLevel = new Level(1, "abc123");
+        currentLevel.generateLevel();
+        gameState = GameState.PLAYING;
+
+        flashlight = currentLevel.flashlight;
+        flashlight.toggle(true);
+
+        soundManager.loop("ambient");
+
+        // Periodic updates (e.g., battery drain, monster movement)
+        gameTimer = new javax.swing.Timer(100, e -> update());
+        gameTimer.start();
+    }
+
+    private void update() {
+        if (gameState != GameState.PLAYING) return;
+
+        //updateBattery();
+
+        if (flashlight.isEmpty()) {
+            onPlayerLose();
+        }
+
+        // Future: monster movement logic
+    }
+	 
 	 //-----Mouse Handlers-----//
 	 @Override
-	    public void mouseMoved(MouseEvent e) {
-	        if (gameState != GameState.PLAYING) return;
-	        flashlight.MouseMoved(e);
-	    }
+	 public void mouseMoved(MouseEvent e) {
+		 if (gameState != GameState.PLAYING) return;
+         flashlight.MouseMoved(e);
+     }
 	 
 	 
 	 //-----Delegate callbacks-----//

@@ -53,15 +53,19 @@ public Distraction(double x, double y, DistractionType type) {
 	if(DType == "fly")
 	{
 		setImagePath("media/fly.png");
+		image.setImage("media/fly.png");
 		//setSound??
 	}
 	if(DType == "fake_monster")
 	{
 		setImagePath("media/fake_monster.png");
+		image.setImage("media/fake_monster.png");
+
 	}
 	if(DType == "moving_shadow")
 	{
 		setImagePath("media/moving_shadow.png");
+		image.setImage("media/moving_shadow.png");
 	}
 	if(DType == "whisper")
 	{

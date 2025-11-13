@@ -24,9 +24,18 @@ public class Monster extends GameObject{
 		this.monsterRoom = monsterRoom;
 	}
 	
+	public void add() {
+		mainScreen.add(image);
+	}
+
+	public void remove() {
+		mainScreen.remove(image);
+	}
+	
 	public void reveal() {
 		isRevealed = true;
 		setImagePath("media/revealedMonster.jpeg");//need to add monster pngs
+		image.setImage("media/revealedMonster.jpeg");
 		playSound();
 	}
 	

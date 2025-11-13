@@ -136,7 +136,7 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 		 soundManager.play("lose");
 	     gameState = GameState.LOSE;
 	     gameTimer.stop();
-	     //showLoseScreen();
+	     showLoseScreen();
 	 }
 	 
 	 @Override
@@ -151,7 +151,7 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	     showWinScreen();
 	 }
 	 
-	 
+	//-----Game Screen changes-----// 
 	 private void showWinScreen() {
 		removeAll();
 		GLabel win = new GLabel("You found El Cucuy!");
@@ -159,7 +159,15 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 		add(win, getWidth() / 2 - 100, getHeight() / 2);
 	 }
 	 
-	 // Main Function
+	 private void showLoseScreen() {
+	      removeAll();
+	      GLabel lose = new GLabel("You died...");
+	      lose.setFont("SansSerif-30");
+	      add(lose, getWidth() / 2 - 120, getHeight() / 2);
+	 }
+	 
+	 
+	 //-----Main Function-----//
 	 public static void main(String[] args) {
 			new GraphicsGame().start();
 	 }

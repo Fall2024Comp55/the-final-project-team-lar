@@ -8,6 +8,7 @@ public class Monster extends GameObject{
 	private double initialX;
 	private double initialY;
 	private int monsterRoom;
+	private MainApplication mainScreen;
 	//level levelDelegate
 	//GraphicsGame screenDelegate
 

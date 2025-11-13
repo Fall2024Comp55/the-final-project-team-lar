@@ -48,6 +48,7 @@ public abstract class GameObject {
     public void setImagePath(String imagePath)
     {
     	this.imagePath = imagePath;
+    	//this.image = new GImage(imagePath, x, y);
     }
 
     public String getSoundName() {

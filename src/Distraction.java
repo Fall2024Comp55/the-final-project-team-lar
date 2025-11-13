@@ -11,10 +11,13 @@ Timer distractionTimer = new Timer(12,this);
 //level levelDelegate
 double initialX;
 double initialY;
+private MainApplication mainScreen;
 
 
-public Distraction(DistractionType type) {
+
+public Distraction(MainApplication mainScreen, DistractionType type) {
 	super(0,0,"media/missingNo.png","");
+	this.mainScreen = mainScreen;
 	initialX = 0;
 	initialY = 0;
 	String DType = type.toString();
@@ -70,7 +73,13 @@ public Distraction(double x, double y, DistractionType type) {
 	}
 }
 
+public void add() {
+	mainScreen.add(image);
+}
 
+public void remove() {
+	mainScreen.remove(image);
+}
 public void triggerEffect()
 {
 	triggered = true;

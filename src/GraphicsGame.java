@@ -122,7 +122,10 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	 //-----Delegate callbacks-----//
 	 @Override
 	 public void onMonsterRevealed() {
-		 
+		 soundManager.play("monster");
+	     gameState = GameState.WIN;
+	     gameTimer.stop();
+	     //showWinScreen();
 	 }
 	 
 	 @Override

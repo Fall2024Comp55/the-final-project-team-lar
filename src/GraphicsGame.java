@@ -130,7 +130,7 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	 
 	 @Override
 	 public void onBatteryLow(double remaining) {
-		 
+		 soundManager.play("battery_low");
 	 }
 	 
 	 @Override

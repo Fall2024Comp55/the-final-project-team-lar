@@ -18,7 +18,7 @@ public class Level {
 	}
 	
 	public void generateLevel() {
-		this.flashlight = new Flashlight(200,20);
+		//this.flashlight = new Flashlight(200,20);
 		//how will currentRoom be decided at start of the game?
 		//how will 
 	}

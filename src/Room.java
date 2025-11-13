@@ -6,7 +6,6 @@ public class Room extends GraphicsPane{
 
 	private String id;
 	private ArrayList<Distraction> distractions;
-	private boolean isVisited;
 	private String imagePath; 
 	private Monster monster;
 	private Flashlight light;
@@ -16,14 +15,20 @@ public class Room extends GraphicsPane{
 		this.mainScreen = mainScreen;
 		id = num; 
 		distractions = new ArrayList<Distraction>();
-		monster = new Monster(1,1,1,1);
-		//imagePath = "room" + id + ".png"; //change this if diff file format is used 
-		imagePath = "back.jpg";
+		monster = new Monster(1,1,1,1); //initialization 
+		imagePath = "room" + id + ".png"; //change this if diff file format is used 
 		BackgroundImage = new GImage(imagePath, 200, 200); 
 	}
 	
+	void setupRoom() {
+		switch (id) {
+		case "1":
+		case "2":
+		}
+	}
+	
 	public void addDistraction(DistractionType t) {
-		Distraction y = new Distraction(t); 
+		Distraction y = new Distraction(mainScreen, t); 
 		distractions.add(y);
 	}
 	
@@ -36,30 +41,29 @@ public class Room extends GraphicsPane{
 		showContent();
 	}
 	
-	public void revealObjects() {
-		
-		
-	}
 	
 	@Override
 	public void showContent() {
 		mainScreen.add(BackgroundImage);
-		//screen.add(monster); 
-		//screen.add(light);
+		contents.add(BackgroundImage);
+		monster.add(); 
+		light.add();
 		for(Distraction m: distractions) {
-			//screen.add(m);
+			m.add(); 
 		}
 		
 	}
 	
 	@Override
 	public void hideContent() {
-		mainScreen.remove(BackgroundImage);
-		//delegate.remove(monster);
-		//delegate.remove(light);
-		for(Distraction m: distractions) {
-			//delegate.remove(m);
+		for (GObject o: contents) {
+			mainScreen.remove(o);		
 		}
+		contents.clear();
+		
+		mainScreen.remove(BackgroundImage);
+		monster.remove();
+		light.remove();
 	}
 	
 	public void mouseClicked(MouseEvent e) {

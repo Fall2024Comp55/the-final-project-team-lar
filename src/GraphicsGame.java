@@ -135,17 +135,21 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	 
 	 @Override
 	 public void onPlayerLose() {
-		 
+		 soundManager.play("lose");
+	     gameState = GameState.LOSE;
+	     gameTimer.stop();
+	     //showLoseScreen();
 	 }
 	 
 	 @Override
 	 public void onDistractionTriggered(String type) {
-		 
+		 soundManager.play(type);
 	 }
 	 
 	 @Override
 	 public void onLevelComplete() {
-		 
+		 gameTimer.stop();
+	     //showWinScreen();
 	 }
 	 
 	 

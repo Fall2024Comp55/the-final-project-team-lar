@@ -11,10 +11,13 @@ Timer distractionTimer = new Timer(12,this);
 //level levelDelegate
 double initialX;
 double initialY;
+private MainApplication mainScreen;
 
 
-public Distraction(DistractionType type) {
+
+public Distraction(MainApplication mainScreen, DistractionType type) {
 	super(0,0,"media/missingNo.png","");
+	this.mainScreen = mainScreen;
 	initialX = 0;
 	initialY = 0;
 	String DType = type.toString();
@@ -50,15 +53,19 @@ public Distraction(double x, double y, DistractionType type) {
 	if(DType == "fly")
 	{
 		setImagePath("media/fly.png");
+		image.setImage("media/fly.png");
 		//setSound??
 	}
 	if(DType == "fake_monster")
 	{
 		setImagePath("media/fake_monster.png");
+		image.setImage("media/fake_monster.png");
+
 	}
 	if(DType == "moving_shadow")
 	{
 		setImagePath("media/moving_shadow.png");
+		image.setImage("media/moving_shadow.png");
 	}
 	if(DType == "whisper")
 	{
@@ -70,7 +77,13 @@ public Distraction(double x, double y, DistractionType type) {
 	}
 }
 
+public void add() {
+	mainScreen.add(image);
+}
 
+public void remove() {
+	mainScreen.remove(image);
+}
 public void triggerEffect()
 {
 	triggered = true;
@@ -113,12 +126,12 @@ private void animation() {
 
 public void moveToPoint(double newX, double newY, int frames){
 	
-	if(this.image.getX()!=newX || this.image.getY()!=newY)
+	if(this.getX()!=newX || this.getY()!=newY)
 	{
-	double subtractX = (newX - image.getX())/frames;
-	double subtractY = (newY - image.getY())/frames;
+	double subtractX = (newX - this.getX())/frames;
+	double subtractY = (newY - this.getY())/frames;
 	
-	this.image.move(subtractX,subtractY);
+	this.setPosition(subtractX,subtractY);
 	}
 }
 

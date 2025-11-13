@@ -9,7 +9,7 @@ public class Level {
 	Boolean isCompleted;
 	int levelNumber;
 	String password;
-	//delegate GraphicsGame
+	GraphicsGame delegate;
 	
 	
 	public Level(int levelNumber, String password) {
@@ -19,7 +19,8 @@ public class Level {
 	
 	public void generateLevel() {
 		this.flashlight = new Flashlight(200,20);
-		
+		//how will currentRoom be decided at start of the game?
+		//how will 
 	}
 	
 	public Room getRoom(int index)
@@ -39,14 +40,14 @@ public class Level {
 	}
 	
 	
-	/*public void resetLevel() {
+	public void resetLevel() {
 		
 	}
 	
 	public void drawAllRooms(){
 		
 	}
-	*/
+	
 	public void switchRoomto(int a) {
 		currentRoom = getRoom(a);
 	}

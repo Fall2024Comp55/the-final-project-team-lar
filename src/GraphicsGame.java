@@ -122,10 +122,8 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	 //-----Delegate callbacks-----//
 	 @Override
 	 public void onMonsterRevealed() {
-		 soundManager.play("monster");
-	     gameState = GameState.WIN;
-	     gameTimer.stop();
-	     //showWinScreen();
+		 soundManager.play("monster_revealed");
+	     onLevelComplete();
 	 }
 	 
 	 @Override
@@ -148,10 +146,18 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	 
 	 @Override
 	 public void onLevelComplete() {
+		 gameState = GameState.WIN;
 		 gameTimer.stop();
-	     //showWinScreen();
+	     showWinScreen();
 	 }
 	 
+	 
+	 private void showWinScreen() {
+		removeAll();
+		GLabel win = new GLabel("You found El Cucuy!");
+		win.setFont("SansSerif-30");
+		add(win, getWidth() / 2 - 100, getHeight() / 2);
+	 }
 	 
 	 // Main Function
 	 public static void main(String[] args) {

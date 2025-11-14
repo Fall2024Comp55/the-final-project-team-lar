@@ -15,6 +15,7 @@ public class Level {
 	public Level(int levelNumber, String password) {
 		this.levelNumber = levelNumber;
 		this.password=password;
+		//currentRoom = new Room(mainScreen, "0");
 	}
 	
 	public void generateLevel() {

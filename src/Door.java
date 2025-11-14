@@ -17,10 +17,19 @@ public class Door extends GameObject {
 	
 	public Door(double x, double y, String roomID)
 	{
-		super(x,y,"arrow.png","insertSoundName(maybe door creak or smthn)");
+		super(x,y,"arrow.png","insertSoundName(doorCreak)");
 		this.roomID = roomID;
 	}
-
+	
+	public void onMouseClicked(MouseEvent e) {
+		if(this.getX()==e.getX()&&this.getY()==e.getY())
+		{
+			
+			//switchRoom
+		}
+			
+	}
+	
 	public void onMouseAction(MouseEvent e) {
 		this.getID();
 	}

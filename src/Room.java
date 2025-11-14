@@ -21,8 +21,8 @@ public class Room {
 	}
 	
 	public void addDistraction(DistractionType t) {
-		Distraction y = new Distraction(t); 
-		distractions.add(y);
+		//Distraction y = new Distraction(t); 
+		//distractions.add(y);
 	}
 	
 	public void addDoor(String n, double x, double y) {

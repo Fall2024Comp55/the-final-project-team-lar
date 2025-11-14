@@ -122,31 +122,52 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	 //-----Delegate callbacks-----//
 	 @Override
 	 public void onMonsterRevealed() {
-		 
+		 soundManager.play("monster_revealed");
+	     onLevelComplete();
 	 }
 	 
 	 @Override
 	 public void onBatteryLow(double remaining) {
-		 
+		 soundManager.play("battery_low");
 	 }
 	 
 	 @Override
 	 public void onPlayerLose() {
-		 
+		 soundManager.play("lose");
+	     gameState = GameState.LOSE;
+	     gameTimer.stop();
+	     showLoseScreen();
 	 }
 	 
 	 @Override
 	 public void onDistractionTriggered(String type) {
-		 
+		 soundManager.play(type);
 	 }
 	 
 	 @Override
 	 public void onLevelComplete() {
-		 
+		 gameState = GameState.WIN;
+		 gameTimer.stop();
+	     showWinScreen();
+	 }
+	 
+	//-----Game Screen changes-----// 
+	 private void showWinScreen() {
+		removeAll();
+		GLabel win = new GLabel("You found El Cucuy!");
+		win.setFont("SansSerif-30");
+		add(win, getWidth() / 2 - 100, getHeight() / 2);
+	 }
+	 
+	 private void showLoseScreen() {
+	      removeAll();
+	      GLabel lose = new GLabel("You died...");
+	      lose.setFont("SansSerif-30");
+	      add(lose, getWidth() / 2 - 120, getHeight() / 2);
 	 }
 	 
 	 
-	 // Main Function
+	 //-----Main Function-----//
 	 public static void main(String[] args) {
 			new GraphicsGame().start();
 	 }

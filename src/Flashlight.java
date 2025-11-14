@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.Color;
 
 
-public class Flashlight implements ActionListener{
+public class Flashlight extends GraphicsPane implements ActionListener{ 
 
 	private double battery;
 	private double drainRate; //amount drained throughout level
@@ -13,7 +13,6 @@ public class Flashlight implements ActionListener{
 	private int lightDiameter;
 	private boolean isOn;
 	private double rechargeAmount;
-	private ScreenDelegate delegate; 
 	private Timer t = new Timer(1000, this); 
 	private Color shinee = new Color(74, 118, 249, 0.08f); //flashlight shine color 
 	private Color defaultBlue = new Color(74, 118, 249, 0.2f); //default color
@@ -21,12 +20,21 @@ public class Flashlight implements ActionListener{
 	private GRect batteryMeter = new GRect(0,0, 200, 150);
 	//screen.add(batteryMeter);
 	
-	public Flashlight(double b, double d) {
+	public Flashlight(MainApplication mainScreen, double b, double d) {
+		this.mainScreen = mainScreen;
 		battery = b;
 		drainRate = d;
 		
 		cursorLight.setFillColor(defaultBlue); 
 		cursorLight.setFilled(true);
+	}
+	
+	public void add() {
+		mainScreen.add(cursorLight);
+	}
+	
+	public void remove() {
+		mainScreen.remove(cursorLight);
 	}
 	
 	public double getBattery() {
@@ -42,6 +50,7 @@ public class Flashlight implements ActionListener{
 	}
 	
 	public void shine() { 
+		
 		cursorLight.setColor(shinee);
 		cursorLight.setSize(200,200); 
 		isOn = true;
@@ -66,7 +75,8 @@ public class Flashlight implements ActionListener{
 		battery = battery + rechargeAmount; //rechargeAmount not defined
 	}
 	
-	public void MouseClicked(MouseEvent e) { //this should be handled by Screen delegate
+	 
+	public void MouseClicked(MouseEvent e) { 
 		this.shine();
 	}
 	

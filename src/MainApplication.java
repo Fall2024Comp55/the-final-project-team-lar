@@ -14,7 +14,7 @@ public class MainApplication extends GraphicsProgram{
 	private WelcomePane welcomePane;
 	private DescriptionPane descriptionPane;
 	private GraphicsPane currentScreen;
-
+	private Room room;
 
 	public MainApplication() {
 		super();
@@ -37,6 +37,7 @@ public class MainApplication extends GraphicsProgram{
 		//Initialize all Panes
 		welcomePane = new WelcomePane(this);
 		descriptionPane = new DescriptionPane(this);
+		room = new Room(this, "1");
 
 		//TheDefaultPane
 		switchToScreen(welcomePane);
@@ -45,6 +46,10 @@ public class MainApplication extends GraphicsProgram{
 	public static void main(String[] args) {
 		new MainApplication().start();
 
+	}
+	
+	public void switchToRoom() {
+		switchToScreen(room);
 	}
 	
 	public void switchToDescriptionScreen() {

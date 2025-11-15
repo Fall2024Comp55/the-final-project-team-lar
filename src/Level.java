@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class Level {
 	Flashlight flashlight;
+	Monster Monster;
 	ArrayList<Room> rooms;
 	Room currentRoom;
-	Monster Monster;
 	ArrayList<Distraction> distractions;
 	Boolean isCompleted;
 	int levelNumber;
@@ -17,11 +17,16 @@ public class Level {
 		this.levelNumber = levelNumber;
 		this.password=password;
 		currentRoom = new Room(mainScreen, "0");
+		rooms.add(currentRoom);
+		//need to add the currentRoom to an arrayList
+		
 	
 	}
 	
 	public void generateLevel() {
 		this.flashlight = new Flashlight(mainScreen,200,20);
+		
+		//confused on how generateLevel would work as wouldn't we want individual pre-made levels?
 		//how will currentRoom be decided at start of the game?
 		//how will 
 	}
@@ -30,6 +35,7 @@ public class Level {
 	{
 		return rooms.get(index);
 	}
+	
 	
 	public boolean checkMonsterFound(double x, double y)
 	{

@@ -21,14 +21,6 @@ public class Door extends GameObject {
 		this.roomID = roomID;
 	}
 	
-	public void onMouseClicked(MouseEvent e) {
-		if(this.getX()==e.getX()&&this.getY()==e.getY())
-		{
-			
-			//switchRoom
-		}
-			
-	}
 	
 	public void onMouseAction(MouseEvent e) {
 		this.getID();

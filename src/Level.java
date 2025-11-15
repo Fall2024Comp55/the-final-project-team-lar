@@ -9,17 +9,19 @@ public class Level {
 	Boolean isCompleted;
 	int levelNumber;
 	String password;
+	MainApplication mainScreen;
 	GraphicsGame delegate;
 	
 	
 	public Level(int levelNumber, String password) {
 		this.levelNumber = levelNumber;
 		this.password=password;
-		//currentRoom = new Room(mainScreen, "0");
+		currentRoom = new Room(mainScreen, "0");
+	
 	}
 	
 	public void generateLevel() {
-		//this.flashlight = new Flashlight(200,20);
+		this.flashlight = new Flashlight(mainScreen,200,20);
 		//how will currentRoom be decided at start of the game?
 		//how will 
 	}
@@ -31,13 +33,10 @@ public class Level {
 	
 	public boolean checkMonsterFound(double x, double y)
 	{
-		/*if(getElementAt(x,y)==Monster)
-		{
-			
-		}*/
-		//must use delegate
-		return true;
-		//will finish later
+		if(Monster.getX() == x && Monster.getY()==y) {
+			return true;
+		}
+		return false;
 	}
 	
 	

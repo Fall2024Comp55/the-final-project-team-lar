@@ -50,13 +50,14 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         soundManager.play("ambient");
     }
     
- // Called when MainApplication hides this pane
+    // Called when MainApplication hides this pane
     @Override
     public void hideContent() {
         app.removeAll();
     }
 	 
-	 //-----Mouse Handlers-----//
+    
+//-----Mouse Handlers-----//
 	 @Override
 	 public void mouseMoved(MouseEvent e) {
 		 if (gameState != GameState.PLAYING) return;
@@ -105,7 +106,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 
 	 
 	 
-	//-----Game Screen changes-----// 
+//-----Game Screen changes-----// 
 	 private void showWinScreen() {
 		//removeAll();
 		//GLabel win = new GLabel("You found El Cucuy!");
@@ -119,10 +120,5 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	      //lose.setFont("SansSerif-30");
 	      //add(lose, getWidth() / 2 - 120, getHeight() / 2);
 	 }
-	 
-	 
-	 //-----Main Function-----//
-	 public static void main(String[] args) {
-			//new GraphicsGame().start();
-	 }
+
 }

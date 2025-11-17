@@ -20,16 +20,27 @@ public class Room extends GraphicsPane{
 		BackgroundImage = new GImage(imagePath, 200, 200); 
 	}
 	
+	//add more rooms as needed
 	void setupRoom() {
 		switch (id) {
 		case "1":
+			Room one = new Room(mainScreen, "1"); 
+			mainScreen.switchToRoom();
 		case "2":
+			Room two = new Room(mainScreen, "2"); 
+			mainScreen.switchToRoom();
+		case "3":
+			Room three = new Room(mainScreen, "3"); 
+			mainScreen.switchToRoom();
+		case "4":
+			Room four = new Room(mainScreen, "4"); 
+			mainScreen.switchToRoom();
 		}
 	}
 	
 	public void addDistraction(DistractionType t) {
-		//Distraction y = new Distraction(t); 
-		//distractions.add(y);
+		Distraction y = new Distraction(mainScreen, t); 
+		y.add();
 	}
 	public void addDoor(String n, double x, double y) {
 		Door thedoor = new Door(x, y, n); 		

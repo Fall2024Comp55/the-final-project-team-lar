@@ -75,6 +75,11 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         app.add(messageLabel);
     }
     
+    private void updateHUD() {
+        double b = currentLevel.getFlashlight().getBattery();
+        batteryLabel.setLabel("Battery: " + (int)(b * 100) + "%");
+    }
+
     
 //-----Mouse Handlers-----//
 	 @Override

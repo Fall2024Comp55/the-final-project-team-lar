@@ -62,4 +62,8 @@ public class Level {
 		return currentRoom;
 	}
 	
+	public Flashlight getFlashlight() {
+		return flashlight;
+	}
+	
 }

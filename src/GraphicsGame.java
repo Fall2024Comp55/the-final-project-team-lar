@@ -19,16 +19,10 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	SoundManager soundManager = SoundManager.getInstance();
 	 
 	private GLabel batteryLabel;
-	private GRect batteryLevel;
-	private GRect batteryBackground;
+	private GLabel messageLabel;
 	//private GImage background;
-	 
-	// Game timer used for updating screen
-	private javax.swing.Timer gameTimer;
-	 
-	private Flashlight flashlight;
-	 
 	
+	//constructor
 	public GraphicsGame(MainApplication app) {
         this.app = app;
         this.gameState = GameState.MENU; // will change once gameplay starts

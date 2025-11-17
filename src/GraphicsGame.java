@@ -10,44 +10,33 @@ import java.awt.Color;
 /*
  * The main controller class for the game.
  */
-public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
-	 public static final int WINDOW_WIDTH = 800;
-	 public static final int WINDOW_HEIGHT = 600;
-	 
-	 private Level currentLevel;
-	 private GameState gameState;
-	 SoundManager soundManager = SoundManager.getInstance();
-	 
-	 private GLabel batteryLabel;
-	 private GRect batteryLevel;
-	 private GRect batteryBackground;
-	 //private GImage background;
-	 
-	 // Game timer used for updating screen
-	 private javax.swing.Timer gameTimer;
-	 
-	 private Flashlight flashlight;
-	 
-	 @Override
-	    public void init() {
-	        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-	        addMouseListeners();
-	        
-	        
-	        //addMouseMotionListeners();
-	        setupUI();
+public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 
-	        gameState = GameState.MENU;
-	        
-	 }
+	private MainApplication app;
 	 
-	 @Override
-	 public void run() {
-		 startGame();
-	 }
+	private Level currentLevel;
+	private GameState gameState;
+	SoundManager soundManager = SoundManager.getInstance();
+	 
+	private GLabel batteryLabel;
+	private GRect batteryLevel;
+	private GRect batteryBackground;
+	//private GImage background;
+	 
+	// Game timer used for updating screen
+	private javax.swing.Timer gameTimer;
+	 
+	private Flashlight flashlight;
+	 
+	
+	public GraphicsGame(MainApplication app) {
+        this.app = app;
+        this.gameState = GameState.MENU; // will change once gameplay starts
+        this.soundManager = SoundManager.getInstance();
+    }
 	 
 	 public void setupUI() {
-		// /*
+		/*
 		 batteryLabel = new GLabel("100%");
 	        
 		 batteryLevel = new GRect(150, 25);
@@ -61,7 +50,7 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	     add(batteryBackground, 10, 525);
 	     add(batteryLevel, 10, 525);
 	     add(batteryLabel, 65, 545);
-	    // */
+	    */
 	 }
 	 
 	 private void startGame() {
@@ -151,24 +140,26 @@ public class GraphicsGame extends GraphicsProgram implements ScreenDelegate {
 	     showWinScreen();
 	 }
 	 
+	 
+	 
 	//-----Game Screen changes-----// 
 	 private void showWinScreen() {
-		removeAll();
-		GLabel win = new GLabel("You found El Cucuy!");
-		win.setFont("SansSerif-30");
-		add(win, getWidth() / 2 - 100, getHeight() / 2);
+		//removeAll();
+		//GLabel win = new GLabel("You found El Cucuy!");
+		//win.setFont("SansSerif-30");
+		//add(win, getWidth() / 2 - 100, getHeight() / 2);
 	 }
 	 
 	 private void showLoseScreen() {
-	      removeAll();
-	      GLabel lose = new GLabel("You died...");
-	      lose.setFont("SansSerif-30");
-	      add(lose, getWidth() / 2 - 120, getHeight() / 2);
+	      //removeAll();
+	      //GLabel lose = new GLabel("You died...");
+	      //lose.setFont("SansSerif-30");
+	      //add(lose, getWidth() / 2 - 120, getHeight() / 2);
 	 }
 	 
 	 
 	 //-----Main Function-----//
 	 public static void main(String[] args) {
-			new GraphicsGame().start();
+			//new GraphicsGame().start();
 	 }
 }

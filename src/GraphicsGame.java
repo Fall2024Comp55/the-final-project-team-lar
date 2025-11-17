@@ -50,51 +50,6 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         soundManager.play("ambient");
     }
     
-	 public void setupUI() {
-		/*
-		 batteryLabel = new GLabel("100%");
-	        
-		 batteryLevel = new GRect(150, 25);
-	     batteryLevel.setFilled(true);
-	     batteryLevel.setFillColor(Color.red);
-	        
-	     batteryBackground = new GRect(150, 25);
-	     batteryBackground.setFilled(true);
-	     batteryBackground.setFillColor(Color.gray);
-	        
-	     add(batteryBackground, 10, 525);
-	     add(batteryLevel, 10, 525);
-	     add(batteryLabel, 65, 545);
-	    */
-	 }
-	 
-	 private void startGame() {
-        currentLevel = new Level(1, "abc123");
-        currentLevel.generateLevel();
-        gameState = GameState.PLAYING;
-
-        soundManager.loop("ambient");
-    }
-
-    private void update() {
-        if (gameState != GameState.PLAYING) return;
-
-        updateBattery();
-
-        
-        // TODO: Future monster movement logic
-    }
-    
-    private void updateBattery() {
-        //batteryLabel.setLabel("Battery: " + (int) (percent * 100) + "%");
-        
-        /*
-        if (percent < 0.3) batteryLevel.setFillColor(Color.RED);
-        else if (percent < 0.6) batteryLevel.setFillColor(Color.ORANGE);
-        else batteryLevel.setFillColor(Color.GREEN);
-        */
-    }
-    
 	 
 	 //-----Mouse Handlers-----//
 	 @Override

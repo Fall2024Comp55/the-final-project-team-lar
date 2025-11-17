@@ -52,14 +52,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         currentLevel.generateLevel();
         gameState = GameState.PLAYING;
 
-        flashlight = currentLevel.flashlight;
-        flashlight.toggle(true);
-
         soundManager.loop("ambient");
-
-        // Periodic updates (battery drain, monster movement)
-        gameTimer = new javax.swing.Timer(100, e -> update());
-        gameTimer.start();
     }
 
     private void update() {
@@ -67,21 +60,18 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 
         updateBattery();
 
-        if (flashlight.isEmpty()) {
-            onPlayerLose();
-        }
-
+        
         // TODO: Future monster movement logic
     }
     
     private void updateBattery() {
-        double percent = flashlight.getBattery() / 200.0;
-        batteryLevel.setSize(150 * percent, 20);
-        batteryLabel.setLabel("Battery: " + (int) (percent * 100) + "%");
-
+        //batteryLabel.setLabel("Battery: " + (int) (percent * 100) + "%");
+        
+        /*
         if (percent < 0.3) batteryLevel.setFillColor(Color.RED);
         else if (percent < 0.6) batteryLevel.setFillColor(Color.ORANGE);
         else batteryLevel.setFillColor(Color.GREEN);
+        */
     }
     
 	 
@@ -89,13 +79,13 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 @Override
 	 public void mouseMoved(MouseEvent e) {
 		 if (gameState != GameState.PLAYING) return;
-	     flashlight.MouseMoved(e);
+	     //flashlight.MouseMoved(e);
 	 }
 	 
 	 @Override
 	 public void mousePressed(MouseEvent e) {
 	    if (gameState != GameState.PLAYING) return;
-	    flashlight.MouseClicked(e);
+	    //flashlight.MouseClicked(e);
 	    if (currentLevel.checkMonsterFound(e.getX(), e.getY())) {
 	        onMonsterRevealed();
 	    }
@@ -118,7 +108,6 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 public void onPlayerLose() {
 		 soundManager.play("lose");
 	     gameState = GameState.LOSE;
-	     gameTimer.stop();
 	     showLoseScreen();
 	 }
 	 
@@ -130,7 +119,6 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 @Override
 	 public void onLevelComplete() {
 		 gameState = GameState.WIN;
-		 gameTimer.stop();
 	     showWinScreen();
 	 }
 	 

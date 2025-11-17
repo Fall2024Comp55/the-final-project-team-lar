@@ -50,6 +50,11 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         soundManager.play("ambient");
     }
     
+ // Called when MainApplication hides this pane
+    @Override
+    public void hideContent() {
+        app.removeAll();
+    }
 	 
 	 //-----Mouse Handlers-----//
 	 @Override

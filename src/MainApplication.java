@@ -15,6 +15,7 @@ public class MainApplication extends GraphicsProgram{
 	private DescriptionPane descriptionPane;
 	private GraphicsPane currentScreen;
 	private Room room;
+	private GraphicsGame gamePane;
 
 	public MainApplication() {
 		super();
@@ -37,6 +38,7 @@ public class MainApplication extends GraphicsProgram{
 		//Initialize all Panes
 		welcomePane = new WelcomePane(this);
 		descriptionPane = new DescriptionPane(this);
+		gamePane = new GraphicsGame(this);
 
 		//TheDefaultPane
 		switchToScreen(welcomePane);
@@ -51,6 +53,10 @@ public class MainApplication extends GraphicsProgram{
 		switchToScreen(room);
 	}
 	
+	public void startGame() {
+	    switchToScreen(gamePane);
+	}
+	
 	public void switchToDescriptionScreen() {
 		switchToScreen(descriptionPane);
 	}
@@ -58,7 +64,6 @@ public class MainApplication extends GraphicsProgram{
 	public void switchToWelcomeScreen() {
 		switchToScreen(welcomePane);
 	}
-	
 	
 	protected void switchToScreen(GraphicsPane newScreen) {
 		if(currentScreen != null) {

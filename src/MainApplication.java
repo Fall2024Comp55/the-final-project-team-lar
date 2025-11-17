@@ -77,6 +77,10 @@ public class MainApplication extends GraphicsProgram{
 		return getElementAt(x, y);
 	}
 	
+	public GraphicsGame getGamePane() {
+		return gamePane;
+	}
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(currentScreen != null) {

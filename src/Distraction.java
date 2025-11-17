@@ -16,8 +16,7 @@ private MainApplication mainScreen;
 
 
 public Distraction(MainApplication mainScreen, DistractionType type) {
-	super(0,0,"media/missingNo.png","");
-	this.mainScreen = mainScreen;
+	super(mainScreen,0,0,"media/missingNo.png","");
 	initialX = 0;
 	initialY = 0;
 	String DType = type.toString();
@@ -45,8 +44,8 @@ public Distraction(MainApplication mainScreen, DistractionType type) {
 }
 
 
-public Distraction(double x, double y, DistractionType type) {
-	super(x,y,"media/missingNo.png","");
+public Distraction(MainApplication mainScreen, double x, double y, DistractionType type) {
+	super(mainScreen,x,y,"media/missingNo.png","");
 	initialX = x;
 	initialY = y;
 	String DType = type.toString();

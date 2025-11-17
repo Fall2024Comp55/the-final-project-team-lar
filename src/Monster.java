@@ -14,9 +14,8 @@ public class Monster extends GameObject{
 
 	public Monster(MainApplication mainScreen, double x, double y,double scareIntensity, int monsterRoom)
 	{
-		super(x,y,"monster.jpeg","insertSoundName");
+		super(mainScreen,x,y,"monster.jpeg","insertSoundName");
 		this.image.scale(0.2);
-		this.mainScreen = mainScreen;
 		isRevealed = false;
 		this.scareIntensity = scareIntensity;
 		setPosition(x,y);

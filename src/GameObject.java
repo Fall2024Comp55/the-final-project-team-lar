@@ -3,6 +3,7 @@ import java.awt.event.MouseEvent;
 
 public abstract class GameObject {
 
+	protected MainApplication mainScreen;
 	protected double x;
     protected double y;
     protected String imagePath;    // The image file name or resource ID
@@ -10,7 +11,8 @@ public abstract class GameObject {
     protected String soundName;    // The sound key to use with SoundManager
     protected GImage image;
     
-    public GameObject(double x, double y, String imagePath, String soundName) {
+    public GameObject(MainApplication mainScreen, double x, double y, String imagePath, String soundName) {
+    	this.mainScreen = mainScreen;
         this.x = x;
         this.y = y;
         this.imagePath = imagePath;

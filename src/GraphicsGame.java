@@ -35,6 +35,9 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         startNewLevel(1);
     }
 	
+    public Level getCurrentLevel() {
+    	return currentLevel;
+    }
 	
     public void startNewLevel(int levelNum) {
     	app.removeAll();

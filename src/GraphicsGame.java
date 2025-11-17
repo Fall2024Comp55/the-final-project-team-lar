@@ -137,14 +137,12 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 
 //-----Game Screen changes-----// 
 	 private void showWinScreen() {
-		//removeAll();
 		messageLabel.setLabel("You found El Cucuy!");
 		//messageLabel.setFont("SansSerif-30");
 		//add(win, getWidth() / 2 - 100, getHeight() / 2);
 	 }
 	 
 	 private void showLoseScreen() {
-	      //removeAll();
 	      messageLabel.setLabel("You died...");
 	      //lose.setFont("SansSerif-30");
 	      //add(lose, getWidth() / 2 - 120, getHeight() / 2);

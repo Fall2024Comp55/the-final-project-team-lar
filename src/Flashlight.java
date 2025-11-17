@@ -14,8 +14,8 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	private boolean isOn;
 	private double rechargeAmount;
 	private Timer t = new Timer(1000, this); 
-	private Color shinee = new Color(74, 118, 249, 0.08f); //flashlight shine color 
-	private Color defaultBlue = new Color(74, 118, 249, 0.2f); //default color
+	private Color shinee = new Color(74, 118, 249, 150); //flashlight shine color 
+	private Color defaultBlue = new Color(74, 118, 249, 50); //default color
 	private GOval cursorLight = new GOval(0, 0, lightDiameter, lightDiameter);
 	private GRect batteryMeter = new GRect(0,0, 200, 150);
 	//screen.add(batteryMeter);

@@ -15,9 +15,10 @@ public class Room extends GraphicsPane{
 		this.mainScreen = mainScreen;
 		id = num; 
 		distractions = new ArrayList<Distraction>();
-		monster = new Monster(1,1,1,1); //initialization 
+		monster = new Monster(mainScreen, 1,1,1,1); //initialization 
 		imagePath = "room" + id + ".png"; //change this if diff file format is used 
 		BackgroundImage = new GImage(imagePath, 200, 200); 
+		light = new Flashlight(mainScreen, 100, 2);
 	}
 	
 	//add more rooms as needed
@@ -42,13 +43,18 @@ public class Room extends GraphicsPane{
 		Distraction y = new Distraction(mainScreen, t); 
 		y.add();
 	}
-	public void addDoor(String n, double x, double y) {
-		Door thedoor = new Door(x, y, n); 		
+	public void addDoor(MainApplication mainScreen, String n, double x, double y) {
+		Door thedoor = new Door(mainScreen, x, y, n); 
+		thedoor.add();
 	}
 	
 	public void drawRoom() {
 		hideContent();
 		showContent();
+	}
+	
+	public void setLight (Flashlight light) {
+		this.light = light;
 	}
 	
 	

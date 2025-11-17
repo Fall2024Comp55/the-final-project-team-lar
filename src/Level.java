@@ -13,10 +13,17 @@ public class Level {
 	GraphicsGame delegate;
 	
 	
-	public Level(int levelNumber, String password) {
+	public Level(MainApplication mainScreen, int levelNumber, String password) {
 		this.levelNumber = levelNumber;
 		this.password=password;
+		this.mainScreen = mainScreen;
 		currentRoom = new Room(mainScreen, "0");
+		//currentRoom.setLight(flashlight);
+		currentRoom.addDoor(mainScreen, "room1", 300, 300);
+		
+		this.rooms = new ArrayList<>();
+        this.distractions = new ArrayList<>();
+		
 		rooms.add(currentRoom);
 		//need to add the currentRoom to an arrayList
 		
@@ -25,7 +32,7 @@ public class Level {
 	
 	public void generateLevel() {
 		this.flashlight = new Flashlight(mainScreen,200,20);
-		
+		Monster = new Monster(mainScreen, 1,1,1,1);
 		//confused on how generateLevel would work as wouldn't we want individual pre-made levels?
 		//how will currentRoom be decided at start of the game?
 		//how will 

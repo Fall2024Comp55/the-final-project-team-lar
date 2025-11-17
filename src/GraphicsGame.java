@@ -85,13 +85,16 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 @Override
 	 public void mouseMoved(MouseEvent e) {
 		 if (gameState != GameState.PLAYING) return;
-	     //flashlight.MouseMoved(e);
+
+	     currentLevel.getFlashlight().MouseMoved(e);
 	 }
 	 
 	 @Override
 	 public void mousePressed(MouseEvent e) {
 	    if (gameState != GameState.PLAYING) return;
-	    //flashlight.MouseClicked(e);
+	    
+	    currentLevel.getFlashlight().MouseClicked(e);
+	    
 	    if (currentLevel.checkMonsterFound(e.getX(), e.getY())) {
 	        onMonsterRevealed();
 	    }

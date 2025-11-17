@@ -29,6 +29,27 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         this.soundManager = SoundManager.getInstance();
     }
 	 
+	// Called when MainApplication displays this pane
+    @Override
+    public void showContent() {
+        startNewLevel(1);
+    }
+	
+	
+    public void startNewLevel(int levelNum) {
+    	app.removeAll();
+
+        currentLevel = new Level(levelNum, "*****");
+        currentLevel.generateLevel();
+
+        gameState = GameState.PLAYING;
+
+        //drawRoom();         // draw current room
+        //drawHUD();          // battery, messages, UI
+
+        soundManager.play("ambient");
+    }
+    
 	 public void setupUI() {
 		/*
 		 batteryLabel = new GLabel("100%");

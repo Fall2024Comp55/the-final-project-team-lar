@@ -45,7 +45,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         gameState = GameState.PLAYING;
 
         drawRoom();         // draw current room
-        //drawHUD();          // battery, messages, UI
+        drawHUD();          // battery, messages, UI
 
         soundManager.play("ambient");
     }
@@ -63,6 +63,17 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         room.showContent();                    // background, monster, distractions
     }
     
+    private void drawHUD() {
+        batteryLabel = new GLabel("Battery: 100%", 10, 20);
+        batteryLabel.setColor(java.awt.Color.WHITE);
+        batteryLabel.setFont("Arial-Bold-16");
+        app.add(batteryLabel);
+
+        messageLabel = new GLabel("", 10, 50);
+        messageLabel.setColor(java.awt.Color.RED);
+        messageLabel.setFont("Arial-Bold-20");
+        app.add(messageLabel);
+    }
     
     
 //-----Mouse Handlers-----//

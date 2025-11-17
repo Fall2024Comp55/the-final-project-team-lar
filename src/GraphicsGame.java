@@ -44,7 +44,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 
         gameState = GameState.PLAYING;
 
-        //drawRoom();         // draw current room
+        drawRoom();         // draw current room
         //drawHUD();          // battery, messages, UI
 
         soundManager.play("ambient");
@@ -56,6 +56,14 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         app.removeAll();
     }
 	 
+//-----Drawing Functions-----//
+    
+    private void drawRoom() {
+        Room room = currentLevel.getCurrentRoom();
+        room.showContent();                    // background, monster, distractions
+    }
+    
+    
     
 //-----Mouse Handlers-----//
 	 @Override

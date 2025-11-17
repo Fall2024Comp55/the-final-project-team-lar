@@ -58,5 +58,8 @@ public class Level {
 		currentRoom = getRoom(a);
 	}
 	
+	public Room getCurrentRoom() {
+		return currentRoom;
+	}
 	
 }

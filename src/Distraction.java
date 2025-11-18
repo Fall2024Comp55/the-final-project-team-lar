@@ -11,7 +11,7 @@ import javax.swing.*;
 	//level levelDelegate
 	double initialX;
 	double initialY;
-	private MainApplication mainScreen;
+	//private MainApplication mainScreen; //unnecessary as GameObject now has mainScreen
 	
 	
 	

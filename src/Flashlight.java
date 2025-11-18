@@ -24,6 +24,7 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 		this.mainScreen = mainScreen;
 		battery = b;
 		drainRate = d;
+		lightDiameter = 50;
 		
 		cursorLight.setFillColor(defaultBlue); 
 		cursorLight.setFilled(true);

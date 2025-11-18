@@ -3,7 +3,7 @@ import java.awt.event.MouseEvent;
 public class Door extends GameObject {
 	
 	private String roomID;
-	private MainApplication mainScreen;
+	//private MainApplication mainScreen; //unnecessary as GameObject now has mainScreen
 	
 	public String getID() 
 	{

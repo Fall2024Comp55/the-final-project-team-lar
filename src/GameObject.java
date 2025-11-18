@@ -1,7 +1,7 @@
 import acm.graphics.*;
 import java.awt.event.MouseEvent;
 
-public abstract class GameObject {
+public abstract class GameObject extends GraphicsPane {
 
 	protected MainApplication mainScreen;
 	protected double x;

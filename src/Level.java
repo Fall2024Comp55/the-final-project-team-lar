@@ -54,7 +54,10 @@ public class Level {
 	}
 	
 	public void drawAllRooms(){
-		
+		for(Room r:rooms)
+		{
+			r.drawRoom();
+		}
 	}
 	
 	public void switchRoomto(int a) {

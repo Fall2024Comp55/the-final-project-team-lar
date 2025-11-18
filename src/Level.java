@@ -15,7 +15,7 @@ public class Level {
 	
 	public Level(MainApplication mainScreen, int levelNumber, String password) {
 		this.levelNumber = levelNumber;
-		this.password=password;
+		this.password = password;
 		this.mainScreen = mainScreen;
 		currentRoom = new Room(mainScreen, "0");
 		//currentRoom.setLight(flashlight);
@@ -26,26 +26,22 @@ public class Level {
 		
 		rooms.add(currentRoom);
 		//need to add the currentRoom to an arrayList
-		
-	
 	}
 	
 	public void generateLevel() {
 		this.flashlight = new Flashlight(mainScreen,200,20);
 		Monster = new Monster(mainScreen, 1,1,1,1);
+		
 		//confused on how generateLevel would work as wouldn't we want individual pre-made levels?
 		//how will currentRoom be decided at start of the game?
-		//how will 
 	}
 	
-	public Room getRoom(int index)
-	{
+	public Room getRoom(int index){
 		return rooms.get(index);
 	}
 	
 	
-	public boolean checkMonsterFound(double x, double y)
-	{
+	public boolean checkMonsterFound(double x, double y){
 		if(Monster.getX() == x && Monster.getY()==y) {
 			return true;
 		}
@@ -58,11 +54,14 @@ public class Level {
 	}
 	
 	public void drawAllRooms(){
-		
+		for(int i = 0; i < 5; i++) {
+			
+		}
 	}
 	
 	public void switchRoomto(int a) {
 		currentRoom = getRoom(a);
+		mainScreen.switchToScreen(currentRoom);
 	}
 	
 	public Room getCurrentRoom() {

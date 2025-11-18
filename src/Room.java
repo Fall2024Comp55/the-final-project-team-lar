@@ -24,8 +24,8 @@ public class Room extends GraphicsPane{
 	//add more rooms as needed
 	void setupRoom() {
 		switch (id) {
-		case "1":
-			Room one = new Room(mainScreen, "1"); 
+		case "1": 
+			Room one = new Room(mainScreen, "1");
 			mainScreen.switchToRoom();
 		case "2":
 			Room two = new Room(mainScreen, "2"); 

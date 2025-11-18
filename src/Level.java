@@ -30,7 +30,7 @@ public class Level {
 	
 	public void generateLevel() {
 		this.flashlight = new Flashlight(mainScreen,200,20);
-		Monster = new Monster(mainScreen, 1,1,1,1);
+		Monster = new Monster(mainScreen, 1, 1, 1, 1);
 		
 		//confused on how generateLevel would work as wouldn't we want individual pre-made levels?
 		//how will currentRoom be decided at start of the game?
@@ -54,9 +54,7 @@ public class Level {
 	}
 	
 	public void drawAllRooms(){
-		for(int i = 0; i < 5; i++) {
-			
-		}
+		
 	}
 	
 	public void switchRoomto(int a) {

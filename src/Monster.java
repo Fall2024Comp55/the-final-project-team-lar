@@ -41,7 +41,7 @@ public class Monster extends GameObject{
 	}
 	
 	public void playSound() {
-		//eeeee soy confused
+		//
 	}
 	
 	public void reset() {

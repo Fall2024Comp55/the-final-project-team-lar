@@ -126,7 +126,8 @@ public class Level {
 	
 	public void switchRoomto(int a) {
 		currentRoom = getRoom(a);
-		mainScreen.switchToScreen(currentRoom);
+		this.currentRoom.drawRoom();
+		//mainScreen.switchToScreen(currentRoom);
 	}
 	
 	public Room getCurrentRoom() {

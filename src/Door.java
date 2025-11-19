@@ -29,8 +29,43 @@ public class Door extends GameObject {
 	
 	@Override
 	public void onMouseAction(MouseEvent e) {
-		int dest = Integer.parseInt(roomID);
-		//System.out.print(dest);
-		mainScreen.getGamePane().getCurrentLevel().switchRoomto(dest);
+		if (mainScreen == null) {
+	        System.err.println("Door has no reference to MainApplication.");
+	        return;
+	    }
+
+	    // Convert string room ID to integer
+	    int destRoom;
+	    try {
+	        destRoom = Integer.parseInt(roomID);
+	    } catch (NumberFormatException ex) {
+	        System.err.println("Invalid room ID in door: " + roomID);
+	        return;
+	    }
+
+	    // Get the GraphicsGame pane 
+	    GraphicsGame gamePane = mainScreen.getGamePane();
+	    if (gamePane == null) {
+	        System.err.println("MainApplication returned null for gamePane.");
+	        return;
+	    }
+
+	    // Get the Level object
+	    Level level = gamePane.getCurrentLevel();
+	    if (level == null) {
+	        System.err.println("GraphicsGame does not have an active level.");
+	        return;
+	    }
+
+	    // Switch the room (updates Level's current room)
+	    level.switchRoomto(destRoom);
+
+	    // Switch the GraphicsPane displayed on screen
+	    Room nextRoom = level.getCurrentRoom();
+	    if (nextRoom != null) {
+	        mainScreen.switchToScreen(nextRoom);
+	    } else {
+	        System.err.println("Room switch failed: no room exists for ID " + destRoom);
+	    }
 	}
 }

@@ -6,6 +6,7 @@ public class Room extends GraphicsPane{
 
 	private String id;
 	private ArrayList<Distraction> distractions;
+	private ArrayList<Door> doors;
 	private String imagePath; 
 	private Monster monster;
 	private Flashlight light;
@@ -14,6 +15,7 @@ public class Room extends GraphicsPane{
 	public Room(MainApplication mainScreen, String num) {
 		this.mainScreen = mainScreen;
 		id = num; 
+		doors = new ArrayList<Door>();
 		distractions = new ArrayList<Distraction>();
 		monster = new Monster(mainScreen, 1,1,1,1); //initialization 
 		imagePath = "room" + id + ".png"; //change this if diff file format is used 
@@ -46,6 +48,7 @@ public class Room extends GraphicsPane{
 	public void addDoor(MainApplication mainScreen, String n, double x, double y) {
 		Door thedoor = new Door(mainScreen, x, y, n); 
 		thedoor.add();
+		doors.add(thedoor);
 	}
 	
 	public void setMonster(Monster m) { 
@@ -71,6 +74,7 @@ public class Room extends GraphicsPane{
 		for(Distraction m: distractions) {
 			m.add(); 
 		}
+		System.out.println("Drawing room " + id);
 		
 	}
 	
@@ -89,6 +93,15 @@ public class Room extends GraphicsPane{
 	public void mouseClicked(MouseEvent e) {
 		double x = e.getX();
 		double y = e.getY();
+		
+		// --- DOOR CLICK DETECTION ---
+	    for (Door d : doors) {    // you must store doors in a list!
+	        if (d.getX() == x && d.getY() == y) {
+	            d.onMouseAction(e);
+	            return; // stop — don't let other objects handle the click
+	        }
+	    }
+		
 		
 		for(Distraction m: distractions) {
 			if(m.getX() == x && m.getY() == y) {

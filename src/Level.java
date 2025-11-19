@@ -64,6 +64,12 @@ public class Level {
         rooms.add(room2);   // index 2
         rooms.add(room3);   // index 3
 
+        // share flashlight across rooms
+        for (Room r : rooms) {
+            r.setLight(this.flashlight);
+        }
+        
+        
 	}
 	
 	public Room getRoom(int index){

@@ -78,6 +78,24 @@ public class Level {
         room1.addDoor(mainScreen, "0", 40, 60);   // room1 -> hallway
         room2.addDoor(mainScreen, "0", 40, 120);  // room2 -> hallway
         room3.addDoor(mainScreen, "0", 40, 180);  // room3 -> hallway
+        
+        //potential connection from one room to another not via the hallway
+        //room2.addDoor(mainScreen, "3", 250, 200); // room2 -> room3
+        
+        // place monster in a random non-hallway room (1..rooms.size()-1)
+        int spawnRoom = 1 + rng.nextInt(Math.max(1, rooms.size() - 1));
+        Room monsterRoom = rooms.get(spawnRoom);
+
+        // pick a reasonable spawn position inside the room (adjust to your room images coordinates)
+        double spawnX = 150 + rng.nextDouble() * 200; // example x
+        double spawnY = 120 + rng.nextDouble() * 200; // example y
+
+        this.Monster = new Monster(mainScreen, spawnX, spawnY, 1.0, spawnRoom);
+        // place Monster object into the monster room's state so the room can draw it
+        monsterRoom.setMonster(Monster); 
+
+        // set currentRoom to hallway by default
+        this.currentRoom = hallway;
 	}
 	
 	public Room getRoom(int index){

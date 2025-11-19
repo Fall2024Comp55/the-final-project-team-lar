@@ -69,7 +69,15 @@ public class Level {
             r.setLight(this.flashlight);
         }
         
+        // add doors from hallway to other rooms
+        hallway.addDoor(mainScreen, "1", 400, 120); // hallway -> room1
+        hallway.addDoor(mainScreen, "2", 400, 260); // hallway -> room2
+        hallway.addDoor(mainScreen, "3", 400, 400); // hallway -> room3
         
+        // each room has a door back to hallway
+        room1.addDoor(mainScreen, "0", 40, 60);   // room1 -> hallway
+        room2.addDoor(mainScreen, "0", 40, 120);  // room2 -> hallway
+        room3.addDoor(mainScreen, "0", 40, 180);  // room3 -> hallway
 	}
 	
 	public Room getRoom(int index){

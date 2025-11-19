@@ -19,6 +19,9 @@ public class Level {
 		this.levelNumber = levelNumber;
 		this.password = password;
 		this.mainScreen = mainScreen;
+		this.isCompleted = false;
+		
+		/*
 		currentRoom = new Room(mainScreen, "0");
 		//currentRoom.setLight(flashlight);
 		currentRoom.addDoor(mainScreen, "room1", 300, 300);
@@ -28,13 +31,27 @@ public class Level {
 		
 		rooms.add(currentRoom);
 		//need to add the currentRoom to an arrayList
+		//*/
+	
+		generateLevel();
+		
+		if (!rooms.isEmpty()) {
+			currentRoom = rooms.get(0);
+		}
+		
 	}
 	
 	public void generateLevel() {
+		rooms.clear();
+        distractions.clear();
+        Monster = null;
+		
 		this.flashlight = new Flashlight(mainScreen,200,20);
-		Monster = new Monster(mainScreen, 1, 1, 1, 1);
+		//Monster = new Monster(mainScreen, 1, 1, 1, 1);
 		 
 		//confused on how generateLevel would work as wouldn't we want individual pre-made levels?
+		
+		
 	}
 	
 	public Room getRoom(int index){

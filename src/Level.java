@@ -46,12 +46,24 @@ public class Level {
         distractions.clear();
         Monster = null;
 		
-		this.flashlight = new Flashlight(mainScreen,200,20);
+		this.flashlight = new Flashlight(mainScreen,200,2);
 		//Monster = new Monster(mainScreen, 1, 1, 1, 1);
 		 
 		//confused on how generateLevel would work as wouldn't we want individual pre-made levels?
 		
-		
+		// build rooms
+        // room "0" is hallway; other rooms are "1","2","3"
+        Room hallway = new Room(mainScreen, "0");
+        Room room1   = new Room(mainScreen, "1");
+        Room room2   = new Room(mainScreen, "2");
+        Room room3   = new Room(mainScreen, "3");
+        
+        // register rooms in order (index == numeric id)
+        rooms.add(hallway); // index 0
+        rooms.add(room1);   // index 1
+        rooms.add(room2);   // index 2
+        rooms.add(room3);   // index 3
+
 	}
 	
 	public Room getRoom(int index){

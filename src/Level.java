@@ -1,16 +1,18 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Level {
-	Flashlight flashlight;
-	Monster Monster;
-	ArrayList<Room> rooms;
-	Room currentRoom;
-	ArrayList<Distraction> distractions;
-	Boolean isCompleted;
-	int levelNumber;
-	String password;
-	MainApplication mainScreen;
-	GraphicsGame delegate;
+	private Flashlight flashlight;
+	private Monster Monster;
+	private ArrayList<Room> rooms;
+	private Room currentRoom;
+	private ArrayList<Distraction> distractions;
+	private Boolean isCompleted;
+	private int levelNumber;
+	private String password;
+	private MainApplication mainScreen;
+	private GraphicsGame delegate;
+	private final Random rng = new Random();
 	
 	
 	public Level(MainApplication mainScreen, int levelNumber, String password) {

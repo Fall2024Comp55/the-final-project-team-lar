@@ -26,16 +26,16 @@ public class Room extends GraphicsPane{
 		switch (id) {
 		case "1": 
 			Room one = new Room(mainScreen, "1");
-			mainScreen.switchToRoom();
+			mainScreen.switchToRoom(one);
 		case "2":
 			Room two = new Room(mainScreen, "2"); 
-			mainScreen.switchToRoom();
+			mainScreen.switchToRoom(two);
 		case "3":
 			Room three = new Room(mainScreen, "3"); 
-			mainScreen.switchToRoom();
+			mainScreen.switchToRoom(three);
 		case "4":
 			Room four = new Room(mainScreen, "4"); 
-			mainScreen.switchToRoom();
+			mainScreen.switchToRoom(four);
 		}
 	}
 	

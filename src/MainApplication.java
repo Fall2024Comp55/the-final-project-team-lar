@@ -39,6 +39,7 @@ public class MainApplication extends GraphicsProgram{
 		welcomePane = new WelcomePane(this);
 		descriptionPane = new DescriptionPane(this);
 		gamePane = new GraphicsGame(this);
+		room = new Room(this, "0"); 
 
 		//TheDefaultPane
 		switchToScreen(welcomePane);
@@ -49,7 +50,7 @@ public class MainApplication extends GraphicsProgram{
 
 	}
 	
-	public void switchToRoom() {
+	public void switchToRoom(Room room) {
 		switchToScreen(room);
 	}
 	

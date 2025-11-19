@@ -21,13 +21,14 @@ public class Level {
 		this.mainScreen = mainScreen;
 		this.isCompleted = false;
 		
+		this.rooms = new ArrayList<>();
+        this.distractions = new ArrayList<>();
+
+		
 		/*
 		currentRoom = new Room(mainScreen, "0");
 		//currentRoom.setLight(flashlight);
 		currentRoom.addDoor(mainScreen, "room1", 300, 300);
-		
-		this.rooms = new ArrayList<>();
-        this.distractions = new ArrayList<>();
 		
 		rooms.add(currentRoom);
 		//need to add the currentRoom to an arrayList
@@ -42,7 +43,8 @@ public class Level {
 	}
 	
 	public void generateLevel() {
-		rooms.clear();
+		// clear any prior state
+        rooms.clear();
         distractions.clear();
         Monster = null;
 		

@@ -18,7 +18,8 @@ public class Door extends GameObject {
 	
 	public Door(MainApplication mainScreen, double x, double y, String roomID)
 	{
-		super(mainScreen,x,y,"arrow.png","insertSoundName(doorCreak)");
+		super(mainScreen,x,y,"door.png","insertSoundName(doorCreak)");
+		this.image.scale(0.3);
 		this.roomID = roomID;
 	}
 	

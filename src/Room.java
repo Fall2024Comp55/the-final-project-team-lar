@@ -48,6 +48,10 @@ public class Room extends GraphicsPane{
 		thedoor.add();
 	}
 	
+	public void setMonster(Monster m) { 
+		this.monster = m; 
+	}
+	
 	public void drawRoom() {
 		hideContent();
 		showContent();

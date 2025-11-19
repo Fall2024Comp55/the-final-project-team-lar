@@ -29,6 +29,7 @@ public class Door extends GameObject {
 	@Override
 	public void onMouseAction(MouseEvent e) {
 		int dest = Integer.parseInt(roomID);
+		//System.out.print(dest);
 		mainScreen.getGamePane().getCurrentLevel().switchRoomto(dest);
 	}
 }

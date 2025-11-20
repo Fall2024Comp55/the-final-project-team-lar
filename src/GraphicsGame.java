@@ -103,6 +103,9 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	    }
 	    
 	    updateHUD();
+	    
+	    currentLevel.getCurrentRoom().mouseClicked(e);
+	    
 	 }
 	 
 	 

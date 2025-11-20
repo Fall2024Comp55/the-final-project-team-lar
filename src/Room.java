@@ -74,6 +74,9 @@ public class Room extends GraphicsPane{
 		for(Distraction m: distractions) {
 			m.add(); 
 		}
+		for(Door d : doors) {
+			d.add(); 
+		}
 		System.out.println("Drawing room " + id);
 		
 	}
@@ -85,6 +88,9 @@ public class Room extends GraphicsPane{
 		}
 		contents.clear();
 		
+		for(Door d : doors) {
+			d.remove(); 
+		}
 		mainScreen.remove(BackgroundImage);
 		monster.remove();
 		light.remove();
@@ -96,15 +102,16 @@ public class Room extends GraphicsPane{
 		
 		// --- DOOR CLICK DETECTION ---
 	    for (Door d : doors) {    // you must store doors in a list!
-	        if (d.getX() == x && d.getY() == y) {
+	        if (d.pointsIn(x, y)) {
 	            d.onMouseAction(e);
+	            System.out.print("door click");
 	            return; // stop — don't let other objects handle the click
 	        }
 	    }
 		
 		
 		for(Distraction m: distractions) {
-			if(m.getX() == x && m.getY() == y) {
+			if(m.pointsIn(x, y)) {
 				m.onMouseAction(e);
 			}
 		}

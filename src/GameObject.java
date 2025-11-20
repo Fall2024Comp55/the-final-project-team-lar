@@ -31,6 +31,15 @@ public abstract class GameObject extends GraphicsPane {
         return y;
     }
     
+    public boolean pointsIn(double mX, double mY) {
+    	if (x <= mX && mX <= x + image.getWidth() && y <= mY && mY <= y + image.getHeight()) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+    }
+    
     public void setPosition(double x, double y) {
         this.x = x;
         this.y = y;

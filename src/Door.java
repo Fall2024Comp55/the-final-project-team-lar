@@ -26,6 +26,10 @@ public class Door extends GameObject {
 	public void add() {
 		mainScreen.add(image);
 	}
+
+	public void remove() {
+		mainScreen.remove(image);
+	}
 	
 	@Override
 	public void onMouseAction(MouseEvent e) {
@@ -33,7 +37,7 @@ public class Door extends GameObject {
 	        System.err.println("Door has no reference to MainApplication.");
 	        return;
 	    }
-
+		System.out.print("Switching room");
 	    // Convert string room ID to integer
 	    int destRoom;
 	    try {

@@ -1,7 +1,8 @@
 import acm.graphics.GObject;
 import acm.program.*;
-
-
+//flashlight needs to follow mouse
+//Distraction needs to show up in room
+//monster needs to work and show up in only one of the roomos and 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -36,10 +37,14 @@ public class MainApplication extends GraphicsProgram{
 		setupInteractions();
 		
 		//Initialize all Panes
-		welcomePane = new WelcomePane(this);
+		welcomePane = new WelcomePane(this); 
+		//the opening menu on mouse clicked switches to gamePane (GraphicsGame)
+		//graphicsGame starts level 1
 		descriptionPane = new DescriptionPane(this);
 		gamePane = new GraphicsGame(this);
 		room = new Room(this, "0"); 
+		room.addDistraction(DistractionType.FLY);
+		room.addDistraction(this, 100, 100, DistractionType.FLY);
 
 		//TheDefaultPane
 		switchToScreen(welcomePane);

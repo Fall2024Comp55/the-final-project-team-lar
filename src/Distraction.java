@@ -19,6 +19,7 @@ import javax.swing.*;
 		super(mainScreen,0,0,"media/missingNo.png","");
 		initialX = 0;
 		initialY = 0;
+		this.type = type;
 		String DType = type.toString();
 		
 		if(DType == "fly"){
@@ -48,6 +49,7 @@ import javax.swing.*;
 		super(mainScreen,x,y,"media/missingNo.png","");
 		initialX = x;
 		initialY = y;
+		this.type = type;
 		String DType = type.toString();
 			if(DType == "fly") {
 				setImagePath("media/fly.png");
@@ -84,6 +86,7 @@ import javax.swing.*;
 	
 	public void triggerEffect(){
 		triggered = true;
+		animation();
 	}
 		
 	public void setSoundName(String name) {
@@ -96,19 +99,26 @@ import javax.swing.*;
 		}
 	
 	public void actionPerformed(ActionEvent e){
+		System.out.println("Distraction_Triggered via Action Performed");
 		animation();
 		}
 	
 	public void onMouseAction(MouseEvent e) {
 		triggerEffect();
+		System.out.println("Distraction_Triggered");
 		}
 		
 	private void animation() {
 		//different animations
 		//idk some circular shape
+		System.out.println("animation function triggered");
 		if(triggered == true) {
-				if(type == DistractionType.FLY) {
+			type.toString();
+			System.out.println("if ye be triggered");
+				if(this.type == DistractionType.FLY) {
 				//set points
+				System.out.println("fly_triggered");
+				moveToPoint(700, 900,60);
 				}
 				
 				if(type == DistractionType.FAKE_MONSTER){
@@ -122,14 +132,19 @@ import javax.swing.*;
 				}
 			}
 		}
-
+//instead of doubles this needs to move in screen distance.
+//it also needs to move relative to the object.
 	public void moveToPoint(double newX, double newY, int frames){
+	for(int i = 0; i < frames; i++)
+	{
 		if(this.getX()!=newX || this.getY()!=newY) {
 		double subtractX = (newX - this.getX())/frames;
 		double subtractY = (newY - this.getY())/frames;
 			
 		this.setPosition(subtractX,subtractY);
 		}
+	}
+	System.out.println("moving to point");
 	}
 }
 

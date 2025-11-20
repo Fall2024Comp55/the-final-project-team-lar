@@ -45,6 +45,13 @@ public class Room extends GraphicsPane{
 		Distraction y = new Distraction(mainScreen, t); 
 		y.add();
 	}
+	
+	public void addDistraction(MainApplication mainScreen, double x, double y,DistractionType t) {
+		Distraction theDistraction = new Distraction(mainScreen, x, y, t); 
+		theDistraction.add();
+		distractions.add(theDistraction);
+	}
+	
 	public void addDoor(MainApplication mainScreen, String n, double x, double y) {
 		Door thedoor = new Door(mainScreen, x, y, n); 
 		thedoor.add();
@@ -87,9 +94,11 @@ public class Room extends GraphicsPane{
 			mainScreen.remove(o);		
 		}
 		contents.clear();
-		
 		for(Door d : doors) {
 			d.remove(); 
+		}
+		for(Distraction a:distractions) {
+			a.remove();
 		}
 		mainScreen.remove(BackgroundImage);
 		monster.remove();

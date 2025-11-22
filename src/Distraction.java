@@ -11,6 +11,9 @@ import javax.swing.*;
 	//level levelDelegate
 	double initialX;
 	double initialY;
+	double currentX;
+	double currentY;
+	int animationCounter = 0;
 	//private MainApplication mainScreen; //unnecessary as GameObject now has mainScreen
 	
 	
@@ -19,6 +22,8 @@ import javax.swing.*;
 		super(mainScreen,0,0,"media/missingNo.png","");
 		initialX = 0;
 		initialY = 0;
+		currentX = 0;
+		currentY = 0;
 		this.type = type;
 		String DType = type.toString();
 		
@@ -49,11 +54,14 @@ import javax.swing.*;
 		super(mainScreen,x,y,"media/missingNo.png","");
 		initialX = x;
 		initialY = y;
+		currentX = x;
+		currentY = y;
 		this.type = type;
 		String DType = type.toString();
 			if(DType == "fly") {
 				setImagePath("media/fly.png");
 				image.setImage("media/fly.png");
+				image.setSize(80,80);
 				//setSound??
 			}
 			
@@ -116,7 +124,21 @@ import javax.swing.*;
 			type.toString();
 				if(this.type == DistractionType.FLY) {
 				//set points
-				moveToPoint(20, 20,3);
+				if(animationCounter == 0)
+				{
+					moveToPoint(20, 20,3);
+
+				}
+				if(animationCounter ==1 )
+				{
+					moveToPoint(10,-14,3);
+				}
+				if(animationCounter == 2)
+				{
+					triggered = false;
+				}
+				
+					
 				}
 				
 				if(type == DistractionType.FAKE_MONSTER){
@@ -155,26 +177,28 @@ import javax.swing.*;
 	double moveY = addY/frames;
 	double newX = initialX + addX;
 	double newY = initialY + addY;
-	
-//	System.out.println("Goal Positions: (" + newX +',' + newY + ')');
+	System.out.println("Goal Positions: (" + newX +',' + newY + ')');
 
 		//if(this.getX()!=initialX+addX || this.getY()!=initialY+addY)
-		if(!isEqualTo(this.getX(),initialX+addX)||!isEqualTo(this.getY(),initialY+addY))
+		if(!isEqualTo(this.getX(),currentX+addX)||!isEqualTo(this.getY(),currentY+addY))
 		{
-			if(this.getX()!=initialX+addX && this.getY()==initialY+addY)
+			/*if(this.getX()!=initialX+addX && this.getY()==initialY+addY)
 			{
 				this.setPosition(this.getX() + moveX,this.getY());
 			}
 			if(this.getX()==initialX+addX && this.getY()!=initialY+addY)
 			{
 				this.setPosition(this.getX(),this.getY()+moveY);
-			}
+			}*/
 			this.setPosition(this.getX()+moveX,this.getY()+moveY);
 		}
 		else {
-			triggered = false;
+			currentX = currentX + addX;
+			currentY = currentY + addY;
+			animationCounter++;
+			System.out.println("Animation Counter: " + animationCounter);
 		}
-	//System.out.println("Current Position: (" + this.getX() + ',' + this.getY() + ')');
+	System.out.println("Current Position: (" + this.getX() + ',' + this.getY() + ')');
 	}
 	
 	private boolean isEqualTo (double a, double b) {

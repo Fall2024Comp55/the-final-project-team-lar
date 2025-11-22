@@ -7,7 +7,7 @@ import javax.swing.*;
 	boolean triggered = false;
 	String SoundName;
 	//AudioClip effectSound;
-	Timer distractionTimer = new Timer(12,this);
+	Timer distractionTimer = new Timer(500,this);
 	//level levelDelegate
 	double initialX;
 	double initialY;
@@ -86,7 +86,8 @@ import javax.swing.*;
 	
 	public void triggerEffect(){
 		triggered = true;
-		animation();
+		distractionTimer.start();
+		//animation();
 	}
 		
 	public void setSoundName(String name) {
@@ -99,8 +100,8 @@ import javax.swing.*;
 		}
 	
 	public void actionPerformed(ActionEvent e){
-		//System.out.println("Action Performed");
-		animation();
+		if(triggered == true)
+			animation();
 		}
 	
 	public void onMouseAction(MouseEvent e) {
@@ -155,8 +156,7 @@ import javax.swing.*;
 	double newX = initialX + addX;
 	double newY = initialY + addY;
 	
-	System.out.println("Goal Positions: (" + newX +',' + newY + ')');
-	System.out.println("Test Positions: (" + this.getX()/1.00 + ',' + this.getY()/1.00 + ')');
+//	System.out.println("Goal Positions: (" + newX +',' + newY + ')');
 
 		//if(this.getX()!=initialX+addX || this.getY()!=initialY+addY)
 		if(!isEqualTo(this.getX(),initialX+addX)||!isEqualTo(this.getY(),initialY+addY))
@@ -171,7 +171,10 @@ import javax.swing.*;
 			}
 			this.setPosition(this.getX()+moveX,this.getY()+moveY);
 		}
-	System.out.println("Current Position: (" + this.getX() + ',' + this.getY() + ')');
+		else {
+			triggered = false;
+		}
+	//System.out.println("Current Position: (" + this.getX() + ',' + this.getY() + ')');
 	}
 	
 	private boolean isEqualTo (double a, double b) {

@@ -99,26 +99,23 @@ import javax.swing.*;
 		}
 	
 	public void actionPerformed(ActionEvent e){
-		System.out.println("Distraction_Triggered via Action Performed");
+		//System.out.println("Action Performed");
 		animation();
 		}
 	
 	public void onMouseAction(MouseEvent e) {
 		triggerEffect();
-		System.out.println("Distraction_Triggered");
+		//System.out.println("onMouseAction_Triggered");
 		}
 		
 	private void animation() {
 		//different animations
 		//idk some circular shape
-		System.out.println("animation function triggered");
 		if(triggered == true) {
 			type.toString();
-			System.out.println("if ye be triggered");
 				if(this.type == DistractionType.FLY) {
 				//set points
-				System.out.println("fly_triggered");
-				moveToPoint(700, 900,60);
+				moveToPoint(20, 20,3);
 				}
 				
 				if(type == DistractionType.FAKE_MONSTER){
@@ -134,17 +131,59 @@ import javax.swing.*;
 		}
 //instead of doubles this needs to move in screen distance.
 //it also needs to move relative to the object.
-	public void moveToPoint(double newX, double newY, int frames){
-	for(int i = 0; i < frames; i++)
-	{
-		if(this.getX()!=newX || this.getY()!=newY) {
-		double subtractX = (newX - this.getX())/frames;
-		double subtractY = (newY - this.getY())/frames;
-			
-		this.setPosition(subtractX,subtractY);
+	/*public void moveToPoint(double newX, double newY, int frames){
+	int i = 0;
+		if(i <frames)
+		{
+			if(this.getX()!=newX || this.getY()!=newY) {
+				double subtractX = (newX - this.getX())/frames;
+				double subtractY = (newY - this.getY())/frames;
+					
+				this.setPosition(subtractX,subtractY);
+			}
+			i = i++;
 		}
-	}
-	System.out.println("moving to point");
-	}
+		else {
+			
+		}
 }
+*/
+	
+	public void moveToPoint(double addX, double addY, int frames){
+	double moveX = addX/frames;
+	double moveY = addY/frames;
+	double newX = initialX + addX;
+	double newY = initialY + addY;
+	
+	System.out.println("Goal Positions: (" + newX +',' + newY + ')');
+	System.out.println("Test Positions: (" + this.getX()/1.00 + ',' + this.getY()/1.00 + ')');
+
+		//if(this.getX()!=initialX+addX || this.getY()!=initialY+addY)
+		if(!isEqualTo(this.getX(),initialX+addX)||!isEqualTo(this.getY(),initialY+addY))
+		{
+			if(this.getX()!=initialX+addX && this.getY()==initialY+addY)
+			{
+				this.setPosition(this.getX() + moveX,this.getY());
+			}
+			if(this.getX()==initialX+addX && this.getY()!=initialY+addY)
+			{
+				this.setPosition(this.getX(),this.getY()+moveY);
+			}
+			this.setPosition(this.getX()+moveX,this.getY()+moveY);
+		}
+	System.out.println("Current Position: (" + this.getX() + ',' + this.getY() + ')');
+	}
+	
+	private boolean isEqualTo (double a, double b) {
+	    if(Math.abs(a - b) < 0.001)
+	    {
+	    	return true;
+	    }
+	    return false;
+	}
+	//System.out.println("moving to point");
+	
+	
+}
+
 

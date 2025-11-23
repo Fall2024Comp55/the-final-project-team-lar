@@ -1,4 +1,5 @@
 import acm.graphics.GObject;
+import acm.graphics.*;
 import acm.program.*;
 //flashlight needs to follow mouse
 //Distraction needs to show up in room
@@ -118,9 +119,14 @@ public class MainApplication extends GraphicsProgram{
 	
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		if(currentScreen != null) {
-			currentScreen.mouseMoved(e);
+		if (gamePane != null && gamePane.getCurrentLevel() != null && gamePane.getCurrentLevel().getFlashlight() != null) {
+
+		    gamePane.getCurrentLevel().getFlashlight().MouseMoved(e);
 		}
+		
+	    if (currentScreen != null) {
+	        currentScreen.mouseMoved(e);
+	    }
 	}
 	
 	@Override

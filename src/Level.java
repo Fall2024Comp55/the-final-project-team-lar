@@ -49,6 +49,9 @@ public class Level {
         Monster = null;
 		
 		this.flashlight = new Flashlight(mainScreen,200,2);
+		flashlight.toggle(true);
+		flashlight.add();
+		flashlight.getCursorLight().sendToFront();
 		//Monster = new Monster(mainScreen, 1, 1, 1, 1);
 		 
 		//confused on how generateLevel would work as wouldn't we want individual pre-made levels?
@@ -67,9 +70,11 @@ public class Level {
         rooms.add(room3);   // index 3
 
         // share flashlight across rooms
+        /*
         for (Room r : rooms) {
             r.setLight(this.flashlight);
         }
+        */
         
         // add doors from hallway to other rooms
         hallway.addDoor(mainScreen, "1", 400, 120); // hallway -> room1
@@ -128,8 +133,13 @@ public class Level {
 	
 	public void switchRoomto(int a) {
 		currentRoom = getRoom(a);
-		this.currentRoom.drawRoom();
-		//mainScreen.switchToScreen(currentRoom);
+
+	    // switch GraphicsPane
+	    mainScreen.switchToScreen(currentRoom);
+
+	    // ensure flashlight remains visible
+	    flashlight.add();
+	    flashlight.getCursorLight().sendToFront();
 	}
 	
 	public Room getCurrentRoom() {

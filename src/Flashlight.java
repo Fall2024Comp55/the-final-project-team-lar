@@ -15,7 +15,7 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	private double rechargeAmount;
 	private Timer t = new Timer(1000, this); 
 	private Color shinee = new Color(74, 118, 249, 150); //flashlight shine color 
-	private Color defaultBlue = new Color(74, 118, 249, 50); //default color
+	private Color defaultBlue = new Color(74, 118, 249, 250); //default color
 	private GOval cursorLight = new GOval(0, 0, lightDiameter, lightDiameter);
 	private GRect batteryMeter = new GRect(0,0, 200, 150);
 	//screen.add(batteryMeter);
@@ -24,18 +24,21 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 		this.mainScreen = mainScreen;
 		battery = b;
 		drainRate = d;
-		lightDiameter = 50;
+		lightDiameter = 100;
 		
 		cursorLight.setFillColor(defaultBlue); 
 		cursorLight.setFilled(true);
 	}
 	
 	public void add() {
+		cursorLight.setLocation(400, 300);
 		mainScreen.add(cursorLight);
+		System.out.println("adding flashlight");
 	}
 	
 	public void remove() {
 		mainScreen.remove(cursorLight);
+		System.out.println("removing flashlight");
 	}
 	
 	public double getBattery() {
@@ -76,13 +79,16 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 		battery = battery + rechargeAmount; //rechargeAmount not defined
 	}
 	
+	public GOval getCursorLight() {
+		return cursorLight;
+	}
 	 
 	public void MouseClicked(MouseEvent e) { 
 		this.shine();
 	}
 	
 	public void MouseMoved(MouseEvent e) {
-		cursorLight.setLocation(e.getX(), e.getY());
+		cursorLight.setLocation(e.getX() - cursorLight.getWidth()/2, e.getY() - cursorLight.getHeight()/2);
 	}
 	
 	//drains battery health slowly

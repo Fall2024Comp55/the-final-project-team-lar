@@ -13,7 +13,7 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	private int lightDiameter;
 	private boolean isOn;
 	private double rechargeAmount;
-	private Timer t = new Timer(1000, this); 
+	private Timer t = new Timer(10000, this); 
 	private Color shinee = new Color(74, 118, 249, 150); //flashlight shine color 
 	private Color defaultBlue = new Color(74, 118, 249, 250); //default color
 	private GOval cursorLight = new GOval(0, 0, lightDiameter, lightDiameter);
@@ -82,8 +82,9 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	public GOval getCursorLight() {
 		return cursorLight;
 	}
-	 
-	public void MouseClicked(MouseEvent e) { 
+	
+	
+	public void MouseClicked (MouseEvent e) { 
 		this.shine();
 	}
 	
@@ -99,6 +100,8 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 		if(battery <= 0.0) {
 			battery = 0;
 			t.stop();
+			
+			
 		}
 	}
 }

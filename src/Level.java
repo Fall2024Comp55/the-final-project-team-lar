@@ -48,7 +48,7 @@ public class Level {
         distractions.clear();
         Monster = null;
 		
-		this.flashlight = new Flashlight(mainScreen,200,2);
+		this.flashlight = new Flashlight(mainScreen, 100, 2);
 		flashlight.toggle(true);
 		flashlight.add();
 		flashlight.getCursorLight().sendToFront();

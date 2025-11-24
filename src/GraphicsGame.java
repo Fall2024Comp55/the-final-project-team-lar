@@ -79,7 +79,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     
     private void updateHUD() {
         double b = currentLevel.getFlashlight().getBattery();
-        batteryLabel.setLabel("Battery: " + (int)(b * 100) + "%");
+        batteryLabel.setLabel("Battery: " + (int)(b) + "%");
     }
 
     

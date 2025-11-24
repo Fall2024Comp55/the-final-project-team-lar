@@ -9,7 +9,6 @@ public class Room extends GraphicsPane{
 	private ArrayList<Door> doors;
 	private String imagePath; 
 	private Monster monster;
-	//private Flashlight light;
 	private GImage BackgroundImage;
 	
 	public Room(MainApplication mainScreen, String num) {
@@ -20,7 +19,6 @@ public class Room extends GraphicsPane{
 		monster = new Monster(mainScreen, 1,1,1,1); //initialization 
 		imagePath = "room" + id + ".png"; //change this if diff file format is used 
 		BackgroundImage = new GImage(imagePath, 200, 200); 
-		//light = new Flashlight(mainScreen, 100, 2);
 	}
 	
 	//add more rooms as needed
@@ -78,7 +76,6 @@ public class Room extends GraphicsPane{
 		mainScreen.add(BackgroundImage);
 		contents.add(BackgroundImage);
 		monster.add(); 
-		//light.add();
 		for(Distraction m: distractions) {
 			m.add(); 
 		}
@@ -104,7 +101,6 @@ public class Room extends GraphicsPane{
 		}
 		mainScreen.remove(BackgroundImage);
 		monster.remove();
-		//light.remove();
 	}
 	
 	public void mouseClicked(MouseEvent e) {

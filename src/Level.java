@@ -133,13 +133,17 @@ public class Level {
 	
 	public void switchRoomto(int a) {
 		currentRoom = getRoom(a);
-
+		
 	    // switch GraphicsPane
 	    mainScreen.switchToScreen(currentRoom);
-
+	    
+	    
 	    // ensure flashlight remains visible
 	    flashlight.add();
 	    flashlight.getCursorLight().sendToFront();
+	    
+	    // always add the darkness overlay
+	    mainScreen.getGamePane().setUpDarkness();
 	}
 	
 	public Room getCurrentRoom() {

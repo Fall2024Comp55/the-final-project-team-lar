@@ -20,7 +20,9 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 
 	private GLabel batteryLabel;
 	private GLabel messageLabel;
-	//private GImage background;
+	private GImage lightHole;
+	//private GRect darkness;
+	//private GOval lightHole;
 	
 	//constructor
 	public GraphicsGame(MainApplication app) {
@@ -49,7 +51,9 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         currentLevel.getFlashlight().startTimer();
 
         drawRoom();         // draw current room
+        setUpDarkness();
         drawHUD();          // battery, messages, UI
+        currentLevel.getFlashlight().getCursorLight().sendToFront();
 
         soundManager.play("ambient");
     }
@@ -84,6 +88,11 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         batteryLabel.setLabel("Battery: " + (int)(b) + "%");
     }
 
+    public void setUpDarkness() {
+    	lightHole = new GImage("Media/regularLight.png", 0, 0);
+    	app.add(lightHole);
+    	lightHole.sendToFront();
+    }
     
 //-----Mouse Handlers-----//
 	 @Override
@@ -91,6 +100,11 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 		 if (gameState != GameState.PLAYING) return;
 
 	     currentLevel.getFlashlight().MouseMoved(e);
+	     
+	     if (lightHole != null) {
+		     lightHole.setLocation(e.getX() - lightHole.getWidth()/2, e.getY() - lightHole.getHeight()/2);
+		     lightHole.sendToFront();
+		 }
 	 }
 	 
 	 @Override
@@ -98,6 +112,8 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	    if (gameState != GameState.PLAYING) return;
 	    
 	    currentLevel.getFlashlight().MouseClicked(e);
+	    
+	    lightHole.setImage("Media/shineFlashlight.png");
 	    
 	    if (currentLevel.checkMonsterFound(e.getX(), e.getY())) {
 	        onMonsterRevealed();

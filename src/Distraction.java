@@ -152,26 +152,7 @@ import javax.swing.*;
 				}
 			}
 		}
-//instead of doubles this needs to move in screen distance.
-//it also needs to move relative to the object.
-	/*public void moveToPoint(double newX, double newY, int frames){
-	int i = 0;
-		if(i <frames)
-		{
-			if(this.getX()!=newX || this.getY()!=newY) {
-				double subtractX = (newX - this.getX())/frames;
-				double subtractY = (newY - this.getY())/frames;
-					
-				this.setPosition(subtractX,subtractY);
-			}
-			i = i++;
-		}
-		else {
-			
-		}
-}
-*/
-	
+
 	public void moveToPoint(double addX, double addY, int frames){
 	double moveX = addX/frames;
 	double moveY = addY/frames;
@@ -182,14 +163,6 @@ import javax.swing.*;
 		//if(this.getX()!=initialX+addX || this.getY()!=initialY+addY)
 		if(!isEqualTo(this.getX(),currentX+addX)||!isEqualTo(this.getY(),currentY+addY))
 		{
-			/*if(this.getX()!=initialX+addX && this.getY()==initialY+addY)
-			{
-				this.setPosition(this.getX() + moveX,this.getY());
-			}
-			if(this.getX()==initialX+addX && this.getY()!=initialY+addY)
-			{
-				this.setPosition(this.getX(),this.getY()+moveY);
-			}*/
 			this.setPosition(this.getX()+moveX,this.getY()+moveY);
 		}
 		else {

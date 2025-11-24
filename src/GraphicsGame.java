@@ -45,6 +45,8 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     	
         currentLevel = new Level(app, levelNum, "*****");
         currentLevel.generateLevel();
+        currentLevel.getFlashlight().setDelegate(this);
+        currentLevel.getFlashlight().startTimer();
 
         drawRoom();         // draw current room
         drawHUD();          // battery, messages, UI
@@ -117,7 +119,8 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 
 	 @Override
 	 public void onBatteryLow(double remaining) {
-		 soundManager.play("battery_low");
+		 //soundManager.play("battery_low");
+		 updateHUD();
 	 }
 	 
 	 @Override

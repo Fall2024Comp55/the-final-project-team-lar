@@ -8,8 +8,8 @@ import java.awt.Color;
 public class Flashlight extends GraphicsPane implements ActionListener{ 
 
 	private double battery;
-	private double drainRate; //amount drained throughout level
-	private double shineRate; //amount drained when light is shone
+	private double drainRate = 2.0; //amount drained throughout level
+	private double shineRate = 10.0; //amount drained when light is shone
 	private int lightDiameter;
 	private boolean isOn;
 	private double rechargeAmount;
@@ -28,6 +28,7 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 		
 		cursorLight.setFillColor(defaultBlue); 
 		cursorLight.setFilled(true);
+		t.start();
 	}
 	
 	public void add() {
@@ -46,10 +47,9 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	}
 	
 	public void toggle(boolean on) {
+		isOn = true;
 		if(on) {
-			isOn = true;
 			this.shine(); 
-			isOn = false; 
 		}
 	}
 	
@@ -92,9 +92,12 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	}
 	
 	//drains battery health slowly
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		battery = battery - drainRate;
-		if(battery == 0.0) {
+		System.out.println("battery health is " + battery); 
+		if(battery <= 0.0) {
+			battery = 0;
 			t.stop();
 		}
 	}

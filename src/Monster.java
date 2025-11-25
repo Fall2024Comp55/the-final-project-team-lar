@@ -8,6 +8,7 @@ public class Monster extends GameObject{
 	private double initialX;
 	private double initialY;
 	private int monsterRoom;
+	private GraphicsGame delegate = mainScreen.getGamePane();
 	//private MainApplication mainScreen; //unnecessary as GameObject now has mainScreen
 	//level levelDelegate
 	//GraphicsGame screenDelegate
@@ -51,15 +52,21 @@ public class Monster extends GameObject{
 		setPosition(initialX,initialY);
 	}
 	
-	public void isCaught(double x, double y) {
+	/*public void isCaught(double x, double y) {
 		if(this.getX()==x && this.getY() == y)
 		{
 			reveal();
 		}
+	}*/
+	
+	public void isCaught() {
+		reveal();
+		delegate.onMonsterRevealed();
 	}
 	
 	public void onMouseAction(MouseEvent e) {
-		isCaught(e.getX(),e.getY());
+		//isCaught(e.getX(),e.getY());
+		isCaught();
 	}
 	
 	public void monsterMovement(int numRooms,int playerRoomID,double screenWidth,double screenHeight){

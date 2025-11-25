@@ -105,16 +105,18 @@ import javax.swing.*;
 	public void reset() {
 		this.triggered = false;
 		this.setPosition(initialX, initialY);	
+		this.animationCounter = 0;
 		}
 	
 	public void actionPerformed(ActionEvent e){
+		System.out.println("action_performed");
 		if(triggered == true)
 			animation();
 		}
 	
 	public void onMouseAction(MouseEvent e) {
 		triggerEffect();
-		//System.out.println("onMouseAction_Triggered");
+		System.out.println("onMouseAction_Triggered");
 		}
 		
 	private void animation() {

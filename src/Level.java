@@ -113,6 +113,7 @@ public class Level {
 	
 	
 	public boolean checkMonsterFound(double x, double y){
+		
 		if(Monster.getX() == x && Monster.getY()==y) {
 			return true;
 		}

@@ -142,9 +142,6 @@ public class Level {
 	    // ensure flashlight remains visible
 	    flashlight.add();
 	    flashlight.getCursorLight().sendToFront();
-	    
-	    // always add the darkness overlay
-	    mainScreen.getGamePane().setUpDarkness();
 	}
 	
 	public Room getCurrentRoom() {

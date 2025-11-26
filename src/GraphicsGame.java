@@ -89,6 +89,11 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     }
 
     public void setUpDarkness() {
+    	if (lightHole != null) {
+    		lightHole.sendToFront();
+    		return;
+    	}
+    	
     	lightHole = new GImage("Media/regularLight.png", 0, 0);
     	app.add(lightHole);
     	lightHole.sendToFront();

@@ -18,7 +18,8 @@ public class Room extends GraphicsPane{
 		distractions = new ArrayList<Distraction>();
 		monster = new Monster(mainScreen, 1,1,1,1); //initialization 
 		imagePath = "room" + id + ".png"; //change this if diff file format is used 
-		BackgroundImage = new GImage(imagePath, 200, 200); 
+		BackgroundImage = new GImage(imagePath, 0, 0);
+		BackgroundImage.setSize(800, 600);
 	}
 	
 	//add more rooms as needed

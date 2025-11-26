@@ -100,8 +100,9 @@ public class Room extends GraphicsPane{
 		for(Distraction a:distractions) {
 			a.remove();
 		}
-		mainScreen.remove(BackgroundImage);
 		monster.remove();
+
+		mainScreen.remove(BackgroundImage);
 	}
 	
 	public void mouseClicked(MouseEvent e) {
@@ -123,7 +124,13 @@ public class Room extends GraphicsPane{
 				m.onMouseAction(e);
 			}
 		}
-		monster.onMouseAction(e);
+		
+		//monster detection
+		if(monster.pointsIn(x, y))
+		{
+			monster.onMouseAction(e);
+		}
+		
 	}
 	
 	

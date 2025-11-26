@@ -114,12 +114,14 @@ import javax.swing.*;
 			animation();
 		}
 	
+	@Override
 	public void onMouseAction(MouseEvent e) {
 		triggerEffect();
 		System.out.println("onMouseAction_Triggered");
 		}
 		
 	private void animation() {
+		System.out.println("animating");
 		//different animations
 		//idk some circular shape
 		if(triggered == true) {

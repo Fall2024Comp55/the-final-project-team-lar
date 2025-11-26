@@ -1,6 +1,6 @@
 import java.awt.event.MouseEvent;
 
-public class Monster extends GameObject{
+public class Monster extends GameObject {
 	
 	private boolean isRevealed;
 	private double scareIntensity;
@@ -9,9 +9,7 @@ public class Monster extends GameObject{
 	private double initialY;
 	private int monsterRoom;
 	private GraphicsGame delegate = mainScreen.getGamePane();
-	//private MainApplication mainScreen; //unnecessary as GameObject now has mainScreen
 	//level levelDelegate
-	//GraphicsGame screenDelegate
 
 	public Monster(MainApplication mainScreen, double x, double y,double scareIntensity, int monsterRoom)
 	{
@@ -36,6 +34,7 @@ public class Monster extends GameObject{
 	
 	public void reveal() {
 		isRevealed = true;
+		System.out.println("Monster REVEALED!!");
 		setImagePath("media/revealedMonster.jpeg");//need to add monster pngs
 		image.setImage("media/revealedMonster.jpeg");
 		playSound();
@@ -60,12 +59,15 @@ public class Monster extends GameObject{
 	}*/
 	
 	public void isCaught() {
+		System.out.println("isCaught");
 		reveal();
 		delegate.onMonsterRevealed();
 	}
 	
+	@Override
 	public void onMouseAction(MouseEvent e) {
 		//isCaught(e.getX(),e.getY());
+		System.out.println("onMouseAction");
 		isCaught();
 	}
 	
@@ -84,4 +86,6 @@ public class Monster extends GameObject{
 		}
 		
 	}
+
+	
 }

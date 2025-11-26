@@ -45,8 +45,6 @@ public class MainApplication extends GraphicsProgram{
 		gamePane = new GraphicsGame(this);
 		
 		room = new Room(this, "0"); 
-		room.addDistraction(DistractionType.FLY);
-		room.addDistraction(this, 100, 100, DistractionType.FLY);
 
 		//TheDefaultPane
 		switchToScreen(welcomePane);

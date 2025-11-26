@@ -82,7 +82,7 @@ public class Level {
         hallway.addDoor(mainScreen, "3", 400, 400); // hallway -> room3
         
         hallway.addDistraction(mainScreen, 100, 100, DistractionType.FLY);
-        
+
         // each room has a door back to hallway
         room1.addDoor(mainScreen, "0", 40, 60);   // room1 -> hallway
         room2.addDoor(mainScreen, "0", 40, 120);  // room2 -> hallway

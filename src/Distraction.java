@@ -20,32 +20,35 @@ import javax.swing.*;
 	
 	public Distraction(MainApplication mainScreen, DistractionType type) {
 		super(mainScreen,0,0,"media/missingNo.png","");
-		initialX = 0;
-		initialY = 0;
-		currentX = 0;
-		currentY = 0;
+		initialX = x;
+		initialY = y;
+		currentX = x;
+		currentY = y;
 		this.type = type;
 		String DType = type.toString();
-		
-		if(DType == "fly"){
-			setImagePath("media/fly.png");
+			if(DType == "fly") {
+				setImagePath("media/fly.png");
+				image.setImage("media/fly.png");
+				image.setSize(80,80);
 				//setSound??
 			}
-		
-		if(DType == "fake_monster"){
-			setImagePath("media/fake_monster.png");
+			
+			if(DType == "fake_monster"){
+				setImagePath("media/fake_monster.png");
+				image.setImage("media/fake_monster.png");
 			}
-		
-		if(DType == "moving_shadow"){
-			setImagePath("media/moving_shadow.png");
+			
+			if(DType == "moving_shadow"){
+				setImagePath("media/moving_shadow.png");
+				image.setImage("media/moving_shadow.png");
 			}
-		
-		if(DType == "whisper"){
-			setSoundName("whisper");
+			
+			if(DType == "whisper"){
+				setSoundName("whisper");
 			}
-		
-		if(DType == "creak_sound"){
-			setSoundName("creak_sound");
+			
+			if(DType == "creak_sound"){
+				setSoundName("creak_sound");
 			}
 		}
 		

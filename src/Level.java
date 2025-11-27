@@ -54,7 +54,6 @@ public class Level {
 		flashlight.getCursorLight().sendToFront();
 		//Monster = new Monster(mainScreen, 1, 1, 1, 1);
 		 
-		//confused on how generateLevel would work as wouldn't we want individual pre-made levels?
 		
 		// build rooms
         // room "0" is hallway; other rooms are "1","2","3"
@@ -150,6 +149,14 @@ public class Level {
 	
 	public Flashlight getFlashlight() {
 		return flashlight;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setDelegate(GraphicsGame d) {
+		this.delegate = d;
 	}
 	
 }

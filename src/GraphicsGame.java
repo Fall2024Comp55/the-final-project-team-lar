@@ -58,6 +58,23 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         soundManager.play("ambient");
     }
     
+    public void startNewLevel(int levelNum, String password) {
+    	app.removeAll();
+    	gameState = GameState.PLAYING;
+    	
+        currentLevel = new Level(app, levelNum, password);
+        currentLevel.generateLevel();
+        currentLevel.getFlashlight().setDelegate(this);
+        currentLevel.getFlashlight().startTimer();
+
+        drawRoom();         // draw current room
+        setUpDarkness();
+        drawHUD();          // battery, messages, UI
+        currentLevel.getFlashlight().getCursorLight().sendToFront();
+
+        soundManager.play("ambient");
+    }
+    
     // Called when MainApplication hides this pane
     @Override
     public void hideContent() {

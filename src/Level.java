@@ -141,6 +141,9 @@ public class Level {
 	    // ensure flashlight remains visible
 	    flashlight.add();
 	    flashlight.getCursorLight().sendToFront();
+	    
+	    delegate.setUpDarkness();
+	   
 	}
 	
 	public Room getCurrentRoom() {

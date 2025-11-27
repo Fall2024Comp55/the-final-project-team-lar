@@ -46,6 +46,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     	gameState = GameState.PLAYING;
     	
         currentLevel = new Level(app, levelNum, "*****");
+        currentLevel.setDelegate(this);
         currentLevel.generateLevel();
         currentLevel.getFlashlight().setDelegate(this);
         currentLevel.getFlashlight().startTimer();
@@ -63,6 +64,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     	gameState = GameState.PLAYING;
     	
         currentLevel = new Level(app, levelNum, password);
+        currentLevel.setDelegate(this);
         currentLevel.generateLevel();
         currentLevel.getFlashlight().setDelegate(this);
         currentLevel.getFlashlight().startTimer();

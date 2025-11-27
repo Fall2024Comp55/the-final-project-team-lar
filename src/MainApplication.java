@@ -45,7 +45,6 @@ public class MainApplication extends GraphicsProgram{
 		gamePane = new GraphicsGame(this);
 		
 		room = new Room(this, "0"); 
-
 		//TheDefaultPane
 		switchToScreen(welcomePane);
 	}

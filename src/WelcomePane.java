@@ -14,6 +14,8 @@ public class WelcomePane extends GraphicsPane{
 	public void showContent() {
 		addPicture();
 		addDescriptionButton();
+		addButton("more.jpeg", 0.3, 0.3);
+		
 	}
 
 	@Override
@@ -56,9 +58,32 @@ public class WelcomePane extends GraphicsPane{
 
 	}
 	
+	private void addButton(String name,double scaleX,double scaleY) {
+		GImage button = new GImage(name, 0, 0);
+		button.scale(0.3, 0.3);
+		button.setLocation((mainScreen.getWidth() - button.getWidth())/ 2, 100);
+		contents.add(button);
+		mainScreen.add(button);
+
+	}
+	
+	/*private void addLevelButton() {
+		GImage levelButton = new GImage("more.jpeg", 200, 700);
+		levelButton.scale(0.3, 0.3);
+		levelButton.setLocation((mainScreen.getWidth() - levelButton.getWidth())/ 2, 400);
+		
+		contents.add(levelButton);
+		mainScreen.add(levelButton);
+
+	}*/
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {
+			//mainScreen.switchToRoom();
+			mainScreen.startGame();
+		}
+		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(2)) {
 			//mainScreen.switchToRoom();
 			mainScreen.startGame();
 		}

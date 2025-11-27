@@ -61,7 +61,7 @@ public class WelcomePane extends GraphicsPane{
 	private void addButton(String name,double scaleX,double scaleY) {
 		GImage button = new GImage(name, 0, 0);
 		button.scale(0.3, 0.3);
-		button.setLocation((mainScreen.getWidth() - button.getWidth())/ 2, 100);
+		button.setLocation((mainScreen.getWidth() - button.getWidth())/ 2, 300);
 		contents.add(button);
 		mainScreen.add(button);
 

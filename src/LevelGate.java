@@ -13,7 +13,7 @@ class LevelGate extends JFrame implements ActionListener {
     static JFrame frame;
     static JButton button;
     static JLabel label;
-    private password1;
+    private String password1;
     
 
     LevelGate() {}

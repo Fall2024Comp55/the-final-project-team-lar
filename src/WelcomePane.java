@@ -25,10 +25,17 @@ public class WelcomePane extends GraphicsPane{
 	}
 	
 	private void addPicture(){
+		/*
 		GImage startImage = new GImage("start.png", 200, 100);
 		startImage.scale(0.5, 0.5);
 		startImage.setLocation((mainScreen.getWidth() - startImage.getWidth())/ 2, 70);
+		*/
 		
+		///*
+		GImage startImage = new GImage("menu.png", 200, 100);
+		startImage.scale(0.25,0.25);
+		startImage.setLocation((mainScreen.getWidth() - startImage.getWidth())/ 2, (mainScreen.getHeight() - startImage.getHeight()-25));
+		//*/
 		contents.add(startImage);
 		mainScreen.add(startImage);
 		

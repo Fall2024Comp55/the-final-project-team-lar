@@ -14,6 +14,8 @@ import javax.swing.*;
 	double currentX;
 	double currentY;
 	int animationCounter = 0;
+	private GraphicsGame delegate = mainScreen.getGamePane();
+
 	//private MainApplication mainScreen; //unnecessary as GameObject now has mainScreen
 	
 	
@@ -133,11 +135,13 @@ import javax.swing.*;
 				//set points
 				if(animationCounter == 0)
 				{
+					delegate.onDistractionTriggered(type.toString());
 					moveToPoint(20, 20,3);
 
 				}
 				if(animationCounter ==1 )
 				{
+					delegate.onDistractionTriggered(type.toString());
 					moveToPoint(10,-14,3);
 				}
 				if(animationCounter == 2)

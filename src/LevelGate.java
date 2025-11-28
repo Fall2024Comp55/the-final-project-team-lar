@@ -7,6 +7,8 @@
 import java.awt.event.*;
 import javax.swing.*;
 
+import acm.graphics.GImage;
+
 class LevelGate extends JFrame implements ActionListener {
 
     static JTextField text;
@@ -14,12 +16,13 @@ class LevelGate extends JFrame implements ActionListener {
     static JButton button;
     static JLabel label;
     private String password1;
-    
+	private GImage BackgroundImage;
 
     LevelGate() {}
 
     public static void main(String[] args)
     {
+    	
         frame = new JFrame("textfield");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         label = new JLabel("Enter Level Password");

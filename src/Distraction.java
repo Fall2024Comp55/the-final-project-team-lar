@@ -84,9 +84,6 @@ import javax.swing.*;
 				setSoundName("whisper");
 			}
 			
-			if(DType == "creak_sound"){
-				setSoundName("creak_sound");
-			}
 		}
 		
 	public void add() {
@@ -100,6 +97,7 @@ import javax.swing.*;
 	public void triggerEffect(){
 		triggered = true;
 		distractionTimer.start();
+		delegate.onDistractionTriggered(type.toString());
 		//animation();
 	}
 		
@@ -135,13 +133,11 @@ import javax.swing.*;
 				//set points
 				if(animationCounter == 0)
 				{
-					delegate.onDistractionTriggered(type.toString());
 					moveToPoint(20, 20,3);
 
 				}
 				if(animationCounter ==1 )
 				{
-					delegate.onDistractionTriggered(type.toString());
 					moveToPoint(10,-14,3);
 				}
 				if(animationCounter == 2)

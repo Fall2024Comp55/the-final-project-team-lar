@@ -1,5 +1,7 @@
 import java.awt.event.MouseEvent;
 
+import acm.graphics.GImage;
+
 public class Door extends GameObject {
 	
 	private String roomID;
@@ -12,13 +14,13 @@ public class Door extends GameObject {
 	//made 2 constructors in care we want to specify the location the door is created
 	public Door(MainApplication mainScreen, String roomID)
 	{
-		super(mainScreen,0,0,"arrow.png","insertSoundName(maybe door creak or smthn)");
+		super(mainScreen,0,0,"arrow.png","");
 		this.roomID = roomID;
 	}
 	
 	public Door(MainApplication mainScreen, double x, double y, String roomID)
 	{
-		super(mainScreen,x,y,"door.png","insertSoundName(doorCreak)");
+		super(mainScreen,x,y,"door.png","door-creak.au");
 		this.image.scale(0.3);
 		this.roomID = roomID;
 	}
@@ -39,6 +41,7 @@ public class Door extends GameObject {
 	    }
 		System.out.print("Switching room");
 	    // Convert string room ID to integer
+		
 	    int destRoom;
 	    try {
 	        destRoom = Integer.parseInt(roomID);
@@ -67,7 +70,10 @@ public class Door extends GameObject {
 	    // Switch the GraphicsPane displayed on screen
 	    Room nextRoom = level.getCurrentRoom();
 	    if (nextRoom != null) {
-	        mainScreen.switchToScreen(nextRoom);
+	    	gamePane.onDoorOpened();
+	    	System.out.println("playing sound");
+	    	mainScreen.switchToScreen(nextRoom);
+	        
 	    } else {
 	        System.err.println("Room switch failed: no room exists for ID " + destRoom);
 	    }

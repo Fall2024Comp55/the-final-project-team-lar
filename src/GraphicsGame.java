@@ -151,8 +151,27 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 
 	 
 	 //-----Delegate callbacks-----//
+	 /*test.loadSound("main", "Media/test ambients.wav");
+		test.loadSound("test", "Media/test.au");
+		test.play("main");
+		test.play("test");
+	*/
+	 
+	 @Override 
+	 public void onDoorOpened(){
+		 soundManager.loadSound("door-creak", "Media/door-creak.au");
+		 soundManager.play("door-creak");
+	 }
+	 
+	 @Override 
+	 public void onFlashlightTurnedOn(){
+		 soundManager.loadSound("flashlight", "Media/flashlight-clicking-on.au");
+		 soundManager.play("flashlight");
+	 }
+	 
 	 @Override
 	 public void onMonsterRevealed() {
+		// soundManager.load("monster_revealed",);
 		 soundManager.play("monster_revealed");
 	     onLevelComplete();
 	 }
@@ -172,6 +191,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 
 	 @Override
 	 public void onDistractionTriggered(String type) {
+		 soundManager.loadSound(type, "Media/" + type + ".au");
 		 soundManager.play(type);
 	 }
 	 

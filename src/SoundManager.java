@@ -159,7 +159,7 @@ public class SoundManager {
 		test.loadSound("test", "Media/test.au");
 		test.play("main");
 		test.play("test");
-		
+
 		try { // The bad noise/sound cutting out may be caused by 8-bit encoding or low-power mode in laptops
             Thread.sleep(3000);
             System.out.println("Muting...");

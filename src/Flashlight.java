@@ -104,6 +104,7 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	
 	public void MouseClicked (MouseEvent e) { 
 		this.shine();
+		delegate.onFlashlightTurnedOn();
 	}
 	
 	public void MouseMoved(MouseEvent e) {

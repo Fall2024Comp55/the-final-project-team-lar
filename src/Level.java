@@ -132,6 +132,7 @@ public class Level {
 	}
 	
 	public void switchRoomto(int a) {
+		System.out.println("switchRoomtocalled");
 		currentRoom = getRoom(a);
 		
 	    // switch GraphicsPane
@@ -139,8 +140,10 @@ public class Level {
 	    
 	    
 	    // ensure flashlight remains visible
-	    flashlight.add();
-	    flashlight.getCursorLight().sendToFront();
+		//flashlight.toggle(true);
+		flashlight.add();
+		flashlight.getCursorLight().sendToFront();
+	   
 	    
 	    delegate.setUpDarkness();
 	   

@@ -119,6 +119,7 @@ public class MainApplication extends GraphicsProgram{
 		if (gamePane != null && gamePane.getCurrentLevel() != null && gamePane.getCurrentLevel().getFlashlight() != null) {
 
 		    gamePane.getCurrentLevel().getFlashlight().MouseMoved(e);
+		    gamePane.mouseMoved(e);
 		}
 		
 	    if (currentScreen != null) {

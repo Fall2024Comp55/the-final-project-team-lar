@@ -127,10 +127,10 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 
 	     currentLevel.getFlashlight().MouseMoved(e);
 	     
-	     if (lightHole != null) {
+	     //if (lightHole != null) {
 		     lightHole.setLocation(e.getX() - lightHole.getWidth()/2, e.getY() - lightHole.getHeight()/2);
 		     lightHole.sendToFront();
-		 }
+		 //}
 	 }
 	 
 	 @Override

@@ -25,6 +25,7 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
 
     LevelGate(MainApplication mainScreen) {
     	this.mainScreen = mainScreen;
+    	contents = new ArrayList<GObject>();
     	addBackgroundImage();
     	frame = new JFrame("textfield");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,7 +127,7 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
 	
 	public void showContent() {
 		addBackgroundImage();//0
-		addButton("back.jpeg", 0.3, 0.3, 100.0, 100.0);//1
+		addButton("back.jpg", 0.3, 0.3, 100.0, 100.0);//1
 		//addButton("more.jpeg", 0.3, 0.3, ((mainScreen.getWidth() - button.getWidth())/ 2),300);//2
         frame.setVisible(true);
 

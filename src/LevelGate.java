@@ -66,11 +66,9 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
             {
     			int lvlNum = index + 1;
             	System.out.println("You want lvl" + lvlNum);
-            	
                 text.setText("");
                 mainScreen.getGamePane().startNewLevel(lvlNum);
                 hideContent();
-                //delegate.startNewLevel(lvlNum);
             }
     		index++;
     	}

@@ -31,7 +31,6 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 		cursorLight.setFillColor(defaultYellow); 
 		cursorLight.setFilled(true);
 		cursorLight.setLineWidth(0);
-		//t.start();
 	}
 	
 	public void add() {
@@ -61,9 +60,6 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	
 	public void toggle(boolean on) {
 		isOn = true;
-		if(on) {
-			//this.shine(); 
-		}
 	}
 	
 	public void shine() { 
@@ -82,7 +78,7 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	
 	public void drain() {
 		if(isOn) {
-			battery = battery - shineRate; //drainRate not defined
+			battery = battery - shineRate; 
 		}
 	}
 	
@@ -95,7 +91,7 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	}
 	
 	public void recharge() {
-		battery = battery + rechargeAmount; //rechargeAmount not defined
+		battery = battery + rechargeAmount;
 	}
 	
 	public GOval getCursorLight() {

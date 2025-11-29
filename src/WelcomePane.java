@@ -13,8 +13,9 @@ public class WelcomePane extends GraphicsPane{
 	@Override
 	public void showContent() {
 		addPicture();
+		addButton("levels.png", 0.035, 0.035);
 		addDescriptionButton();
-		addButton("more.jpeg", 0.3, 0.3);
+		
 		
 	}
 
@@ -60,7 +61,7 @@ public class WelcomePane extends GraphicsPane{
 	
 	private void addButton(String name,double scaleX,double scaleY) {
 		GImage button = new GImage(name, 0, 0);
-		button.scale(0.3, 0.3);
+		button.scale(scaleX, scaleY);
 		button.setLocation((mainScreen.getWidth() - button.getWidth())/ 2, 300);
 		contents.add(button);
 		mainScreen.add(button);
@@ -85,7 +86,7 @@ public class WelcomePane extends GraphicsPane{
 		}
 		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {
 			//mainScreen.switchToRoom();
-			mainScreen.switchToDescriptionScreen();
+			mainScreen.getGamePane().drawLevelGate();
 		}
 	}
 

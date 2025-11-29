@@ -14,9 +14,10 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 
 	private MainApplication app;
 	private Level currentLevel;
+	private LevelGate LevelGate;
 	private GameState gameState;
 	SoundManager soundManager = SoundManager.getInstance();
-	 
+	private ArrayList<String> passwords = new ArrayList<String>();
 	private GLabel batteryLabel;
 	private GLabel messageLabel;
 	private GImage lightHole;
@@ -28,6 +29,11 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         this.app = app;
         this.gameState = GameState.MENU; // will change once gameplay starts
         this.soundManager = SoundManager.getInstance();
+    	this.LevelGate = new LevelGate(app);
+
+        passwords.add("apples");//password for level 1
+        passwords.add("bees");//password for level 2 buggy bc lvl2 and on don't generate properly
+        LevelGate.setPasswords(passwords);
     }
 	 
 	// Called when MainApplication displays this pane
@@ -38,6 +44,11 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	
     public Level getCurrentLevel() {
     	return currentLevel;
+    }
+    
+    public ArrayList<String> getPasswords()
+    {
+    	return passwords;
     }
 	
     public void startNewLevel(int levelNum) {
@@ -83,6 +94,11 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     }
 	 
 //-----Drawing Functions-----//
+    
+    public void drawLevelGate() {
+    	LevelGate.setUpLevelGate();
+    	LevelGate.showContent();
+    }
     
     private void drawRoom() {
         Room room = currentLevel.getCurrentRoom();

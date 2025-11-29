@@ -19,13 +19,17 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
     static JButton button;
     static JLabel label;
 	private ArrayList<String> passwords = new ArrayList<String>();
-	private ArrayList<GObject> contents;
+	private ArrayList<GObject> contents = new ArrayList<GObject>();
 	private MainApplication mainScreen;
+	private GraphicsGame delegate;
 	//Juice ITC
 
     LevelGate(MainApplication mainScreen) {
     	this.mainScreen = mainScreen;
-    	addBackgroundImage();
+    	delegate = mainScreen.getGamePane();
+    }
+    
+    public void setUpLevelGate() {
     	frame = new JFrame("textfield");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         label = new JLabel("Enter Level Password");
@@ -43,9 +47,7 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
         frame.add(panel);
 
         frame.setSize(300, 300);
-    
     }
-    
 
     @Override
     public void actionPerformed(ActionEvent e)
@@ -57,14 +59,20 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
     }
     
     public void handleInput() {
+    	int index = 0;
     	for(String password:passwords)
     	{
     		if(text.getText().equals(password))
             {
-            	System.out.println("correct password");
+    			int lvlNum = index + 1;
+            	System.out.println("You want lvl" + lvlNum);
+            	
                 text.setText("");
-
+                mainScreen.getGamePane().startNewLevel(lvlNum);
+                hideContent();
+                //delegate.startNewLevel(lvlNum);
             }
+    		index++;
     	}
     	
        text.setText("");
@@ -126,7 +134,7 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
 	
 	public void showContent() {
 		addBackgroundImage();//0
-		addButton("back.jpeg", 0.3, 0.3, 100.0, 100.0);//1
+		addButton("back.jpg", 0.3, 0.3, 100.0, 100.0);//1
 		//addButton("more.jpeg", 0.3, 0.3, ((mainScreen.getWidth() - button.getWidth())/ 2),300);//2
         frame.setVisible(true);
 
@@ -138,5 +146,10 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
 		}
 		frame.setVisible(false);
 		contents.clear();
+	}
+	
+	public void setPasswords(ArrayList<String> passes)
+	{
+		passwords = passes;
 	}
 }

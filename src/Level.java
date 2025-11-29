@@ -7,7 +7,6 @@ public class Level {
 	private ArrayList<Room> rooms;
 	private Room currentRoom;
 	private ArrayList<Distraction> distractions;
-	private ArrayList<String> passwords;
 	private Boolean isCompleted;
 	private int levelNumber;
 	private String password;

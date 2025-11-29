@@ -138,6 +138,9 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	    currentLevel.getFlashlight().MouseClicked(e);
 	    
 	    lightHole.setImage("Media/shineFlashlight.png");
+	    new javax.swing.Timer(1000, ev -> {
+	       lightHole.setImage("Media/regularLight.png");
+	    }).start();
 	    
 	    if (currentLevel.checkMonsterFound(e.getX(), e.getY())) {
 	        onMonsterRevealed();

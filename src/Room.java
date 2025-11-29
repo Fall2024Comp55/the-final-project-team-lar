@@ -19,7 +19,7 @@ public class Room extends GraphicsPane{
 		monster = new Monster(mainScreen, 1,1,1,1); //initialization 
 		imagePath = "room" + id + ".png"; //change this if diff file format is used 
 		BackgroundImage = new GImage(imagePath, 0, 0);
-		BackgroundImage.setSize(800, 600);
+		BackgroundImage.setSize(mainScreen.getWidth(), mainScreen.getHeight());
 	}
 	
 	//add more rooms as needed

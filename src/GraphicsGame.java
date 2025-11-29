@@ -107,14 +107,16 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     }
 
     public void setUpDarkness() {
-    	if (lightHole != null) {
-    		lightHole.sendToFront();
-    		return;
-    	}
-    	
-    	lightHole = new GImage("Media/regularLight.png", 0, 0);
-    	app.add(lightHole);
-    	lightHole.sendToFront();
+    	 // Only create the mask ONCE per level
+        if (lightHole == null) {
+            lightHole = new GImage("Media/regularLight.png", 0, 0);
+            app.add(lightHole);
+            lightHole.sendToFront();
+        } else {
+            // If mask already exists but was hidden or moved behind, bring back
+            app.add(lightHole);
+            lightHole.sendToFront();
+        }
     }
     
 //-----Mouse Handlers-----//
@@ -137,6 +139,9 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	    currentLevel.getFlashlight().MouseClicked(e);
 	    
 	    lightHole.setImage("Media/shineFlashlight.png");
+	    new javax.swing.Timer(1000, ev -> {
+	       lightHole.setImage("Media/regularLight.png");
+	    }).start();
 	    
 	    if (currentLevel.checkMonsterFound(e.getX(), e.getY())) {
 	        onMonsterRevealed();

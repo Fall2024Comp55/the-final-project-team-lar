@@ -66,11 +66,11 @@ public class Room extends GraphicsPane{
 		showContent();
 	}
 	
-	/*
-	public void setLight (Flashlight light) {
+	
+	/*public void setLight (Flashlight light) {
 		this.light = light;
-	}
-	*/
+	}*/
+	
 	
 	@Override
 	public void showContent() {

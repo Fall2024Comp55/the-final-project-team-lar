@@ -1,15 +1,16 @@
 // Java program to create a blank text 
 // field of definite number of columns.
 
-/*
- Currently my goal is to get rid of the button so you can just click enter
- */
+import java.awt.event.MouseEvent;
+import java.awt.Color;
 import java.awt.event.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
 
 import acm.graphics.GImage;
+import acm.graphics.GObject;
+import acm.graphics.GRect;
 
 class LevelGate extends JFrame implements ActionListener,KeyListener {
 
@@ -17,13 +18,14 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
     static JFrame frame;
     static JButton button;
     static JLabel label;
-    private String password1;
-	private GImage BackgroundImage;
 	private ArrayList<String> passwords = new ArrayList<String>();
-
+	private ArrayList<GObject> contents;
+	private MainApplication mainScreen;
 	//Juice ITC
 
-    LevelGate() {
+    LevelGate(MainApplication mainScreen) {
+    	this.mainScreen = mainScreen;
+    	addBackgroundImage();
     	frame = new JFrame("textfield");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         label = new JLabel("Enter Level Password");
@@ -41,10 +43,9 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
         frame.add(panel);
 
         frame.setSize(300, 300);
-        frame.setVisible(true);
     
     }
-
+    
 
     @Override
     public void actionPerformed(ActionEvent e)
@@ -75,27 +76,67 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-	
-
 	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 		//System.out.println("You released key character:" + e.getKeyChar());
 		if(e.getKeyCode() == 10)
 		{
 			handleInput();
 		}
-		
 	}
     
-    
+	private void addBackgroundImage(){
+		GImage startImage = new GImage("menu.png", 200, 100);
+		startImage.scale(0.25,0.25);
+		startImage.setLocation((mainScreen.getWidth() - startImage.getWidth())/ 2, (mainScreen.getHeight() - startImage.getHeight()-25));
+		
+		contents.add(startImage);
+		mainScreen.add(startImage);
+		
+		GRect g = new GRect(250, 250 , 100, 100);
+		Color c = new Color(255, 0, 0, 20); 
+		g.setFillColor(c);
+		g.setFilled(true);
+		mainScreen.add(g);
+	}
+	
+	private void addButton(String name,double scaleX,double scaleY,double positionX,double positionY) {
+		GImage button = new GImage(name, 0, 0);
+		button.scale(scaleX, scaleY);
+		button.setLocation(positionX,positionY);
+		contents.add(button);
+		mainScreen.add(button);
+
+	}
+	
+	public void mouseClicked(MouseEvent e) {
+		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {
+			mainScreen.switchToWelcomeScreen();
+		}
+		/*if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(2)) {
+			//mainScreen.switchToRoom();
+			mainScreen.startGame();
+		}*/
+	}
+	
+	public void showContent() {
+		addBackgroundImage();//0
+		addButton("back.jpeg", 0.3, 0.3, 100.0, 100.0);//1
+		//addButton("more.jpeg", 0.3, 0.3, ((mainScreen.getWidth() - button.getWidth())/ 2),300);//2
+        frame.setVisible(true);
+
+	}
+
+	public void hideContent() {
+		for(GObject item : contents) {
+			mainScreen.remove(item);
+		}
+		frame.setVisible(false);
+		contents.clear();
+	}
 }

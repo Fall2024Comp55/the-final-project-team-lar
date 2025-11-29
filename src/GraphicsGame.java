@@ -13,7 +13,6 @@ import java.awt.Color;
 public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 
 	private MainApplication app;
-	 
 	private Level currentLevel;
 	private GameState gameState;
 	SoundManager soundManager = SoundManager.getInstance();

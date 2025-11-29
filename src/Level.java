@@ -43,6 +43,10 @@ public class Level {
 	}
 	
 	public void generateLevel() {
+		generateLevelOne();
+	}
+	
+	private void generateLevelOne() {
 		// clear any prior state
         rooms.clear();
         distractions.clear();

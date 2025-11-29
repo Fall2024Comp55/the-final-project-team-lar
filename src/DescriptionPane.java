@@ -10,7 +10,8 @@ public class DescriptionPane extends GraphicsPane{
 	
 	@Override
 	public void showContent() {
-		addText();
+		addPicture();
+		//addText();
 		addBackButton();
 	}
 
@@ -20,6 +21,21 @@ public class DescriptionPane extends GraphicsPane{
 			mainScreen.remove(item);
 		}
 		contents.clear();
+	}
+	
+	private void addPicture(){
+		GImage startImage = new GImage("menu.png", 200, 100);
+		startImage.scale(0.25,0.25);
+		startImage.setLocation((mainScreen.getWidth() - startImage.getWidth())/ 2, (mainScreen.getHeight() - startImage.getHeight()-25));
+		//*/
+		contents.add(startImage);
+		mainScreen.add(startImage);
+		
+		GRect g = new GRect(250, 250 , 100, 100);
+		Color c = new Color(255, 0, 0, 20); 
+		g.setFillColor(c);
+		g.setFilled(true);
+		mainScreen.add(g);
 	}
 	
 	private void addText() {

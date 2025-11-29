@@ -47,7 +47,6 @@ public class Level {
 		flashlight.toggle(true);
 		flashlight.add();
 		flashlight.getCursorLight().sendToFront();
-		//Monster = new Monster(mainScreen, 1, 1, 1, 1);
 		 
 		
 		// build rooms

@@ -209,6 +209,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 
 //-----Game Screen changes-----// 
 	 private void showWinScreen() {
+		 app.switchToWin(); //lei lei added 
 		messageLabel.setLabel("You found El Cucuy!");
 		//messageLabel.setFont("SansSerif-30");
 		//add(win, getWidth() / 2 - 100, getHeight() / 2);

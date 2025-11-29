@@ -41,11 +41,6 @@ public class WelcomePane extends GraphicsPane{
 		contents.add(startImage);
 		mainScreen.add(startImage);
 		
-		GRect g = new GRect(250, 250 , 100, 100);
-		Color c = new Color(255, 0, 0, 20); 
-		g.setFillColor(c);
-		g.setFilled(true);
-		mainScreen.add(g);
 	}
 	
 	private void addDescriptionButton() {

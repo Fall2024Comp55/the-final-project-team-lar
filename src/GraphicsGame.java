@@ -109,7 +109,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     public void setUpDarkness() {
     	 // Only create the mask ONCE per level
         if (lightHole == null) {
-            lightHole = new GImage("Media/regularLight.png", 0, 0);
+            lightHole = new GImage("Media/regularLight.png", -400, -300);
             app.add(lightHole);
             lightHole.sendToFront();
         } else {

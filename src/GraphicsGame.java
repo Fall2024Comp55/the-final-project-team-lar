@@ -52,6 +52,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     }
 	
     public void startNewLevel(int levelNum) {
+    	System.out.println("startNewLevel called");
     	app.removeAll();
     	gameState = GameState.PLAYING;
     	

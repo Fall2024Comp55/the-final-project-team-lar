@@ -34,10 +34,9 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         label = new JLabel("Enter Level Password");
         button = new JButton("submit");
+        text = new JTextField(16);
 
         button.addActionListener(this);
-
-        text = new JTextField(16);
         text.addKeyListener(this);
         
         JPanel panel = new JPanel();
@@ -67,13 +66,15 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
     			int lvlNum = index + 1;
             	System.out.println("You want lvl" + lvlNum);
                 text.setText("");
-                mainScreen.getGamePane().startNewLevel(lvlNum);
                 hideContent();
+                mainScreen.getGamePane().startNewLevel(lvlNum);//idk why it doesn't work after merge
             }
     		index++;
     	}
-    	
-       text.setText("");
+    	if(text!=null) {
+    	  text.setText("");
+    	  System.out.println("incorrect password");
+    	}
     }
     
     public void addPassword(String password) {
@@ -121,6 +122,7 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
 	}
 	
 	public void mouseClicked(MouseEvent e) {
+		System.out.println("on LevelGate mouse click");
 		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {
 			mainScreen.switchToWelcomeScreen();
 		}

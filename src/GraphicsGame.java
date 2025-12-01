@@ -167,7 +167,13 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	    
 	    
 	    if (currentLevel.checkMonsterFound(e.getX(), e.getY())) {
-	        onMonsterRevealed();
+	    	javax.swing.Timer t = new javax.swing.Timer(4000, evt -> {
+	            ((javax.swing.Timer)evt.getSource()).stop();
+	            onMonsterRevealed();
+	        });
+	        t.setRepeats(false);
+	        t.start();
+	        return;
 	    }
 	    
 	    updateHUD();
@@ -198,13 +204,8 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 
 	 @Override
 	 public void onMonsterRevealed() {
-		// soundManager.load("monster_revealed",);
+		 //soundManager.loadSound("monster_revealed", "Media/monster_revealed.wav");
 		 soundManager.play("monster_revealed");
-		 try {
-		 Thread.sleep(2000);
-		 }catch (InterruptedException e) {
-	         e.printStackTrace();
-	     }
 			
 	     onLevelComplete();
 	 }
@@ -230,6 +231,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 
 	 @Override
 	 public void onLevelComplete() {
+		 
 		 gameState = GameState.WIN;
 	     showWinScreen();
 	 }

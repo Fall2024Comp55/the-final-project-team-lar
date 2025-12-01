@@ -29,8 +29,8 @@ import javax.swing.*;
 		this.type = type;
 		String DType = type.toString();
 			if(DType == "fly") {
-				setImagePath("media/fly.png");
-				image.setImage("media/fly.png");
+				setImagePath("media/fly2.png");
+				image.setImage("media/fly2.png");
 				image.setSize(80,80);
 				//setSound??
 			}
@@ -64,8 +64,8 @@ import javax.swing.*;
 		this.type = type;
 		String DType = type.toString();
 			if(DType == "fly") {
-				setImagePath("media/fly.png");
-				image.setImage("media/fly.png");
+				setImagePath("media/fly2.png");
+				image.setImage("media/fly2.png");
 				image.setSize(80,80);
 				//setSound??
 			}

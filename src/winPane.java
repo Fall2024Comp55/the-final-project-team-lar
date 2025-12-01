@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+
 import acm.graphics.*;
 
 
@@ -11,6 +13,8 @@ public class winPane extends GraphicsPane {
 	public void showContent() {
 		this.addPicture();
 		this.addText();
+		this.addButton("more.jpeg", 0.3,0.3,300);
+		this.addButton("more.jpeg", 0.3,0.3,400);
 	}
 
 	@Override
@@ -32,11 +36,32 @@ public class winPane extends GraphicsPane {
 	
 	private void addText() {
 		GLabel text = new GLabel("You found El Cucuy!", 100, 70);
-		text.setColor(Color.GREEN);
-		text.setFont("DialogInput-PLAIN-24");
-		text.setLocation((mainScreen.getWidth() - text.getWidth()) / 2, 70);
+		text.setColor(Color.RED);
+		text.setFont("DialogInput-PLAIN-30");
+		text.setLocation((mainScreen.getWidth() - text.getWidth()) / 2, 270);
 		
 		contents.add(text);
 		mainScreen.add(text);
+	}
+	
+	private void addButton(String name,double scaleX,double scaleY, double Yposition) {
+		GImage button = new GImage(name, 0, 0);
+		button.scale(scaleX, scaleY);
+		button.setLocation((mainScreen.getWidth() - button.getWidth())/ 2, Yposition);
+		contents.add(button);
+		mainScreen.add(button);
+
+	}
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(3)) {
+			//mainScreen.switchToRoom();
+			mainScreen.switchToWelcomeScreen();
+		}
+		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(2)) {
+			//mainScreen.switchToRoom();
+			mainScreen.getGamePane().startNewLevel(2);
+		}
 	}
 }

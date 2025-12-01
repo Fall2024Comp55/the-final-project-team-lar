@@ -6,6 +6,9 @@ import java.util.*;
 import acm.util.*;
 import javax.swing.*;
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+
 
 /*
  * The main controller class for the game.
@@ -121,6 +124,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     private void updateHUD() {
         double b = currentLevel.getFlashlight().getBattery();
         batteryLabel.setLabel("Battery: " + (int)(b) + "%");
+        batteryLabel.sendToFront();
     }
 
     public void setUpDarkness() {
@@ -133,6 +137,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
             // If mask already exists but was hidden or moved behind, bring back
             app.add(lightHole);
             lightHole.sendToFront();
+            batteryLabel.sendToFront();
         }
     }
     
@@ -146,6 +151,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	     //if (lightHole != null) {
 		     lightHole.setLocation(e.getX() - lightHole.getWidth()/2, e.getY() - lightHole.getHeight()/2);
 		     lightHole.sendToFront();
+		     batteryLabel.sendToFront();
 		 //}
 	 }
 	 
@@ -160,8 +166,15 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	       lightHole.setImage("Media/regularLight.png");
 	    }).start();
 	    
+	    
 	    if (currentLevel.checkMonsterFound(e.getX(), e.getY())) {
-	        onMonsterRevealed();
+	    	javax.swing.Timer t = new javax.swing.Timer(4000, evt -> {
+	            ((javax.swing.Timer)evt.getSource()).stop();
+	            onMonsterRevealed();
+	        });
+	        t.setRepeats(false);
+	        t.start();
+	        return;
 	    }
 	    
 	    updateHUD();
@@ -192,8 +205,9 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 
 	 @Override
 	 public void onMonsterRevealed() {
-		// soundManager.load("monster_revealed",);
+		 //soundManager.loadSound("monster_revealed", "Media/monster_revealed.wav");
 		 soundManager.play("monster_revealed");
+			
 	     onLevelComplete();
 	 }
 	 
@@ -218,6 +232,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 
 	 @Override
 	 public void onLevelComplete() {
+		 
 		 gameState = GameState.WIN;
 	     showWinScreen();
 	 }

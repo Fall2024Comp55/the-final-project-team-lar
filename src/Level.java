@@ -33,6 +33,7 @@ public class Level {
 	}
 	
 	public void generateLevel() {
+		resetLevel();
 		generateLevelOne();
 	}
 	
@@ -173,6 +174,14 @@ public class Level {
 	
 	public String getPassword() {
 		return password;
+	}
+	
+	public Monster getMonster() {
+		return Monster;
+	}
+	
+	public int getLevelNum() {
+		return levelNumber;
 	}
 	
 	public void setDelegate(GraphicsGame d) {

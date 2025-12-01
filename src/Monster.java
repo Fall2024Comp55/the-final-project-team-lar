@@ -36,7 +36,10 @@ public class Monster extends GameObject {
 		isRevealed = true;
 		System.out.println("Monster REVEALED!!");
 		setImagePath("Media/new_Monster_revealed5.png");//need to add monster pngs
-		image.setImage("Media/new_Monster_revealed5.png");
+		this.image.setImage("new_Monster_revealed5.png");
+		new javax.swing.Timer(1000, ev -> {
+		       this.image.setImage("Media/new_monster_revealed5.png");
+		    }).start();
 		playSound();
 	}
 	

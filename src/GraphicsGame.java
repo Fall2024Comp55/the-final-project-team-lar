@@ -123,6 +123,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     private void updateHUD() {
         double b = currentLevel.getFlashlight().getBattery();
         batteryLabel.setLabel("Battery: " + (int)(b) + "%");
+        batteryLabel.sendToFront();
     }
 
     public void setUpDarkness() {
@@ -135,6 +136,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
             // If mask already exists but was hidden or moved behind, bring back
             app.add(lightHole);
             lightHole.sendToFront();
+            batteryLabel.sendToFront();
         }
     }
     
@@ -148,6 +150,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	     //if (lightHole != null) {
 		     lightHole.setLocation(e.getX() - lightHole.getWidth()/2, e.getY() - lightHole.getHeight()/2);
 		     lightHole.sendToFront();
+		     batteryLabel.sendToFront();
 		 //}
 	 }
 	 
@@ -161,6 +164,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	    new javax.swing.Timer(1000, ev -> {
 	       lightHole.setImage("Media/regularLight.png");
 	    }).start();
+	    
 	    
 	    if (currentLevel.checkMonsterFound(e.getX(), e.getY())) {
 	        onMonsterRevealed();

@@ -14,7 +14,7 @@ public class Door extends GameObject {
 	//made 2 constructors in care we want to specify the location the door is created
 	public Door(MainApplication mainScreen, String roomID)
 	{
-		super(mainScreen,0,0,"arrow.png","");
+		super(mainScreen,0,0,"door.png","");
 		this.roomID = roomID;
 	}
 	

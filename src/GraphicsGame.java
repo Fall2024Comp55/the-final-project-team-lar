@@ -6,6 +6,9 @@ import java.util.*;
 import acm.util.*;
 import javax.swing.*;
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+
 
 /*
  * The main controller class for the game.
@@ -193,6 +196,12 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 public void onMonsterRevealed() {
 		// soundManager.load("monster_revealed",);
 		 soundManager.play("monster_revealed");
+		 try {
+		 Thread.sleep(2000);
+		 }catch (InterruptedException e) {
+	         e.printStackTrace();
+	     }
+			
 	     onLevelComplete();
 	 }
 	 

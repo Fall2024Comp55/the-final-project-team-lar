@@ -13,8 +13,8 @@ public class Monster extends GameObject {
 
 	public Monster(MainApplication mainScreen, double x, double y,double scareIntensity, int monsterRoom)
 	{
-		super(mainScreen,x,y,"monster.jpeg","insertSoundName");
-		this.image.scale(0.2);
+		super(mainScreen,x,y,"new_monster2.png","insertSoundName");
+		this.image.scale(0.1);
 		isRevealed = false;
 		this.scareIntensity = scareIntensity;
 		setPosition(x,y);
@@ -35,8 +35,8 @@ public class Monster extends GameObject {
 	public void reveal() {
 		isRevealed = true;
 		System.out.println("Monster REVEALED!!");
-		setImagePath("media/revealedMonster.jpeg");//need to add monster pngs
-		image.setImage("media/revealedMonster.jpeg");
+		setImagePath("Media/new_Monster_revealed5.png");//need to add monster pngs
+		image.setImage("Media/new_Monster_revealed5.png");
 		playSound();
 	}
 	
@@ -46,7 +46,7 @@ public class Monster extends GameObject {
 	
 	public void reset() {
 		isRevealed = false;
-		setImagePath("monster.jpeg");
+		setImagePath("Media/new_monster2.png");
 		monsterRoom = initialMonsterRoom;
 		setPosition(initialX,initialY);
 	}

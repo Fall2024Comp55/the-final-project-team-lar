@@ -73,9 +73,12 @@ public class Monster extends GameObject {
 		//isCaught(e.getX(),e.getY());
 		System.out.println("onMouseAction");
 		isCaught();
-		new javax.swing.Timer(1000, evt -> {
+		javax.swing.Timer t = new javax.swing.Timer(1000, evt -> {
 		       delegate.onMonsterRevealed();
-		    }).start();
+		    });
+			t.setRepeats(false);
+			t.start();
+		
 	}
 	
 	public void monsterMovement(int numRooms,int playerRoomID,double screenWidth,double screenHeight){

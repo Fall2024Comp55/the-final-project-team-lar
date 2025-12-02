@@ -14,14 +14,15 @@ public class Door extends GameObject {
 	//made 2 constructors in care we want to specify the location the door is created
 	public Door(MainApplication mainScreen, String roomID)
 	{
-		super(mainScreen,0,0,"door.png","");
+		super(mainScreen,0,0,"new_door2.png","");
+		this.image.scale(0.2);
 		this.roomID = roomID;
 	}
 	
 	public Door(MainApplication mainScreen, double x, double y, String roomID)
 	{
-		super(mainScreen,x,y,"door.png","door-creak.au");
-		this.image.scale(0.3);
+		super(mainScreen,x,y,"new_door2.png","door-creak.au");
+		this.image.scale(0.2);
 		this.roomID = roomID;
 	}
 	

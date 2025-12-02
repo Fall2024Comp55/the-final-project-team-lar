@@ -78,6 +78,10 @@ public class WelcomePane extends GraphicsPane{
 		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(2)) {
 			//mainScreen.switchToRoom();
 			mainScreen.startGame();
+			System.out.println("Starting Game");
+			mainScreen.getGamePane().startNewLevel(1);
+			System.out.println("Starting Level 1");
+			
 		}
 		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {
 			//mainScreen.switchToRoom();

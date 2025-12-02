@@ -34,7 +34,23 @@ public class Level {
 	
 	public void generateLevel() {
 		resetLevel();
-		generateLevelOne();
+		switch (levelNumber) {
+        case 1:
+            generateLevelOne();
+            System.out.println("Generating Level 1");
+            break;
+        case 2:
+            generateLevelTwo();
+            System.out.println("Generating Level 2");
+            break;
+        case 3:
+            generateLevelThree();
+            System.out.println("Generating Level 3");
+            break;
+        default:
+            generateLevelOne();
+            break;
+    }
 	}
 	
 	private void generateLevelOne() {
@@ -54,46 +70,150 @@ public class Level {
         Room hallway = new Room(mainScreen, "0");
 	    rooms.add(hallway); // index 0
 
-		if(levelNumber==1)
-		{
-			 Room room1   = new Room(mainScreen, "1");
-		     Room room2   = new Room(mainScreen, "2");
-		     Room room3   = new Room(mainScreen, "3");
-		        
-		    // register rooms in order (index == numeric id)
-		     rooms.add(room1);   // index 1
-		     rooms.add(room2);   // index 2
-		     rooms.add(room3);   // index 3
-		    // add doors from hallway to other rooms
-	        hallway.addDoor(mainScreen, "1", 400, 120); // hallway -> room1
-	        hallway.addDoor(mainScreen, "2", 400, 260); // hallway -> room2
-	        hallway.addDoor(mainScreen, "3", 400, 400); // hallway -> room3
+		 Room room1   = new Room(mainScreen, "1");
+	     Room room2   = new Room(mainScreen, "2");
+	     Room room3   = new Room(mainScreen, "3");
 	        
-	        hallway.addDistraction(mainScreen, 100, 100, DistractionType.FLY);
+	    // register rooms in order (index == numeric id)
+	     rooms.add(room1);   // index 1
+	     rooms.add(room2);   // index 2
+	     rooms.add(room3);   // index 3
+	    // add doors from hallway to other rooms
+        hallway.addDoor(mainScreen, "1", 340, 180); // hallway -> room1
+        hallway.addDoor(mainScreen, "2", 400, 260); // hallway -> room2
+        hallway.addDoor(mainScreen, "3", 460, 340); // hallway -> room3
+        
+        hallway.addDistraction(mainScreen, 100, 100, DistractionType.FLY);
 
-	        // each room has a door back to hallway
-	        room1.addDoor(mainScreen, "0", 40, 60);   // room1 -> hallway
-	        room2.addDoor(mainScreen, "0", 40, 120);  // room2 -> hallway
-	        room3.addDoor(mainScreen, "0", 40, 180);  // room3 -> hallway
+        // each room has a door back to hallway
+        room1.addDoor(mainScreen, "0", 40, 60);   // room1 -> hallway
+        room2.addDoor(mainScreen, "0", 40, 120);  // room2 -> hallway
+        room3.addDoor(mainScreen, "0", 40, 180);  // room3 -> hallway
+        
+        //potential connection from one room to another not via the hallway
+        //room2.addDoor(mainScreen, "3", 250, 200); // room2 -> room3
+
+        // share flashlight across rooms
+        /*for (Room r : rooms) {
+            r.setLight(this.flashlight);
+        }*/
+    
+        // place monster in a random non-hallway room (1..rooms.size()-1)
+        int spawnRoom = 1 + rng.nextInt(Math.max(1, rooms.size() - 1));
+        Room monsterRoom = rooms.get(spawnRoom);
+
+        // pick a reasonable spawn position inside the room (adjust to your room images coordinates)
+        double spawnX = 150 + rng.nextDouble() * 200; // example x
+        double spawnY = 120 + rng.nextDouble() * 200; // example y
+
+        this.Monster = new Monster(mainScreen, spawnX, spawnY, 1.0, spawnRoom);
+        // place Monster object into the monster room's state so the room can draw it
+        monsterRoom.setMonster(Monster); 
+
+        // set currentRoom to hallway by default
+        this.currentRoom = hallway;
+	}
+	
+	private void generateLevelTwo() {
+		// clear any prior state
+        rooms.clear();
+        distractions.clear();
+        Monster = null;
+		
+		this.flashlight = new Flashlight(mainScreen, 100, 2);
+		flashlight.toggle(true);
+		flashlight.add();
+		flashlight.getCursorLight().sendToFront();
+		 
+		
+		// build rooms
+        // room "0" is hallway; other rooms are "1","2","3"
+        Room hallway = new Room(mainScreen, "0");
+	    rooms.add(hallway); // index 0
+
+		 Room room1   = new Room(mainScreen, "1");
+	     Room room2   = new Room(mainScreen, "2");
+	     Room room3   = new Room(mainScreen, "3");
 	        
-	        //potential connection from one room to another not via the hallway
-	        //room2.addDoor(mainScreen, "3", 250, 200); // room2 -> room3
+	    // register rooms in order (index == numeric id)
+	     rooms.add(room1);   // index 1
+	     rooms.add(room2);   // index 2
+	     rooms.add(room3);   // index 3
+	    // add doors from hallway to other rooms
+        hallway.addDoor(mainScreen, "1", 400, 120); // hallway -> room1
+        hallway.addDoor(mainScreen, "2", 400, 260); // hallway -> room2
+        hallway.addDoor(mainScreen, "3", 400, 400); // hallway -> room3
+        
+        hallway.addDistraction(mainScreen, 100, 100, DistractionType.FLY);
+
+        // each room has a door back to hallway
+        room1.addDoor(mainScreen, "0", 40, 60);   // room1 -> hallway
+        room2.addDoor(mainScreen, "0", 40, 120);  // room2 -> hallway
+        room3.addDoor(mainScreen, "0", 40, 180);  // room3 -> hallway
+        
+        //potential connection from one room to another not via the hallway
+        //room2.addDoor(mainScreen, "3", 250, 200); // room2 -> room3
+
+        // share flashlight across rooms
+        /*for (Room r : rooms) {
+            r.setLight(this.flashlight);
+        }*/
+    
+        // place monster in a random non-hallway room (1..rooms.size()-1)
+        int spawnRoom = 1 + rng.nextInt(Math.max(1, rooms.size() - 1));
+        Room monsterRoom = rooms.get(spawnRoom);
+
+        // pick a reasonable spawn position inside the room (adjust to your room images coordinates)
+        double spawnX = 150 + rng.nextDouble() * 200; // example x
+        double spawnY = 120 + rng.nextDouble() * 200; // example y
+
+        this.Monster = new Monster(mainScreen, spawnX, spawnY, 1.0, spawnRoom);
+        // place Monster object into the monster room's state so the room can draw it
+        monsterRoom.setMonster(Monster); 
+
+        // set currentRoom to hallway by default
+        this.currentRoom = hallway;
+	}
+	
+	private void generateLevelThree() {
+		// clear any prior state
+        rooms.clear();
+        distractions.clear();
+        Monster = null;
+		
+		this.flashlight = new Flashlight(mainScreen, 100, 2);
+		flashlight.toggle(true);
+		flashlight.add();
+		flashlight.getCursorLight().sendToFront();
+		 
+		
+		// build rooms
+        // room "0" is hallway; other rooms are "1","2","3"
+        Room hallway = new Room(mainScreen, "0");
+	    rooms.add(hallway); // index 0
+
+		 Room room1   = new Room(mainScreen, "1");
+	     Room room2   = new Room(mainScreen, "2");
+	     Room room3   = new Room(mainScreen, "3");
 	        
-		}
-		if(levelNumber==2)
-		{
-			 Room room1   = new Room(mainScreen, "1");
-		     Room room2   = new Room(mainScreen, "2");
-		     hallway.addDoor(mainScreen, "1", 400, 120); // hallway -> room1
-		     hallway.addDoor(mainScreen, "2", 400, 260); // hallway -> room2
-		     room1.addDoor(mainScreen, "0", 40, 60);   // room1 -> hallway
-		     room2.addDoor(mainScreen, "0", 40, 120);  // room2 -> hallway
-		     
-		}
-		if(levelNumber == 3)
-		{
-			
-		}
+	    // register rooms in order (index == numeric id)
+	     rooms.add(room1);   // index 1
+	     rooms.add(room2);   // index 2
+	     rooms.add(room3);   // index 3
+	    // add doors from hallway to other rooms
+        hallway.addDoor(mainScreen, "1", 400, 120); // hallway -> room1
+        hallway.addDoor(mainScreen, "2", 400, 260); // hallway -> room2
+        hallway.addDoor(mainScreen, "3", 400, 400); // hallway -> room3
+        
+        hallway.addDistraction(mainScreen, 100, 100, DistractionType.FLY);
+
+        // each room has a door back to hallway
+        room1.addDoor(mainScreen, "0", 40, 60);   // room1 -> hallway
+        room2.addDoor(mainScreen, "0", 40, 120);  // room2 -> hallway
+        room3.addDoor(mainScreen, "0", 40, 180);  // room3 -> hallway
+        
+        //potential connection from one room to another not via the hallway
+        //room2.addDoor(mainScreen, "3", 250, 200); // room2 -> room3
 
         // share flashlight across rooms
         /*for (Room r : rooms) {
@@ -133,7 +253,7 @@ public class Level {
 		flashlight = null;
 		Monster = null;
 		currentRoom = null;
-		//isCompleted = null;
+		isCompleted = false;
 		rooms.clear();
 		distractions.clear();
 	}

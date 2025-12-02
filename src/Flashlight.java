@@ -58,6 +58,10 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	    t.start();
 	}
 	
+	public void stopTimer() {
+		t.stop();
+	}
+	
 	public void toggle(boolean on) {
 		isOn = true;
 	}

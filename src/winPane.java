@@ -61,7 +61,17 @@ public class winPane extends GraphicsPane {
 		}
 		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(2)) {
 			//mainScreen.switchToRoom();
-			mainScreen.getGamePane().startNewLevel(2);
+			mainScreen.startGame();
+			
+			if (mainScreen.getGamePane().getCurrentLevel().getLevelNum() == 1) {
+				mainScreen.getGamePane().startNewLevel(2);
+			}
+			else if (mainScreen.getGamePane().getCurrentLevel().getLevelNum() == 2) {
+				mainScreen.getGamePane().startNewLevel(3);
+			}
+			else {
+				mainScreen.getGamePane().startNewLevel(1);
+			}
 		}
 	}
 }

@@ -13,7 +13,7 @@ public class WelcomePane extends GraphicsPane{
 	@Override
 	public void showContent() {
 		addPicture();
-		addButton("levels.png", 0.035, 0.035);
+		addButton("levels.png", 0.07, 0.07);
 		addDescriptionButton();
 		
 		
@@ -45,8 +45,8 @@ public class WelcomePane extends GraphicsPane{
 	}
 	
 	private void addDescriptionButton() {
-		GImage moreButton = new GImage("more.jpeg", 200, 400);
-		moreButton.scale(0.3, 0.3);
+		GImage moreButton = new GImage("play.png", 200, 400);
+		moreButton.scale(0.07, 0.07);
 		moreButton.setLocation((mainScreen.getWidth() - moreButton.getWidth())/ 2, 400);
 		
 		contents.add(moreButton);

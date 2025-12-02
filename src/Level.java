@@ -186,5 +186,5 @@ public class Level {
 	public void setDelegate(GraphicsGame d) {
 		this.delegate = d;
 	}
-	
+	 
 }

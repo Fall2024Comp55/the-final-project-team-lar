@@ -49,6 +49,14 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     	return currentLevel;
     }
     
+    public Image getLightHole() {
+    	return lightHole.getImage();
+    }
+    
+    public void setLightHole(String name) {
+    	lightHole.setImage(name);
+    }
+    
     public ArrayList<String> getPasswords()
     {
     	return passwords;
@@ -130,6 +138,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     public void setUpDarkness() {
     	 // Only create the mask ONCE per level
         if (lightHole == null) {
+            //lightHole = new GImage("Media/transparent.png", -400, -300);
             lightHole = new GImage("Media/regularLight.png", -400, -300);
             app.add(lightHole);
             lightHole.sendToFront();
@@ -161,9 +170,9 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	    if (gameState != GameState.PLAYING) return;
 	    
 	    currentLevel.getFlashlight().MouseClicked(e);
-	    
+	    System.out.println("onGGShine");
 	    lightHole.setImage("Media/shineFlashlight.png");
-	    new javax.swing.Timer(1000, ev -> {
+	    new javax.swing.Timer(4000, ev -> {
 	       lightHole.setImage("Media/regularLight.png");
 	    }).start();
 	    
@@ -253,5 +262,6 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	      //lose.setFont("SansSerif-30");
 	      //add(lose, getWidth() / 2 - 120, getHeight() / 2);
 	 }
-
+//------------------------------//
+	 
 }

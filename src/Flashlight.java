@@ -71,7 +71,7 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 		this.drain();
 		this.add(x,y);
 		
-		new javax.swing.Timer(1000, ev -> {
+		new javax.swing.Timer(1000, evt -> {
 	        cursorLight.setSize(lightDiameter, lightDiameter);
 	    }).start();
 	}

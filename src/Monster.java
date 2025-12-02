@@ -65,7 +65,7 @@ public class Monster extends GameObject {
 	public void isCaught() {
 		System.out.println("isCaught");
 		reveal();
-		delegate.onMonsterRevealed();
+		//delegate.onMonsterRevealed();
 	}
 	
 	@Override
@@ -73,6 +73,9 @@ public class Monster extends GameObject {
 		//isCaught(e.getX(),e.getY());
 		System.out.println("onMouseAction");
 		isCaught();
+		new javax.swing.Timer(1000, evt -> {
+		       delegate.onMonsterRevealed();
+		    }).start();
 	}
 	
 	public void monsterMovement(int numRooms,int playerRoomID,double screenWidth,double screenHeight){

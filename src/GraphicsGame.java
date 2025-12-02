@@ -137,6 +137,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
             // If mask already exists but was hidden or moved behind, bring back
             app.add(lightHole);
             lightHole.sendToFront();
+            app.add(batteryLabel);
             batteryLabel.sendToFront();
         }
     }

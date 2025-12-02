@@ -78,6 +78,7 @@ public class Monster extends GameObject {
 	public void monsterMovement(int numRooms,int playerRoomID,double screenWidth,double screenHeight){
 		//randomizes room
 		//randomizes x and y
+		System.out.println("the monster is shmovin");
 		int randRoom = (int)(Math.random()* numRooms + 1);
 		double randX = (double)(Math.random()* screenWidth+1);
 		double randY = (double)(Math.random()* screenHeight+ 1);

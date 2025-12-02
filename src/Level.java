@@ -37,12 +37,15 @@ public class Level {
 		switch (levelNumber) {
         case 1:
             generateLevelOne();
+            System.out.println("Generating Level 1");
             break;
         case 2:
             generateLevelTwo();
+            System.out.println("Generating Level 2");
             break;
         case 3:
             generateLevelThree();
+            System.out.println("Generating Level 3");
             break;
         default:
             generateLevelOne();
@@ -250,7 +253,7 @@ public class Level {
 		flashlight = null;
 		Monster = null;
 		currentRoom = null;
-		//isCompleted = null;
+		isCompleted = false;
 		rooms.clear();
 		distractions.clear();
 	}

@@ -42,7 +42,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	// Called when MainApplication displays this pane
     @Override
     public void showContent() {
-        startNewLevel(1);
+        //startNewLevel(1);
     }
 	
     public Level getCurrentLevel() {
@@ -66,6 +66,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         currentLevel.getFlashlight().startTimer();
 
         drawRoom();         // draw current room
+        
         setUpDarkness();
         drawHUD();          // battery, messages, UI
         currentLevel.getFlashlight().getCursorLight().sendToFront();
@@ -77,6 +78,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     	app.removeAll();
     	gameState = GameState.PLAYING;
     	
+    	//currentLevel = null;
         currentLevel = new Level(app, levelNum, password);
         currentLevel.setDelegate(this);
         currentLevel.generateLevel();
@@ -208,7 +210,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 public void onMonsterRevealed() {
 		 //soundManager.loadSound("monster_revealed", "Media/monster_revealed.wav");
 		 soundManager.play("monster_revealed");
-			
+		 currentLevel.getFlashlight().stopTimer();
 	     onLevelComplete();
 	 }
 	 
@@ -222,6 +224,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 public void onPlayerLose() {
 		 soundManager.play("lose");
 	     gameState = GameState.LOSE;
+	     currentLevel.getFlashlight().stopTimer();
 	     showLoseScreen();
 	 }
 	 

@@ -105,7 +105,9 @@ public class Room extends GraphicsPane{
 		mainScreen.remove(BackgroundImage);
 	}
 	
+	@Override
 	public void mouseClicked(MouseEvent e) {
+		System.out.println("room mouse click");
 		double x = e.getX();
 		double y = e.getY();
 		

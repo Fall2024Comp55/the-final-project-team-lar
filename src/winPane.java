@@ -13,7 +13,7 @@ public class winPane extends GraphicsPane {
 	public void showContent() {
 		this.addPicture();
 		this.addText();
-		this.addButton("more.jpeg", 0.3,0.3,300);
+		this.addButton("NextLevel.png", 0.07,0.07,300);
 		this.addButton("more.jpeg", 0.3,0.3,400);
 	}
 

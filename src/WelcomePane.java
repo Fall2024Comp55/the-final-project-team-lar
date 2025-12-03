@@ -13,7 +13,8 @@ public class WelcomePane extends GraphicsPane{
 	@Override
 	public void showContent() {
 		addPicture();
-		addButton("levels.png", 0.07, 0.07);
+		//addButton("levels.png", 0.07, 0.07);
+		addButton("levels2.png", 0.07, 0.07);
 		addDescriptionButton();
 		
 		

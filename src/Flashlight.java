@@ -34,7 +34,9 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	}
 	
 	public void add() {
-		cursorLight.setLocation(400-lightDiameter/2, 300-lightDiameter/2);
+		double x = cursorLight.getX();
+		double y = cursorLight.getY();
+		cursorLight.setLocation(x, y);
 		mainScreen.add(cursorLight);
 		System.out.println("adding flashlight");
 	}

@@ -34,6 +34,19 @@ public class Level {
 	
 	public void generateLevel() {
 		resetLevel();
+		
+		// clear any prior state
+        rooms.clear();
+        distractions.clear();
+        Monster = null;
+		
+		this.flashlight = new Flashlight(mainScreen, 100, 2);
+		flashlight.toggle(true);
+		flashlight.add();
+		double radius = flashlight.getCursorLight().getWidth()/2;
+		flashlight.getCursorLight().setLocation(400-radius,300-radius);
+		flashlight.getCursorLight().sendToFront();
+		
 		switch (levelNumber) {
         case 1:
             generateLevelOne();
@@ -50,20 +63,10 @@ public class Level {
         default:
             generateLevelOne();
             break;
-    }
+		}
 	}
 	
 	private void generateLevelOne() {
-		// clear any prior state
-        rooms.clear();
-        distractions.clear();
-        Monster = null;
-		
-		this.flashlight = new Flashlight(mainScreen, 100, 2);
-		flashlight.toggle(true);
-		flashlight.add();
-		flashlight.getCursorLight().sendToFront();
-		 
 		
 		// build rooms
         // room "0" is hallway; other rooms are "1","2","3"
@@ -117,16 +120,6 @@ public class Level {
 	}
 	
 	private void generateLevelTwo() {
-		// clear any prior state
-        rooms.clear();
-        distractions.clear();
-        Monster = null;
-		
-		this.flashlight = new Flashlight(mainScreen, 100, 2);
-		flashlight.toggle(true);
-		flashlight.add();
-		flashlight.getCursorLight().sendToFront();
-		 
 		
 		// build rooms
         // room "0" is hallway; other rooms are "1","2","3"
@@ -178,16 +171,6 @@ public class Level {
 	}
 	
 	private void generateLevelThree() {
-		// clear any prior state
-        rooms.clear();
-        distractions.clear();
-        Monster = null;
-		
-		this.flashlight = new Flashlight(mainScreen, 100, 2);
-		flashlight.toggle(true);
-		flashlight.add();
-		flashlight.getCursorLight().sendToFront();
-		 
 		
 		// build rooms
         // room "0" is hallway; other rooms are "1","2","3"

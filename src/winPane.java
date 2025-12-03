@@ -38,10 +38,19 @@ public class winPane extends GraphicsPane {
 		GLabel text = new GLabel("You found El Cucuy!", 100, 70);
 		text.setColor(Color.RED);
 		text.setFont("DialogInput-PLAIN-30");
-		text.setLocation((mainScreen.getWidth() - text.getWidth()) / 2, 270);
+		text.setLocation((mainScreen.getWidth() - text.getWidth()) / 2, 260);
 		
 		contents.add(text);
 		mainScreen.add(text);
+		
+		int lvlNum = mainScreen.getGamePane().getCurrentLevel().getLevelNum();
+		GLabel text2 = new GLabel("Password for Level " + lvlNum + ": " + mainScreen.getGamePane().getLevelGate().getPassword(lvlNum - 1), 100, 70);
+		text2.setColor(Color.RED);
+		text2.setFont("DialogInput-PLAIN-30");
+		text2.setLocation((mainScreen.getWidth() - text2.getWidth()) / 2, 290);
+		
+		contents.add(text2);
+		mainScreen.add(text2);
 	}
 	
 	private void addButton(String name,double scaleX,double scaleY, double Yposition) {
@@ -55,11 +64,11 @@ public class winPane extends GraphicsPane {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(3)) {
+		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(4)) {
 			//mainScreen.switchToRoom();
 			mainScreen.switchToWelcomeScreen();
 		}
-		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(2)) {
+		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(3)) {
 			//mainScreen.switchToRoom();
 			mainScreen.startGame();
 			

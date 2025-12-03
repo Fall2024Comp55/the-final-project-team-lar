@@ -153,4 +153,7 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
 	{
 		passwords = passes;
 	}
+	public String getPassword(int i) {
+		return passwords.get(i);
+	}
 }

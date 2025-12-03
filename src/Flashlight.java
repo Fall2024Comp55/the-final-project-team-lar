@@ -34,7 +34,7 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	}
 	
 	public void add() {
-		cursorLight.setLocation(400, 300);
+		cursorLight.setLocation(400-lightDiameter/2, 300-lightDiameter/2);
 		mainScreen.add(cursorLight);
 		System.out.println("adding flashlight");
 	}
@@ -73,11 +73,13 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 		cursorLight.setSize(200,200); 
 		isOn = true;
 		this.drain();
-		this.add(x,y);
+		this.add(x-(200-lightDiameter)/2,y-(200-lightDiameter)/2);
 		
 		new javax.swing.Timer(1000, evt -> {
 	        cursorLight.setSize(lightDiameter, lightDiameter);
+	        cursorLight.setLocation(x, y);
 	    }).start();
+		mainScreen.getGamePane().setUpDarkness();
 	}
 	
 	public void drain() {
@@ -107,6 +109,7 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	}
 	
 	public void MouseClicked (MouseEvent e) { 
+		System.out.println("flashlight click");
 		this.shine();
 		delegate.onFlashlightTurnedOn();
 	}

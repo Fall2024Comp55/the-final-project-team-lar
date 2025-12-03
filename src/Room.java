@@ -16,7 +16,7 @@ public class Room extends GraphicsPane{
 		id = num; 
 		doors = new ArrayList<Door>();
 		distractions = new ArrayList<Distraction>();
-		monster = new Monster(mainScreen, 1,1,1,1); //initialization 
+		monster = null; //new Monster(mainScreen, 1,1,1,1); //initialization 
 		imagePath = "room" + id + ".png"; //change this if diff file format is used 
 		BackgroundImage = new GImage(imagePath, 0, 0);
 		BackgroundImage.setSize(mainScreen.getWidth(), mainScreen.getHeight());
@@ -57,6 +57,10 @@ public class Room extends GraphicsPane{
 		doors.add(thedoor);
 	}
 	
+	public Door getDoor(int i) {
+		return doors.get(i);
+	}
+	
 	public void setMonster(Monster m) { 
 		this.monster = m; 
 	}
@@ -76,7 +80,9 @@ public class Room extends GraphicsPane{
 	public void showContent() {
 		mainScreen.add(BackgroundImage);
 		contents.add(BackgroundImage);
-		monster.add(); 
+		if (monster != null) {
+			monster.add(); 
+		}
 		for(Distraction m: distractions) {
 			m.add(); 
 		}
@@ -100,7 +106,9 @@ public class Room extends GraphicsPane{
 		for(Distraction a:distractions) {
 			a.remove();
 		}
-		monster.remove();
+		if (monster != null) {
+			monster.remove();
+		}
 
 		mainScreen.remove(BackgroundImage);
 	}
@@ -128,7 +136,7 @@ public class Room extends GraphicsPane{
 		}
 		
 		//monster detection
-		if(monster.pointsIn(x, y))
+		if(monster != null && monster.pointsIn(x, y))
 		{
 			monster.onMouseAction(e);
 		}

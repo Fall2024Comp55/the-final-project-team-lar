@@ -124,7 +124,7 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 		if(battery <= 0.0) {
 			battery = 0;
 			t.stop();
-			
+			delegate.onPlayerLose();
 			
 		}
 	}

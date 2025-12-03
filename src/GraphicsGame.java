@@ -61,6 +61,14 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     {
     	return passwords;
     }
+    
+    public String getGameState() {
+    	return gameState.toString();
+    }
+    
+    public LevelGate getLevelGate() {
+    	return LevelGate;
+    }
 	
     public void startNewLevel(int levelNum) {
     	System.out.println("startNewLevel called");

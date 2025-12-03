@@ -67,6 +67,7 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
             	System.out.println("You want lvl" + lvlNum);
                 text.setText("");
                 hideContent();
+                mainScreen.startGame(); //need to call this to switch the screen to game pane before calling the startNewLevel method
                 mainScreen.getGamePane().startNewLevel(lvlNum);//idk why it doesn't work after merge
             }
     		index++;
@@ -151,5 +152,8 @@ class LevelGate extends JFrame implements ActionListener,KeyListener {
 	public void setPasswords(ArrayList<String> passes)
 	{
 		passwords = passes;
+	}
+	public String getPassword(int i) {
+		return passwords.get(i);
 	}
 }

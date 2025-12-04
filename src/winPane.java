@@ -14,7 +14,7 @@ public class winPane extends GraphicsPane {
 		this.addPicture();
 		this.addText();
 		this.addButton("NextLevel.png", 0.07,0.07,300);
-		this.addButton("more.jpeg", 0.3,0.3,400);
+		this.addButton("MainMenu.png", 0.07,0.07,400);
 	}
 
 	@Override

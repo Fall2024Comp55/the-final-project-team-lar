@@ -18,6 +18,7 @@ public class MainApplication extends GraphicsProgram{
 	private GraphicsPane currentScreen;
 	private GraphicsGame gamePane;
 	private winPane winScreen; //lei lei added
+	private losePane loseScreen;
 
 	public MainApplication() {
 		super();
@@ -44,6 +45,7 @@ public class MainApplication extends GraphicsProgram{
 		descriptionPane = new DescriptionPane(this);
 		gamePane = new GraphicsGame(this);
 		winScreen = new winPane(this); //lei lei added
+		loseScreen = new losePane(this); //lei lei added
 		
 		//room = new Room(this, "0"); 
 		//TheDefaultPane
@@ -73,6 +75,10 @@ public class MainApplication extends GraphicsProgram{
 	
 	public void switchToWin() { //lei lei added
 		switchToScreen(winScreen);
+	}
+	
+	public void switchToLose() { 
+		switchToScreen(loseScreen); 
 	}
 	
 	protected void switchToScreen(GraphicsPane newScreen) {

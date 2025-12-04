@@ -270,6 +270,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	 
 	 private void showLoseScreen() {
 	      messageLabel.setLabel("You died...");
+	      app.switchToLose(); 	      
 	      //lose.setFont("SansSerif-30");
 	      //add(lose, getWidth() / 2 - 120, getHeight() / 2);
 	 }

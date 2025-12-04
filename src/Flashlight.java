@@ -127,6 +127,7 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 		delegate.onBatteryLow(battery);
 		System.out.println("battery health is " + battery); 
 		if(battery <= 0.0) {
+			System.out.println("Battery is dead"); 
 			battery = 0;
 			t.stop();
 			delegate.onPlayerLose();

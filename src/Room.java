@@ -141,14 +141,7 @@ public class Room extends GraphicsPane{
 			monster.onMouseAction(e);
 		}
 		
-		System.out.println("roomShine");
-		System.out.println(mainScreen.getGamePane().getLightHole());
-		mainScreen.getGamePane().getCurrentLevel().getFlashlight().MouseClicked(e);
-		mainScreen.getGamePane().setLightHole("Media/shineFlashlight.png");    
-		new javax.swing.Timer(2000, ev -> {
-			mainScreen.getGamePane().setLightHole("Media/regularlight.png");    
-		    }).start();
-		
+	
 	}
 	
 	

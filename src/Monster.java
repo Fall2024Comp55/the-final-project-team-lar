@@ -9,11 +9,13 @@ public class Monster extends GameObject implements ActionListener {
 	private boolean isRevealed;
 	private double scareIntensity;
 	private int initialMonsterRoom;
-	Timer monsterTimer = new Timer(4000,this);
+	Timer monsterTimer = new Timer(500,this);
 	private double initialX;
 	private double initialY;
 	private int monsterRoom;
 	private GraphicsGame delegate = mainScreen.getGamePane();
+	private double screenHeight;
+	private double screenWidth;
 	Level levelDelegate;
 
 	public Monster(MainApplication mainScreen, double x, double y,double scareIntensity, int monsterRoom)
@@ -28,6 +30,8 @@ public class Monster extends GameObject implements ActionListener {
 		initialY = y;
 		this.monsterRoom = monsterRoom;
 		this.levelDelegate = mainScreen.getGamePane().getCurrentLevel();
+		this.screenHeight = levelDelegate.getScreenHeight();
+		this.screenWidth = levelDelegate.getScreenWidth();
 	}
 	
 	public void add() {
@@ -90,7 +94,7 @@ public class Monster extends GameObject implements ActionListener {
 		double randY = (double)(Math.random()* screenHeight+ 1);
 		
 		monsterRoom = randRoom;
-		
+		levelDelegate.switchRoomto(randRoom);
 		setPosition(randX,randY);
 		if(monsterRoom == playerRoomID)
 		{
@@ -102,8 +106,7 @@ public class Monster extends GameObject implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("monsterActionPerformed");
-		monsterMovement(levelDelegate.getRooms().size(),levelDelegate.getIndex(levelDelegate.getCurrentRoom()),mainScreen.getWidth(),mainScreen.getHeight());
-		
+		monsterMovement(levelDelegate.getRooms().size(),levelDelegate.getIndex(levelDelegate.getCurrentRoom()),screenWidth,screenHeight);
 	}
 
 	

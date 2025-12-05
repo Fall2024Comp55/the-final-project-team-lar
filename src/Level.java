@@ -13,7 +13,8 @@ public class Level {
 	private MainApplication mainScreen;
 	private GraphicsGame delegate;
 	private final Random rng = new Random();
-	
+	private double screenHeight;
+	private double screenWidth;
 	
 	public Level(MainApplication mainScreen, int levelNumber, String password) {
 		this.levelNumber = levelNumber;
@@ -23,13 +24,9 @@ public class Level {
 		
 		this.rooms = new ArrayList<>();
         this.distractions = new ArrayList<>();
-	
-		//generateLevel();
-		
-		/*if (!rooms.isEmpty()) {
-			currentRoom = rooms.get(0);
-		}
-		*/
+        
+		this.screenHeight = mainScreen.getHeight();
+		this.screenWidth = mainScreen.getWidth();
 	}
 	
 	public void generateLevel() {
@@ -79,8 +76,12 @@ public class Level {
 	        
 	    // register rooms in order (index == numeric id)
 	     rooms.add(room1);   // index 1
+	     room1.addDistraction(mainScreen, 100, 100, DistractionType.FLY);
+
 	     rooms.add(room2);   // index 2
 	     rooms.add(room3);   // index 3
+	     room1.addDistraction(mainScreen, 400, 300, DistractionType.FLY);
+
 	    // add doors from hallway to other rooms
         hallway.addDoor(mainScreen, "1", 120, 260); // hallway -> room1
         hallway.addDoor(mainScreen, "2", 290, 260); // hallway -> room2
@@ -181,6 +182,7 @@ public class Level {
 	        
 	    // register rooms in order (index == numeric id)
 	     rooms.add(room1);   // index 1
+	     room1.addDistraction(mainScreen, 100, 100, DistractionType.FLY);
 	     rooms.add(room2);   // index 2
 	     rooms.add(room3);   // index 3
 	    // add doors from hallway to other rooms
@@ -257,8 +259,6 @@ public class Level {
 	    
 	    
 	    // ensure flashlight remains visible
-
-		//flashlight.toggle(true);
 	   
 	    if (this.isHallway()) {
 	        mainScreen.getGamePane().disableLightEffects();
@@ -312,6 +312,14 @@ public class Level {
 		}
 		return 10000;
 		
+	}
+	
+	public double getScreenWidth() {
+		return screenWidth;
+	}
+	
+	public double getScreenHeight() {
+		return screenHeight;
 	}
 	 
 }

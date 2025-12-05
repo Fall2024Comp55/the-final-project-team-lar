@@ -40,6 +40,12 @@ public class Door extends GameObject {
 	        System.err.println("Door has no reference to MainApplication.");
 	        return;
 	    }
+		
+		GraphicsGame gamePane = mainScreen.getGamePane();
+	    if (gamePane != null) {
+	        gamePane.blockFlashlightForThisClick();
+	    }
+		
 		System.out.print("Switching room");
 	    // Convert string room ID to integer
 		
@@ -52,7 +58,6 @@ public class Door extends GameObject {
 	    }
 
 	    // Get the GraphicsGame pane 
-	    GraphicsGame gamePane = mainScreen.getGamePane();
 	    if (gamePane == null) {
 	        System.err.println("MainApplication returned null for gamePane.");
 	        return;

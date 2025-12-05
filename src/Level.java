@@ -24,12 +24,12 @@ public class Level {
 		this.rooms = new ArrayList<>();
         this.distractions = new ArrayList<>();
 	
-		generateLevel();
+		//generateLevel();
 		
-		if (!rooms.isEmpty()) {
+		/*if (!rooms.isEmpty()) {
 			currentRoom = rooms.get(0);
 		}
-		
+		*/
 	}
 	
 	public void generateLevel() {
@@ -42,9 +42,9 @@ public class Level {
 		
 		this.flashlight = new Flashlight(mainScreen, 100, 2);
 		flashlight.toggle(true);
-		flashlight.add();
+		//flashlight.add();
 		double radius = flashlight.getCursorLight().getWidth()/2;
-		flashlight.getCursorLight().setLocation(400-radius,300-radius);
+		//flashlight.getCursorLight().setLocation(400-radius,300-radius);
 		flashlight.getCursorLight().sendToFront();
 		
 		switch (levelNumber) {
@@ -82,18 +82,22 @@ public class Level {
 	     rooms.add(room2);   // index 2
 	     rooms.add(room3);   // index 3
 	    // add doors from hallway to other rooms
-        hallway.addDoor(mainScreen, "1", 340, 200); // hallway -> room1
-        hallway.getDoor(0).image.scale(0.80);
-        hallway.addDoor(mainScreen, "2", 400, 260); // hallway -> room2
-        hallway.getDoor(1).image.scale(0.90);
-        hallway.addDoor(mainScreen, "3", 460, 320); // hallway -> room3
+        hallway.addDoor(mainScreen, "1", 120, 260); // hallway -> room1
+        hallway.addDoor(mainScreen, "2", 290, 260); // hallway -> room2
+        hallway.addDoor(mainScreen, "3", 460, 260); // hallway -> room3
         
-        hallway.addDistraction(mainScreen, 100, 100, DistractionType.FLY);
+        //hallway.addDistraction(mainScreen, 100, 100, DistractionType.FLY);
 
         // each room has a door back to hallway
-        room1.addDoor(mainScreen, "0", 40, 60);   // room1 -> hallway
-        room2.addDoor(mainScreen, "0", 40, 120);  // room2 -> hallway
-        room3.addDoor(mainScreen, "0", 40, 180);  // room3 -> hallway
+        room1.addDoor(mainScreen, "0", 350, 500);   // room1 -> hallway
+        room1.getDoor(0).image.setImage("Media/hallwayButton.png");
+        room1.getDoor(0).image.scale(0.3);
+        room2.addDoor(mainScreen, "0", 350, 500);  // room2 -> hallway
+        room2.getDoor(0).image.setImage("Media/hallwayButton.png");
+        room2.getDoor(0).image.scale(0.3);
+        room3.addDoor(mainScreen, "0", 350, 500);  // room3 -> hallway
+        room3.getDoor(0).image.setImage("Media/hallwayButton.png");
+        room3.getDoor(0).image.scale(0.3);
         
         //potential connection from one room to another not via the hallway
         //room2.addDoor(mainScreen, "3", 250, 200); // room2 -> room3
@@ -225,6 +229,9 @@ public class Level {
 		return rooms.get(index);
 	}
 	
+	public boolean isHallway() {
+	    return currentRoom.getRoomID().startsWith("0");
+	}
 	
 	public boolean checkMonsterFound(double x, double y){
 		if(Monster.getX() == x && Monster.getY()==y) {
@@ -260,12 +267,17 @@ public class Level {
 	    
 	    // ensure flashlight remains visible
 		//flashlight.toggle(true);
-		flashlight.add();
-		flashlight.getCursorLight().sendToFront();
 	   
-	    
-	    delegate.setUpDarkness();
-	   
+	    if (this.isHallway()) {
+	        mainScreen.getGamePane().disableLightEffects();
+	    } else {
+	    	mainScreen.getGamePane().enableLightEffects();
+	    	flashlight.add();
+			flashlight.getCursorLight().sendToFront();
+		   
+		    
+		    delegate.setUpDarkness();
+	    }
 	}
 	
 	public Room getCurrentRoom() {

@@ -24,6 +24,8 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	private GLabel batteryLabel;
 	private GLabel messageLabel;
 	private GImage lightHole;
+	private boolean blockFlashlightThisClick = false;
+	
 	//private GRect darkness;
 	//private GOval lightHole;
 	
@@ -47,6 +49,19 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	
     public Level getCurrentLevel() {
     	return currentLevel;
+    }
+    
+    public void blockFlashlightForThisClick() {
+        blockFlashlightThisClick = true;
+    }
+    
+    public Boolean getBlockFlashlight() {
+    	return blockFlashlightThisClick;
+    }
+    
+    public void toggleBlockFlashlight() {
+    	blockFlashlightThisClick = !blockFlashlightThisClick;
+    	System.out.println(blockFlashlightThisClick);
     }
     
     public Image getLightHole() {
@@ -82,8 +97,9 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         currentLevel.getFlashlight().startTimer();
 
         drawRoom();         // draw current room
+        //app.switchToScreen(currentLevel.getCurrentRoom());
         
-        setUpDarkness();
+        //setUpDarkness();
         drawHUD();          // battery, messages, UI
         currentLevel.getFlashlight().getCursorLight().sendToFront();
 
@@ -102,7 +118,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         currentLevel.getFlashlight().startTimer();
 
         drawRoom();         // draw current room
-        setUpDarkness();
+        //setUpDarkness();
         drawHUD();          // battery, messages, UI
         currentLevel.getFlashlight().getCursorLight().sendToFront();
 
@@ -124,7 +140,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
     
     private void drawRoom() {
         Room room = currentLevel.getCurrentRoom();
-        room.showContent();                    // background, monster, distractions
+        app.switchToScreen(room);                    // background, monster, distractions
     }
     
     private void drawHUD() {
@@ -143,6 +159,7 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
         double b = currentLevel.getFlashlight().getBattery();
         batteryLabel.setLabel("Battery: " + (int)(b) + "%");
         batteryLabel.sendToFront();
+        currentLevel.getCurrentRoom().getDoor(0).image.sendToFront();
     }
 
     public void setUpDarkness() {
@@ -158,34 +175,74 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
             lightHole.sendToFront();
             app.add(batteryLabel);
             batteryLabel.sendToFront();
+            currentLevel.getCurrentRoom().getDoor(0).image.sendToFront();
         }
+    }
+    
+    public void disableLightEffects() {
+        // Remove flashlight circle
+        if (currentLevel.getFlashlight() != null) {
+        	currentLevel.getFlashlight().stopTimer();
+            currentLevel.getFlashlight().remove();
+        }
+
+        // Remove darkness mask
+        if (lightHole != null) {
+            app.remove(lightHole);
+        }
+    }
+
+    public void enableLightEffects() {
+        // Flashlight circle
+        currentLevel.getFlashlight().add();
+        currentLevel.getFlashlight().startTimer();
+        currentLevel.getFlashlight().getCursorLight().sendToFront();
+
+        // PNG mask
+        setUpDarkness();
+        //lightHole.sendToFront();
     }
     
 //-----Mouse Handlers-----//
 	 @Override
 	 public void mouseMoved(MouseEvent e) {
 		 if (gameState != GameState.PLAYING) return;
-
-	     currentLevel.getFlashlight().MouseMoved(e);
 	     
-	     //if (lightHole != null) {
+	     if (!currentLevel.isHallway()) {
+	    	 currentLevel.getFlashlight().MouseMoved(e);
 		     lightHole.setLocation(e.getX() - lightHole.getWidth()/2, e.getY() - lightHole.getHeight()/2);
 		     lightHole.sendToFront();
 		     batteryLabel.sendToFront();
-		 //}
+		     currentLevel.getCurrentRoom().getDoor(0).image.sendToFront();
+		 }
+	     else {
+	    	 disableLightEffects();
+	     }
 	 }
 	 
 	 @Override
-	 public void mousePressed(MouseEvent e) {
+	 public void mouseClicked(MouseEvent e) {
 	    if (gameState != GameState.PLAYING) return;
 	    
+	    updateHUD();
+	    
+		currentLevel.getCurrentRoom().mouseClicked(e);
+	    
+	    if (currentLevel.isHallway()) {
+	    	return;
+	    }
+	    
+	    if (blockFlashlightThisClick) {
+	    	blockFlashlightThisClick = false; // reset for next click
+	        return; 
+	    }
 	    currentLevel.getFlashlight().MouseClicked(e);
 	    System.out.println("onGGShine");
 	    lightHole.setImage("Media/shineFlashlight.png");
 	    new javax.swing.Timer(4000, ev -> {
 	       lightHole.setImage("Media/regularLight.png");
 	    }).start();
-	    
+	    updateHUD();
 	    
 	    if (currentLevel.checkMonsterFound(e.getX(), e.getY())) {
 	    	javax.swing.Timer t = new javax.swing.Timer(4000, evt -> {
@@ -196,10 +253,6 @@ public class GraphicsGame extends GraphicsPane implements ScreenDelegate {
 	        t.start();
 	        return;
 	    }
-	    
-	    updateHUD();
-	    
-	    currentLevel.getCurrentRoom().mouseClicked(e);
 	    
 	 }
 	 

@@ -1,15 +1,20 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
-public class Monster extends GameObject {
+import javax.swing.Timer;
+
+public class Monster extends GameObject implements ActionListener {
 	
 	private boolean isRevealed;
 	private double scareIntensity;
 	private int initialMonsterRoom;
+	Timer monsterTimer = new Timer(500,this);
 	private double initialX;
 	private double initialY;
 	private int monsterRoom;
 	private GraphicsGame delegate = mainScreen.getGamePane();
-	//level levelDelegate
+	Level levelDelegate;
 
 	public Monster(MainApplication mainScreen, double x, double y,double scareIntensity, int monsterRoom)
 	{
@@ -22,10 +27,12 @@ public class Monster extends GameObject {
 		initialX = x;
 		initialY = y;
 		this.monsterRoom = monsterRoom;
+		this.levelDelegate = mainScreen.getGamePane().getCurrentLevel();
 	}
 	
 	public void add() {
 		mainScreen.add(image);
+		monsterTimer.start();
 	}
 
 	public void remove() {
@@ -55,12 +62,6 @@ public class Monster extends GameObject {
 		setPosition(initialX,initialY);
 	}
 	
-	/*public void isCaught(double x, double y) {
-		if(this.getX()==x && this.getY() == y)
-		{
-			reveal();
-		}
-	}*/
 	
 	public void isCaught() {
 		System.out.println("isCaught");
@@ -70,7 +71,6 @@ public class Monster extends GameObject {
 	
 	@Override
 	public void onMouseAction(MouseEvent e) {
-		//isCaught(e.getX(),e.getY());
 		System.out.println("onMouseAction");
 		isCaught();
 		javax.swing.Timer t = new javax.swing.Timer(1000, evt -> {
@@ -95,6 +95,13 @@ public class Monster extends GameObject {
 		{
 			playSound();
 		}
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("monsterActionPerformed");
+		monsterMovement(levelDelegate.getRooms().size(),levelDelegate.getIndex(levelDelegate.getCurrentRoom()),mainScreen.getWidth(),mainScreen.getHeight());
 		
 	}
 

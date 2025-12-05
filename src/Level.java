@@ -98,10 +98,7 @@ public class Level {
         //potential connection from one room to another not via the hallway
         //room2.addDoor(mainScreen, "3", 250, 200); // room2 -> room3
 
-        // share flashlight across rooms
-        /*for (Room r : rooms) {
-            r.setLight(this.flashlight);
-        }*/
+ 
     
         // place monster in a random non-hallway room (1..rooms.size()-1)
         int spawnRoom = 1 + rng.nextInt(Math.max(1, rooms.size() - 1));
@@ -149,10 +146,7 @@ public class Level {
         //potential connection from one room to another not via the hallway
         //room2.addDoor(mainScreen, "3", 250, 200); // room2 -> room3
 
-        // share flashlight across rooms
-        /*for (Room r : rooms) {
-            r.setLight(this.flashlight);
-        }*/
+   
     
         // place monster in a random non-hallway room (1..rooms.size()-1)
         int spawnRoom = 1 + rng.nextInt(Math.max(1, rooms.size() - 1));
@@ -200,10 +194,7 @@ public class Level {
         //potential connection from one room to another not via the hallway
         //room2.addDoor(mainScreen, "3", 250, 200); // room2 -> room3
 
-        // share flashlight across rooms
-        /*for (Room r : rooms) {
-            r.setLight(this.flashlight);
-        }*/
+
     
         // place monster in a random non-hallway room (1..rooms.size()-1)
         int spawnRoom = 1 + rng.nextInt(Math.max(1, rooms.size() - 1));
@@ -259,7 +250,7 @@ public class Level {
 	    
 	    
 	    // ensure flashlight remains visible
-		//flashlight.toggle(true);
+
 		flashlight.add();
 		flashlight.getCursorLight().sendToFront();
 	   
@@ -290,6 +281,24 @@ public class Level {
 	
 	public void setDelegate(GraphicsGame d) {
 		this.delegate = d;
+	}
+	
+	public ArrayList<Room> getRooms(){
+		return rooms;
+	}
+	
+	public int getIndex(Room r)
+	{
+		//rooms.indexOf(r;)
+		for(int i = 0; i<rooms.size(); i++)
+		{
+			if(rooms.get(i) == r)
+			{
+				return i;
+			}
+		}
+		return 10000;
+		
 	}
 	 
 }

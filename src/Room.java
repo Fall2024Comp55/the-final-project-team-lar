@@ -22,6 +22,10 @@ public class Room extends GraphicsPane{
 		BackgroundImage.setSize(mainScreen.getWidth(), mainScreen.getHeight());
 	}
 	
+	public String getRoomID() {
+		return id;
+	}
+	
 	//add more rooms as needed
 	void setupRoom() {
 		switch (id) {
@@ -59,6 +63,19 @@ public class Room extends GraphicsPane{
 	
 	public Door getDoor(int i) {
 		return doors.get(i);
+	}
+	
+	public Boolean checkDoors(MouseEvent e) {
+		double x = e.getX();
+		double y = e.getY();
+		
+		for (Door d : doors) {   
+	        if (d.pointsIn(x, y)) {
+	            return true; 
+	        }
+	    }
+		
+		return false;
 	}
 	
 	public void setMonster(Monster m) { 

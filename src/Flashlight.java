@@ -16,10 +16,12 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	private Timer t = new Timer(10000, this); 
 	private Color shinee = new Color(74, 118, 249, 150); //flashlight shine color 
 	private Color defaultBlue = new Color(74, 118, 249, 50); //default color
-	private Color defaultYellow = new Color(249, 249, 150, 30); //default color
+	private Color defaultYellow = new Color(249, 249, 150, 0); //default color
 	private GOval cursorLight = new GOval(0, 0, lightDiameter, lightDiameter);
 	private GRect batteryMeter = new GRect(0,0, 200, 150);
 	ScreenDelegate delegate;
+	private double lastX = 400;
+	private double lastY = 300;
 	//screen.add(batteryMeter);
 	
 	public Flashlight(MainApplication mainScreen, double b, double d) {
@@ -34,9 +36,10 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	}
 	
 	public void add() {
-		double x = cursorLight.getX();
-		double y = cursorLight.getY();
-		cursorLight.setLocation(x, y);
+		//double x = cursorLight.getX();
+		//double y = cursorLight.getY();
+		//cursorLight.setLocation(x, y);
+		cursorLight.setLocation(lastX, lastY);
 		mainScreen.add(cursorLight);
 		System.out.println("adding flashlight");
 	}
@@ -82,6 +85,13 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	        cursorLight.setLocation(x, y);
 	    }).start();
 		mainScreen.getGamePane().setUpDarkness();
+		
+		if (battery <= 0.0) {
+			System.out.println("Battery is dead"); 
+			battery = 0;
+			t.stop();
+			delegate.onPlayerLose();
+		}
 	}
 	
 	public void drain() {
@@ -111,12 +121,17 @@ public class Flashlight extends GraphicsPane implements ActionListener{
 	}
 	
 	public void MouseClicked (MouseEvent e) { 
-		System.out.println("flashlight click");
-		this.shine();
-		delegate.onFlashlightTurnedOn();
+		if (mainScreen.getGamePane().getBlockFlashlight() == false) {
+			System.out.println("flashlight click");
+			this.shine();
+			delegate.onFlashlightTurnedOn();
+		}
 	}
 	
 	public void MouseMoved(MouseEvent e) {
+		lastX = e.getX() - cursorLight.getWidth()/2;
+	    lastY = e.getY() - cursorLight.getHeight()/2;
+		
 		cursorLight.setLocation(e.getX() - cursorLight.getWidth()/2, e.getY() - cursorLight.getHeight()/2);
 	}
 	

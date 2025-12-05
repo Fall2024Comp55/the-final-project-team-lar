@@ -46,11 +46,11 @@ public class losePane extends GraphicsPane {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(4)) {
+		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(2)) {
 			//mainScreen.switchToRoom();
 			mainScreen.switchToWelcomeScreen();
 		}
-		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(3)) {
+		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {
 			//mainScreen.switchToRoom();
 			mainScreen.startGame();
 			

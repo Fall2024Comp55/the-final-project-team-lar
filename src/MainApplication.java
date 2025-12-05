@@ -114,10 +114,8 @@ public class MainApplication extends GraphicsProgram{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (gamePane != null && gamePane.getCurrentLevel() != null && gamePane.getCurrentLevel().getFlashlight() != null) {
-			if (gamePane.getGameState() == "PLAYING") {
-				gamePane.getCurrentLevel().getFlashlight().MouseClicked(e);
-			}
-		    gamePane.mousePressed(e);
+			
+		    gamePane.mouseClicked(e);
 		}
 		
 		if(currentScreen != null) {

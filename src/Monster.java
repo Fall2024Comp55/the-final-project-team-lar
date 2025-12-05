@@ -9,7 +9,7 @@ public class Monster extends GameObject implements ActionListener {
 	private boolean isRevealed;
 	private double scareIntensity;
 	private int initialMonsterRoom;
-	Timer monsterTimer = new Timer(500,this);
+	Timer monsterTimer = new Timer(4000,this);
 	private double initialX;
 	private double initialY;
 	private int monsterRoom;
@@ -90,6 +90,7 @@ public class Monster extends GameObject implements ActionListener {
 		double randY = (double)(Math.random()* screenHeight+ 1);
 		
 		monsterRoom = randRoom;
+		
 		setPosition(randX,randY);
 		if(monsterRoom == playerRoomID)
 		{
